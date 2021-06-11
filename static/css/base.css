@@ -1,0 +1,37 @@
+html {
+    max-width: 50%;
+    margin: auto;
+}
+
+/* Header styling */
+
+header h1 {
+}
+
+header {
+    max-width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+nav {
+}
+
+nav a {
+}
+
+nav a:hover {
+}
+
+/* General body styling */
+
+.main {
+}
+
+.main a {
+    color: #0066ff;
+}
+
+#footer {
+    height: 50px;
+}

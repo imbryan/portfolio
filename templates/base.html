@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head id="top">
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+        {% block extra_style %} {% endblock %}
+        <title>{% block extra_title %}{% endblock %}Bryan Grigorie</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>Bryan Grigorie</h1>
+
+            <nav>
+                <a href="{% url 'home:index' %}">Home</a>
+                <a href="{% url 'home:index' %}#projects">Projects</a>
+                <a href="{% url 'home:index' %}#skills">Skills</a>
+                <a href="{% url 'home:blog' %}">Blog</a>
+                {% if request.user.is_staff %}
+                <a href="{% url 'admin:index' %}">Admin</a>
+                {% endif %}
+                <br />
+                <a style="font-size: 15px" href="mailto:bryangrigorie@gmail.com">Email</a>
+                <a style="font-size: 15px" href="https://www.dropbox.com/s/a335znty7am03cy/Resume.docx?dl=0">Resume</a>
+                <a style="font-size: 15px" href="http://linkedin.com/in/bryangrigorie">LinkedIn</a>
+                <a style="font-size: 15px" href="http://github.com/imbryan">GitHub</a>
+            </nav>
+        </header>
+
+
+        <div class="main">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+
+        <div id="footer">
+            <p class="centeredtext">&copy; Bryan Grigorie</p>
+        </div>
+    </body>
+</html>

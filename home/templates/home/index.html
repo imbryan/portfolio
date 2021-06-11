@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block extra_style %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+    <br />
+    <div id="projects">
+        <h2 style="text-align: center">Projects</h2>
+
+        {% if projects %}
+
+            {% for project in projects %}
+            <h4>{{ project.project_title }}</h4>
+            <p>{{ project.date|date:"F" }} {{ project.date.year }}</p>
+            <p>{{ project.project_body }}</p>
+            {% if project.project_repository_url %}
+            <p><a href="{{ project.project_repository_url }}">Repository</a></p>
+            {% endif %}
+            {% if project.project_demo_url %}
+            <p><a href="{{ project.project_demo_url }}">Demo</a></p>
+            {% endif %}
+            <br />
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <p class="centeredtext"><a href="">Return to the top</a></p>
+
+    <br />
+    <div id="skills">
+        <h2 class="centeredtext">Skills</h2>
+
+        {% if technical_skills %}
+            <h3 class="centeredtext">Technical skills</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Skill</th>
+                        <th>Level</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+            {% for skill in technical_skills %}
+                <tr>
+                    <td><b>{{ skill.skill_title }}</b></td>
+                    <td>{{ skill.level_text }}</td>
+                    <td>{{ skill.skill_body }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+
+        {% if communication_skills %}
+            <h3 class="centeredtext">Communication skills</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Skill</th>
+                        <th>Level</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+            {% for skill in communication_skills %}
+                <tr>
+                    <td><b>{{ skill.skill_title }}</b></td>
+                    <td>{{ skill.level_text }}</td>
+                    <td>{{ skill.skill_body }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+
+        {% if miscellaneous_skills %}
+            <h3 class="centeredtext">Miscellaneous skills</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Skill</th>
+                        <th>Level</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+            {% for skill in miscellaneous_skills %}
+                <tr>
+                    <td><b>{{ skill.skill_title }}</b></td>
+                    <td>{{ skill.level_text }}</td>
+                    <td>{{ skill.skill_body }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+
+    <br />
+
+    <p class="centeredtext"><a href="">Return to the top</a></p>
+
+    <br />
+
+
+{% endblock %}

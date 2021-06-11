@@ -1,0 +1,17 @@
+.centeredtext {
+    text-align: center;
+}
+
+#projects {
+    max-width: 50%;
+    margin: auto;
+}
+
+#skills {
+    max-width: 33%;
+    margin: auto;
+}
+
+#skills td {
+    padding: 15px;
+}

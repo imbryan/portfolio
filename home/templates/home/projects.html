@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if projects %}
+        {% for project in projects %}
+            <article>
+                <h2>{{ project.project_title }}</h2>
+                <p>{{ project.project_body }}</p>
+                <p><a href="{{ project.project_url }}">Link</a></p>
+            </article>
+
+        {% endfor %}
+    {% else %}
+    <p>No projects to show.</p>
+    {% endif %}
+{% endblock %}

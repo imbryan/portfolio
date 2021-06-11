@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block extra_style %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+    <br />
+    {% for post in posts %}
+        <h2>{{ post.post_title }}</h2>
+        <h5>Posted on {{ post.date_published }}</h5>
+        <p>{{ post.post_body }}</p>
+    {% endfor %}
+{% endblock %}
