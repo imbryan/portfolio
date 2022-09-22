@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
 
+# overrides mcfatter-cafe.cafe.apps.CafeConfig
 class CafeConfig(AppConfig):
-    name = 'cafe'
+    name = 'mcfatter-cafe.cafe'
