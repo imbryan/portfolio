@@ -34,6 +34,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'polls.apps.PollsConfig',
+    'hungerrater.apps.HungerRaterConfig',
     'cafe.apps.CafeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -126,5 +127,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    ("hungerrater", os.path.join(BASE_DIR, 'hunger-rater'))
+]
 #STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
