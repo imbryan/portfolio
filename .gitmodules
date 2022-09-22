@@ -1,0 +1,3 @@
+[submodule "hunger-rater"]
+	path = hunger-rater
+	url = https://github.com/imbryan/hunger-rater
