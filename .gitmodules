@@ -1,4 +1,4 @@
-[submodule "hunger-rater"]
+[submodule "hungerrater"]
 	path = hungerrater
 	url = https://github.com/imbryan/hunger-rater
 [submodule "mcfatter-cafe"]
