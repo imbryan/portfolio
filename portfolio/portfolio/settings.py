@@ -128,7 +128,7 @@ USE_TZ = True
 # Static URL definition
 STATIC_URL = '/static/'
 
-# Static file collection directory, NOT TO BE CONFUSED WITH /static/ (the directory)
+# Static file collection directory, served on production. NOT TO BE CONFUSED WITH /static/ (the directory)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Additional static file sources

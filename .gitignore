@@ -3,7 +3,10 @@
 db.sqlite3
 .env*
 /env/*
+env
 venv
 __pycache__
 db/
 staticfiles/
+node_modules
+portfolio/static/webpack
