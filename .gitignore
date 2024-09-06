@@ -9,4 +9,4 @@ __pycache__
 db/
 staticfiles/
 node_modules
-portfolio/static/webpack
+portfolio/static/js/bundles
