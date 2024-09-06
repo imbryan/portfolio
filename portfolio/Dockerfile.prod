@@ -1,0 +1,43 @@
+##### BUILDER #####
+FROM python:3.12-slim as builder
+
+WORKDIR /usr/src/app
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc
+
+# Flake is used for linting
+RUN pip install --upgrade pip
+# RUN pip install flake8==6.0.0
+COPY . /usr/src/app/
+# RUN flake8 --ignore=E501,F401 .
+
+COPY ./requirements.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+
+##### FINAL #####
+FROM python:3.12-slim
+
+RUN mkdir -p /home/app
+RUN addgroup --system app && adduser --system --group app
+
+ENV APP_HOME=/app
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+
+RUN apt-get update && apt-get install -y --no-install-recommends netcat-traditional
+COPY --from=builder /usr/src/app/wheels /wheels
+COPY --from=builder /usr/src/app/requirements.txt .
+RUN pip install --upgrade pip
+RUN pip install --no-cache /wheels/*
+
+COPY . $APP_HOME
+
+# RUN python manage.py collectstatic --noinput # Error because SECRET_KEY is not passed in yet
+
+RUN chown -R app:app $APP_HOME
+
+USER app
