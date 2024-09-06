@@ -128,12 +128,12 @@ USE_TZ = True
 # Static URL definition
 STATIC_URL = '/static/'
 
-# Static file collection directory
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# Static file collection directory, NOT TO BE CONFUSED WITH /static/ (the directory)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Additional static file sources
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'hungerrater'),
+    os.path.join(BASE_DIR, "static"),  # storing global styles
 ]
 #STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
