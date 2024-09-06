@@ -1,12 +1,12 @@
 services:
   web:
     build:
-      context: .
+      context: portfolio
       dockerfile: Dockerfile.prod
     command: gunicorn portfolio.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - ./db:/db
+      - ./portfolio/db:/db
     ports:
       - 8000:8000
     env_file:
-      - .env
+      - portfolio/.env
