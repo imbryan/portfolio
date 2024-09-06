@@ -2,9 +2,11 @@ services:
   web:
     build: 
       context: portfolio
+    container_name: portfolio
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./portfolio/db:/db
+      - ./portfolio/staticfiles:/app/staticfiles
     ports:
       - 8000:8000
     env_file:
