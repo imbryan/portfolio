@@ -6,4 +6,14 @@ module.exports = {
         filename: 'index-bundle.js', // Output bundle name
         path: path.resolve(__dirname, './static/js/bundles'), // Path to static directory
     },
+    module: {
+        rules: [
+            {
+                test: /\.(js|jxs)$/,
+                exclude: /node_modules/,
+                loader: "babel-loader",
+                options: { presets: ["@babel/preset-env", "@babel/preset-react"] }
+            },
+        ]
+    }
 }
