@@ -27,4 +27,3 @@ def blog(request):
     }
 
     return render(request, 'home/blog.html', context=context)
-
