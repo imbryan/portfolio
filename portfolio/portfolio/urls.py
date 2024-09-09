@@ -21,5 +21,5 @@ urlpatterns = [
     path('demo/mcfatter-cafe/', include('mcfatter-cafe.cafe.urls')),
     path('demo/hunger-rater/', include('hungerrater.urls')),
     path('tinymce/', include('tinymce.urls')),
-    path('', include('home.urls')),
+    path('old/', include('home.urls')),
 ]
