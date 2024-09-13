@@ -6,6 +6,7 @@ class BlogPost(models.Model):
     post_title = models.CharField(max_length=200)
     post_body = models.TextField()
     about_content = models.BooleanField(default=False)
+    hidden = models.BooleanField(default=False)
 
     def __str__(self):
         return self.post_title
@@ -23,7 +24,7 @@ class SkillCategory(models.Model):
 
 class Skill(models.Model):
     skill_title = models.CharField(max_length=200)
-    skill_body = models.TextField(null=True, blank=True)
+    skill_body = models.TextField(null=False, default='', blank=True)
     skill_level = models.IntegerField()
     skill_category = models.ForeignKey(SkillCategory, on_delete=models.CASCADE)
 
@@ -41,9 +42,22 @@ class Skill(models.Model):
 class Project(models.Model):
     project_title = models.CharField(max_length=200)
     project_body = models.TextField()
-    project_repository_url = models.URLField(null=True, blank=True)
-    project_demo_url = models.URLField(null=True, blank=True)
+    project_repository_url = models.URLField(null=False, default='', blank=True)
+    project_demo_url = models.URLField(null=False, default='', blank=True)
     date = models.DateField(null=True, blank=True)
+    hidden = models.BooleanField(default=False)
 
     def __str__(self):
         return self.project_title
+
+
+class Achievement(models.Model):
+    achievement_name = models.CharField(max_length=200)
+    achievement_body = models.TextField(null=False, default='', blank=True)
+    achievement_url = models.URLField(null=False, default='', blank=True)
+    achievement_date = models.DateField()
+    achievement_issuer = models.CharField(max_length=200, null=False, default='', blank=True)
+    hidden = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.achievement_name

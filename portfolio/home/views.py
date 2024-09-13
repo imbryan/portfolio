@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import BlogPost, Skill, Project
+from .models import BlogPost, Skill, Project, Achievement
 
 
 def index(request):
@@ -16,13 +16,17 @@ def index(request):
     #     'projects': projects,
     # }
 
-    context = {}
+    achievements = Achievement.objects.filter(hidden=False).order_by('-achievement_date')
+
+    context = {
+        'achievements': achievements,
+    }
 
     return render(request, 'home/index.html', context=context)
 
 
 def projects(request):
-    projects = Project.objects.all().order_by('-date')
+    projects = Project.objects.filter(hidden=False).order_by('-date')
 
     context = {
         'projects': projects,
@@ -32,7 +36,7 @@ def projects(request):
 
 
 def blog(request):
-    posts = BlogPost.objects.filter(about_content=False).order_by('-date_published')
+    posts = BlogPost.objects.filter(about_content=False, hidden=False).order_by('-date_published')
 
     context = {
         'posts': posts,

@@ -4,6 +4,7 @@
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static 'home/css/projects.css' %}">
 {% endblock %}
+{% block extra_title %}Projects | {% endblock %}
 
 {% block content %}
     {# Old code #}
@@ -25,13 +26,10 @@
     <div class="container mt-5">
         <div class="row">
             {% for project in projects %}
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-lg-6">
                 <div class="card mb-4">
                     <div class="card-body">
                         <h5 class="card-title">{{ project.project_title }}</h5>
-                        {% if project.date %}
-                        <h6 class="card-subtitle mb-2 text-muted">{{ project.date|date:"F" }} {{ project.date.year }}</h6>
-                        {% endif %}
                         <p class="card-text">
                             {{ project.project_body }}
                         </p>
@@ -40,6 +38,11 @@
                         {% endif %}
                         {% if project.project_demo_url %}
                         <a href="{{ project.project_demo_url }}" class="card-link">Demo</a>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer">
+                        {% if project.date %}
+                        <small class="text-muted">{{project.date|date:"F Y"}}</small>
                         {% endif %}
                     </div>
                 </div>

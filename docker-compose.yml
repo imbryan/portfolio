@@ -3,7 +3,10 @@ services:
     build: 
       context: portfolio
     container_name: portfolio
-    command: python manage.py runserver 0.0.0.0:8000
+    command: > 
+      sh -c "
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./portfolio/db:/db
       - ./portfolio/staticfiles:/app/staticfiles
