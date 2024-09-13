@@ -142,3 +142,21 @@ STATICFILES_DIRS = [
 ]
 #STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
+# LOGGING https://docs.djangoproject.com/en/5.1/howto/logging/
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+        }
+    }
+}
+
