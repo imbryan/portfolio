@@ -6,7 +6,7 @@ class BlogPostAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Post content', {'fields': ['post_title', 'post_body']}),
         ('Date information', {'fields': ['date_published']}),
-        ('About flag', {'fields': ['about_content']}),
+        ('Flags', {'fields': ['about_content', 'hidden']}),
     ]
 
 
@@ -25,13 +25,13 @@ class SkillAdmin(admin.ModelAdmin):
 
 class ProjectAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Project content', {'fields': ['project_title', 'project_body', 'project_repository_url', 'project_demo_url', 'date']})
+        ('Project content', {'fields': ['project_title', 'project_body', 'project_repository_url', 'project_demo_url', 'date', 'hidden']})
     ]
 
 
 class AchievementAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Achievement content', {'fields': ['achievement_name', 'achievement_body', 'achievement_issuer', 'achievement_url', 'achievement_date']})
+        ('Achievement content', {'fields': ['achievement_name', 'achievement_body', 'achievement_issuer', 'achievement_url', 'achievement_date', 'hidden']})
     ]
 
 
