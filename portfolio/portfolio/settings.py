@@ -28,6 +28,11 @@ DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
+# FIXING CSRF ISSUE 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  
+# https://stackoverflow.com/a/71482883/1615284 
+# https://docs.djangoproject.com/en/5.1/ref/settings/#secure-proxy-ssl-header
+
 
 # Application definition
 
