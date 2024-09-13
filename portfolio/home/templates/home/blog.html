@@ -1,14 +1,28 @@
 {% extends 'base.html' %}
-{% block extra_style %}
-    {% load static %}
+{% load static %}
+{% block style %}
+    {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static 'home/css/blog.css' %}">
 {% endblock %}
+{% block extra_title %}Blog | {% endblock %}
 
 {% block content %}
-    <br />
-    {% for post in posts %}
-        <h2>{{ post.post_title }}</h2>
-        <h5>Posted on {{ post.date_published }}</h5>
-        <p>{{ post.post_body }}</p>
-    {% endfor %}
+    <div class="container mt-5">
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-12 col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.post_title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ post.date_published|date }}</h6>
+                        <p class="card-text">
+                            {{ post.post_body }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
 {% endblock %}

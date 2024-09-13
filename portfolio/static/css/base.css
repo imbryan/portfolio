@@ -1,6 +1,4 @@
 html {
-    max-width: 50%;
-    margin: auto;
 }
 
 /* Header styling */
@@ -9,15 +7,16 @@ header h1 {
 }
 
 header {
-    max-width: 50%;
-    margin: auto;
-    text-align: center;
 }
 
 nav {
 }
 
 nav a {
+}
+
+.nav-icon {
+    text-decoration: none;
 }
 
 nav a:hover {

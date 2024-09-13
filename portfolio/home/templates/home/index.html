@@ -1,103 +1,37 @@
 {% extends 'base.html' %}
-{% block extra_style %}
-    {% load static %}
+{% load static %}
+{% block style %}
+    {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static 'home/css/index.css' %}">
 {% endblock %}
 
 {% block content %}
-    <br />
-    <div id="projects">
-        <h2 style="text-align: center">Projects</h2>
-
-        {% if projects %}
-
-            {% for project in projects %}
-            <h4>{{ project.project_title }}</h4>
-            <p>{{ project.date|date:"F" }} {{ project.date.year }}</p>
-            <p>{{ project.project_body }}</p>
-            {% if project.project_repository_url %}
-            <p><a href="{{ project.project_repository_url }}">Repository</a></p>
-            {% endif %}
-            {% if project.project_demo_url %}
-            <p><a href="{{ project.project_demo_url }}">Demo</a></p>
-            {% endif %}
-            <br />
+    <div class="container mt-5">
+        <div class="row">
+            {% for achievement in achievements %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-4" style="min-height: 10rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{achievement.achievement_name}}</h5>
+                        {% if achievement.achievement_issuer %}
+                        <h6 class="card-subtitle mb-2 text-muted">{{achievement.achievement_issuer}}</h6>
+                        {% endif %}
+                        {% if achievement.achievement_body %}
+                        <p class="card-text">
+                            {{achievement.achievement_body}}
+                        </p>
+                        {% endif %}
+                        {% if achievement.achievement_url %}
+                        <a href="{{achievement.archievement_url}}" class="card-link">Link</a>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">{{achievement.achievement_date|date:"F Y"}}</small>
+                    </div>
+                </div>
+            </div>
             {% endfor %}
-        {% endif %}
+        </div>
     </div>
-
-    <p class="centeredtext"><a href="">Return to the top</a></p>
-
-    <br />
-    <div id="skills">
-        <h2 class="centeredtext">Skills</h2>
-
-        {% if technical_skills %}
-            <h3 class="centeredtext">Technical skills</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Skill</th>
-                        <th>Level</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-            {% for skill in technical_skills %}
-                <tr>
-                    <td><b>{{ skill.skill_title }}</b></td>
-                    <td>{{ skill.level_text }}</td>
-                    <td>{{ skill.skill_body }}</td>
-                </tr>
-            {% endfor %}
-            </table>
-        {% endif %}
-
-        {% if communication_skills %}
-            <h3 class="centeredtext">Communication skills</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Skill</th>
-                        <th>Level</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-            {% for skill in communication_skills %}
-                <tr>
-                    <td><b>{{ skill.skill_title }}</b></td>
-                    <td>{{ skill.level_text }}</td>
-                    <td>{{ skill.skill_body }}</td>
-                </tr>
-            {% endfor %}
-            </table>
-        {% endif %}
-
-        {% if miscellaneous_skills %}
-            <h3 class="centeredtext">Miscellaneous skills</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Skill</th>
-                        <th>Level</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-            {% for skill in miscellaneous_skills %}
-                <tr>
-                    <td><b>{{ skill.skill_title }}</b></td>
-                    <td>{{ skill.level_text }}</td>
-                    <td>{{ skill.skill_body }}</td>
-                </tr>
-            {% endfor %}
-            </table>
-        {% endif %}
-    </div>
-
-    <br />
-
-    <p class="centeredtext"><a href="">Return to the top</a></p>
-
-    <br />
-
 
 {% endblock %}
