@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/projects.css' %}">
+{% endblock %}
 
 {% block content %}
+    {# Old code #}
+    {% comment %}
     {% if projects %}
         {% for project in projects %}
             <article>
@@ -13,4 +20,31 @@
     {% else %}
     <p>No projects to show.</p>
     {% endif %}
+    {% endcomment %}
+
+    <div class="container mt-5">
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-12 col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.project_title }}</h5>
+                        {% if project.date %}
+                        <h6 class="card-subtitle mb-2 text-muted">{{ project.date|date:"F" }} {{ project.date.year }}</h6>
+                        {% endif %}
+                        <p class="card-text">
+                            {{ project.project_body }}
+                        </p>
+                        {% if project.project_repository_url %}
+                        <a href="{{ project.project_repository_url }}" class="card-link">Repository</a>
+                        {% endif %}
+                        {% if project.project_demo_url %}
+                        <a href="{{ project.project_demo_url }}" class="card-link">Demo</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

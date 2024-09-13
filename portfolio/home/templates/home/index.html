@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
-{% block extra_style %}
-    {% load static %}
+{% load static %}
+{% block style %}
+    {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static 'home/css/index.css' %}">
 {% endblock %}
 
 {% block content %}
+    {# Old homepage #}
+    {% comment %}
     <br />
     <div id="projects">
         <h2 style="text-align: center">Projects</h2>
@@ -99,6 +102,11 @@
     <p class="centeredtext"><a href="">Return to the top</a></p>
 
     <br />
-
+    {% endcomment %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12"></div>
+        </div>
+    </div>
 
 {% endblock %}
