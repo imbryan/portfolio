@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/db/db.sqlite3',  # Changed for Docker
+        'NAME': config('DATABASE_PATH'),  # Changed for Docker
     }
 }
 
