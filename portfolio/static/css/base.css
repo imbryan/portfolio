@@ -27,10 +27,12 @@ nav a:hover {
 .main {
 }
 
-.main a {
+.main a.card-link {
     color: #0066ff;
 }
 
+/*
 #footer {
     height: 50px;
 }
+*/

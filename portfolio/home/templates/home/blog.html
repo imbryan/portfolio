@@ -16,8 +16,18 @@
                         <h5 class="card-title">{{post.post_title}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ post.date_published|date }}</h6>
                         <p class="card-text">
-                            {{ post.post_body }}
+                            {{ post.post_body|truncatewords:50 }}
                         </p>
+                        <a href="{% url 'home:blog_post' post.id %}" class="card-link float-end" title="Read more">
+                            <span>
+                                Read more
+                            </span>
+                        </a>
+                    </div>
+                    <div class="card-footer">
+                        {% if post.updated %}
+                        <small class="text-muted">Edited on {{ post.updated|date }}</small>
+                        {% endif %}
                     </div>
                 </div>
             </div>

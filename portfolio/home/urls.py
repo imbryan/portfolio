@@ -8,5 +8,6 @@ urlpatterns = [
     #path('skills', views.SkillsView.as_view(), name='skills'),
     #path('contact', views.ContactView.as_view(), name='contact'),
     path('projects/', views.projects, name='projects'),
-    path('blog/', views.blog, name='blog')
+    path('blog/', views.blog, name='blog'),
+    path('blog/<int:id>/', views.blog_post, name="blog_post"),
 ]

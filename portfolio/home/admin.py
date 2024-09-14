@@ -25,7 +25,7 @@ class SkillAdmin(admin.ModelAdmin):
 
 class ProjectAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Project content', {'fields': ['project_title', 'project_body', 'project_repository_url', 'project_demo_url', 'date', 'hidden']})
+        ('Project content', {'fields': ['project_title', 'project_body', 'project_repository_url', 'project_demo_url', 'project_board_url', 'date', 'hidden']})
     ]
 
 

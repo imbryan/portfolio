@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import BlogPost, Skill, Project, Achievement
 
 
@@ -36,6 +36,7 @@ def projects(request):
 
 
 def blog(request):
+    # Blog list view
     posts = BlogPost.objects.filter(about_content=False, hidden=False).order_by('-date_published')
 
     context = {
@@ -43,3 +44,14 @@ def blog(request):
     }
 
     return render(request, 'home/blog.html', context=context)
+
+
+def blog_post(request, id):
+    # Blog detail view
+    post = get_object_or_404(BlogPost, id=id)
+
+    context = {
+        'post': post
+    }
+
+    return render(request, 'home/blog_post.html', context=context)

@@ -34,10 +34,13 @@
                             {{ project.project_body }}
                         </p>
                         {% if project.project_repository_url %}
-                        <a href="{{ project.project_repository_url }}" class="card-link">Repository</a>
+                        <a href="{{ project.project_repository_url }}" class="card-link" title="Code repository">Repository</a>
                         {% endif %}
                         {% if project.project_demo_url %}
-                        <a href="{{ project.project_demo_url }}" class="card-link">Demo</a>
+                        <a href="{{ project.project_demo_url }}" class="card-link" title="Live demo">Demo</a>
+                        {% endif %}
+                        {% if project.project_board_url %}
+                        <a href="{{ project.project_board_url }}" class="card-link" title="Issue board">Board</a>
                         {% endif %}
                     </div>
                     <div class="card-footer">

@@ -7,6 +7,7 @@ class BlogPost(models.Model):
     post_body = models.TextField()
     about_content = models.BooleanField(default=False)
     hidden = models.BooleanField(default=False)
+    updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
         return self.post_title
@@ -44,6 +45,7 @@ class Project(models.Model):
     project_body = models.TextField()
     project_repository_url = models.URLField(null=False, default='', blank=True)
     project_demo_url = models.URLField(null=False, default='', blank=True)
+    project_board_url = models.URLField(null=False, default='', blank=True)
     date = models.DateField(null=True, blank=True)
     hidden = models.BooleanField(default=False)
 

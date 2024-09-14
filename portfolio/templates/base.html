@@ -44,7 +44,7 @@
                                             Projects
                                         </span>
                                     </a>
-                                    <a href="{{ blog_url }}" class="btn btn-outline-primary {% if request.path == blog_url %}active{% endif %}">
+                                    <a href="{{ blog_url }}" class="btn btn-outline-primary {% if blog_url in request.path %}active{% endif %}">
                                         <span class="">
                                             <i class="fa-solid fa-blog"></i>
                                             Blog
@@ -86,7 +86,7 @@
                         </a>
                     </nav>
                 </div>
-                <div class="col-12 d-flex justify-content-center">
+                <div class="col-12 d-flex justify-content-center mb-4">
                     <p class="text-muted">&copy; {% now "Y" %} Bryan Grigorie</p>
                 </div>
             </div>
