@@ -42,6 +42,7 @@ class Skill(models.Model):
 
 class Project(models.Model):
     project_title = models.CharField(max_length=200)
+    project_role = models.CharField(max_length=200, null=False, default='', blank=True)  # Role in the project
     project_body = models.TextField()
     project_repository_url = models.URLField(null=False, default='', blank=True)
     project_demo_url = models.URLField(null=False, default='', blank=True)

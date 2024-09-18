@@ -14,7 +14,7 @@
                 <div class="card mb-4" style="min-height: 16.75rem;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{post.post_title}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ post.date_published|date }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ post.date_published|date:"M d, Y" }}</h6>
                         <p class="card-text">
                             {{ post.post_body|truncatewords:50 }}
                         </p>
