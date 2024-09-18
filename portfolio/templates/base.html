@@ -5,6 +5,9 @@
         <!-- META -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% if ADSENSE_CLIENT %}
+        <meta name="google-adsense-account" content="{{ ADSENSE_CLIENT }}">
+        {% endif %}
         <!-- STYLE -->
         {% block style %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
@@ -14,8 +17,8 @@
         {% block head_script %}
         <script src="https://kit.fontawesome.com/973df2756d.js" crossorigin="anonymous" async></script> <!-- FontAwesome -->
         {% if ADSENSE_CLIENT %}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ADSENSE_CLIENT }}"
-     crossorigin="anonymous"></script> <!-- AdSense -->
+        {% comment %}<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ADSENSE_CLIENT }}" 
+     crossorigin="anonymous"></script> <!-- AdSense -->{% endcomment %}
         {% endif %}
         {% endblock %}
         <!-- TITLE -->
