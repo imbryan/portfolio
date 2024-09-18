@@ -27,21 +27,23 @@
         <div class="row">
             {% for project in projects %}
             <div class="col-12 col-lg-6">
-                <div class="card mb-4">
-                    <div class="card-body">
+                <div class="card mb-4" style="min-height: 13.75rem;">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ project.project_title }}</h5>
                         <p class="card-text">
                             {{ project.project_body }}
                         </p>
-                        {% if project.project_repository_url %}
-                        <a href="{{ project.project_repository_url }}" class="card-link" title="Code repository" target="_blank">Repository</a>
-                        {% endif %}
-                        {% if project.project_demo_url %}
-                        <a href="{{ project.project_demo_url }}" class="card-link" title="Live demo" target="_blank">Demo</a>
-                        {% endif %}
-                        {% if project.project_board_url %}
-                        <a href="{{ project.project_board_url }}" class="card-link" title="Issue board" target="_blank">Board</a>
-                        {% endif %}
+                        <div class="mt-auto">
+                            {% if project.project_repository_url %}
+                            <a href="{{ project.project_repository_url }}" class="card-link" title="Code repository" target="_blank">Repository</a>
+                            {% endif %}
+                            {% if project.project_demo_url %}
+                            <a href="{{ project.project_demo_url }}" class="card-link" title="Live demo" target="_blank">Demo</a>
+                            {% endif %}
+                            {% if project.project_board_url %}
+                            <a href="{{ project.project_board_url }}" class="card-link" title="Issue board" target="_blank">Board</a>
+                            {% endif %}
+                        </div>
                     </div>
                     <div class="card-footer">
                         {% if project.date %}
