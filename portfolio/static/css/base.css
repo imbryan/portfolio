@@ -29,6 +29,7 @@ nav a:hover {
 
 .main a.card-link {
     color: #0066ff;
+    text-decoration: none;
 }
 
 /*
