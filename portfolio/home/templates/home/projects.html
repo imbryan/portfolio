@@ -38,13 +38,22 @@
                         </p>
                         <div class="mt-auto">
                             {% if project.project_repository_url %}
-                            <a href="{{ project.project_repository_url }}" class="card-link" title="Code repository" target="_blank">Repository</a>
+                            <a href="{{ project.project_repository_url }}" class="card-link" title="Code repository" target="_blank">
+                                <i class="fa-solid fa-up-right-from-square"></i>
+                                Repository
+                            </a>
                             {% endif %}
                             {% if project.project_demo_url %}
-                            <a href="{{ project.project_demo_url }}" class="card-link" title="Live demo" target="_blank">Demo</a>
+                            <a href="{{ project.project_demo_url }}" class="card-link" title="Live demo" target="_blank">
+                                <i class="fa-solid fa-up-right-from-square"></i>
+                                Demo
+                            </a>
                             {% endif %}
                             {% if project.project_board_url %}
-                            <a href="{{ project.project_board_url }}" class="card-link" title="Issue board" target="_blank">Board</a>
+                            <a href="{{ project.project_board_url }}" class="card-link" title="Issue board" target="_blank">
+                                <i class="fa-solid fa-up-right-from-square"></i>
+                                Board
+                            </a>
                             {% endif %}
                         </div>
                     </div>
