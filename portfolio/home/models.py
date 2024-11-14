@@ -47,8 +47,10 @@ class Project(models.Model):
     project_repository_url = models.URLField(null=False, default='', blank=True)
     project_demo_url = models.URLField(null=False, default='', blank=True)
     project_board_url = models.URLField(null=False, default='', blank=True)
+    project_download_url = models.URLField(null=False, default='', blank=True)
     date = models.DateField(null=True, blank=True)
     hidden = models.BooleanField(default=False)
+    is_activism_tool = models.BooleanField(default=False)
 
     def __str__(self):
         return self.project_title
@@ -64,3 +66,16 @@ class Achievement(models.Model):
 
     def __str__(self):
         return self.achievement_name
+
+
+class Initiative(models.Model):
+    initiative_name = models.CharField(max_length=200)
+    initiative_alt_name = models.CharField(max_length=200, null=False, default='', blank=True)
+    initiative_body = models.TextField(null=False, default='', blank=True)  # Description
+    congress_url = models.URLField(null=False, default='', blank=True)
+    petition_url = models.URLField(null=False, default='', blank=True)
+    date_introduced = models.DateField()
+    hidden = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.initiative_name

@@ -39,6 +39,7 @@
                                     {% url 'home:index' as home_index_url %}
                                     {% url 'home:projects' as projects_url %}
                                     {% url 'home:blog' as blog_url %}
+                                    {% url 'home:activism' as activism_url %}
                                     <a href="{{ home_index_url }}" class="btn btn-outline-primary {% if request.path == home_index_url %}active{% endif %}">
                                         <span class="">
                                             <i class="fa-solid fa-house"></i>
@@ -57,8 +58,18 @@
                                             Blog
                                         </span>
                                     </a>
+                                    <a href="{{ activism_url }}" class="btn btn-outline-primary {% if activism_url in request.path %}active{% endif %}">
+                                        <span class="">
+                                            <i class="fa-solid fa-scale-balanced"></i>
+                                        </span>
+                                    </a>
                                     {% if request.user.is_staff %}
-                                    <a href="{% url 'admin:index' %}" class="btn btn-outline-primary" target="_blank">Admin</a>
+                                    <a href="{% url 'admin:index' %}" class="btn btn-outline-primary" target="_blank">
+                                        <span class="">
+                                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                                            Admin
+                                        </span>
+                                    </a>
                                     {% endif %}
                                 </div>
                             </div>
