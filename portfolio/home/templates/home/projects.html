@@ -55,6 +55,12 @@
                                 Board
                             </a>
                             {% endif %}
+                            {% if project.project_download_url %}
+                            <a href="{{ project.project_download_url }}" class="card-link" title="Download" target="_blank">
+                                <i class="fa-solid fa-download"></i>
+                                Download
+                            </a>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="card-footer">
