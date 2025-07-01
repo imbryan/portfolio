@@ -1,9 +1,8 @@
 services:
-  web:
+  portfolio:
     build:
       context: portfolio
       dockerfile: Dockerfile.prod
-    container_name: portfolio
     command: >
       sh -c "
       python manage.py migrate &&
@@ -11,10 +10,17 @@ services:
     volumes:
       - ./portfolio/db:/db
       - ./portfolio/staticfiles:/app/staticfiles
-    ports:
-      - 8000:8000
+    # No ports when on docker net
+    # ports:
+    #  - 8000:8000
     env_file:
       - portfolio/.env
     environment:
       - DATABASE_PATH=/db/db.sqlite3
     restart: unless-stopped
+    networks:
+      - nginx-group
+
+networks:
+  nginx-group:
+    external: true

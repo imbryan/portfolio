@@ -1,8 +1,7 @@
 services:
-  web:
+  portfolio:
     build: 
       context: portfolio
-    container_name: portfolio
     command: > 
       sh -c "
       python manage.py migrate &&
