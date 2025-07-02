@@ -19,8 +19,8 @@ services:
       - DATABASE_PATH=/db/db.sqlite3
     restart: unless-stopped
     networks:
-      - nginx-group
+      - portfolio
 
 networks:
-  nginx-group:
+  portfolio:
     external: true
