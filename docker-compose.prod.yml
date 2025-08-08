@@ -1,5 +1,5 @@
 services:
-  portfolio:
+  bryangrigorie:
     build:
     # Name of the repo
       context: .
@@ -20,8 +20,8 @@ services:
       - DATABASE_PATH=/db/db.sqlite3
     restart: unless-stopped
     networks:
-      - portfolio
+      - bryangrigorie
 
 networks:
-  portfolio:
+  bryangrigorie:
     external: true
