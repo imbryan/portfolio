@@ -1,5 +1,5 @@
 services:
-  bryangrigorie:
+  portfolio:
     build:
       context: portfolio
       dockerfile: Dockerfile.prod
@@ -19,8 +19,8 @@ services:
       - DATABASE_PATH=/db/db.sqlite3
     restart: unless-stopped
     networks:
-      - bryangrigorie
+      - portfolio
 
 networks:
-  bryangrigorie:
+  portfolio:
     external: true
