@@ -2,7 +2,7 @@ services:
   portfolio:
     build:
     # Name of the repo
-      context: bryangrigorie.com
+      context: .
       dockerfile: Dockerfile.prod
     command: >
       sh -c "
