@@ -1,6 +1,6 @@
-Django==5.0.4
+Django==5.2.5
 python-decouple==3.8
-Pillow==10.3.0
-bcrypt==4.1.2
-django-tinymce==4.0.0
-gunicorn
+Pillow==11.3.0
+bcrypt==4.3.0
+django-tinymce==4.1.0
+gunicorn==23.0.0
