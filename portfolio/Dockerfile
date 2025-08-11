@@ -1,3 +1,14 @@
+FROM node:24.5.0-alpine3.22 AS node-builder
+
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
+
+RUN npm install
+COPY assets ./assets
+COPY webpack.config.js .
+
+RUN npm run dev
+
 # FROM python:3.12-slim # CVE-2025-6020
 FROM python:3.13.6-alpine3.21
 
@@ -21,3 +32,4 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY . .
+COPY --from=node-builder /usr/src/app/static/js/bundles ./static/js/bundles

@@ -1,4 +1,7 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
     entry: './assets/index.js', // Path to input file
@@ -14,6 +17,20 @@ module.exports = {
                 loader: "babel-loader",
                 options: { presets: ["@babel/preset-env", "@babel/preset-react"] }
             },
+            {
+                test: /\.scss$/,
+                use: [
+                    isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
         ]
-    }
+    },
+    plugins: [
+        ...(isProduction ? [new MiniCssExtractPlugin({
+            filename: 'styles.css',
+        })] : []),
+    ],
+    mode: isProduction ? 'production' : 'development',
 }
