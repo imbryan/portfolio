@@ -19,95 +19,116 @@
         <script src="https://kit.fontawesome.com/973df2756d.js" crossorigin="anonymous" async></script> <!-- FontAwesome -->
         {% if ADSENSE_CLIENT %}
         {% comment %}<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ADSENSE_CLIENT }}" 
-     crossorigin="anonymous"></script> <!-- AdSense -->{% endcomment %}
+        crossorigin="anonymous"></script> <!-- AdSense -->{% endcomment %}
         {% endif %}
         {% endblock %}
         <!-- TITLE -->
         <title>{% block extra_title %}{% endblock %}Bryan Grigorie</title>
     </head>
-
+    
     <body>
-        <header>
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-center">
-                        <h1>Bryan Grigorie</h1>
+        <!-- BASE DIV -->
+        <div id="base">
+            <!-- TOP NAVBAR -->
+            <nav class="navbar navbar-expand-lg bg-light sticky-top shadow-sm py-3" data-bs-theme="light" id="top-nav">
+                <div class="container">
+                    {% url 'home:index' as home_index_url %}
+                    {% url 'home:projects' as projects_url %}
+                    {% url 'home:blog' as blog_url %}
+                    <a class="navbar-brand" href="{{ home_index_url }}">Bryan Grigorie</a>
+
+                    <!-- TODO -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.path == home_index_url %}active{% endif %}" href="{{ home_index_url }}">
+                                    <span class="">
+                                        <i class="fa-solid fa-house"></i>
+                                        Home
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if projects_url in request.path %}active{% endif %}" href="{{ projects_url }}" id="projects-page-button">
+                                    <span class="">
+                                        Projects
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if blog_url in request.path %}active{% endif %}" href="{{ blog_url }}">
+                                    <span class="">
+                                        Blog
+                                    </span>
+                                </a>
+                            </li>
+                            {% if request.user.is_staff %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'admin:index' %}" target="_blank">
+                                    <span class="">
+                                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                                        Admin
+                                    </span>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://github.com/imbryan" title="GitHub" target="_blank">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://linkedin.com/in/bryangrigorie" title="LinkedIn" target="_blank">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="col-12 d-flex justify-content-center">
-                        <nav class="navbar navbar-expand-lg">
-                            <div class ="container-fluid">
-                                <div class="btn-group">
-                                    {% url 'home:index' as home_index_url %}
-                                    {% url 'home:projects' as projects_url %}
-                                    {% url 'home:blog' as blog_url %}
-                                    <a href="{{ home_index_url }}" class="btn btn-outline-primary {% if request.path == home_index_url %}active{% endif %}">
-                                        <span class="">
-                                            <i class="fa-solid fa-house"></i>
-                                            Home
-                                        </span>
-                                    </a>
-                                    <a href="{{ projects_url }}" class="btn btn-outline-primary {% if request.path == projects_url %}active{% endif %}" id="projects-page-button">
-                                        <span class="">
-                                            <i class="fa-solid fa-diagram-project"></i>
-                                            Projects
-                                        </span>
-                                    </a>
-                                    <a href="{{ blog_url }}" class="btn btn-outline-primary {% if blog_url in request.path %}active{% endif %}">
-                                        <span class="">
-                                            <i class="fa-solid fa-blog"></i>
-                                            Blog
-                                        </span>
-                                    </a>
-                                    {% if request.user.is_staff %}
-                                    <a href="{% url 'admin:index' %}" class="btn btn-outline-primary" target="_blank">
-                                        <span class="">
-                                            <i class="fa-solid fa-screwdriver-wrench"></i>
-                                            Admin
-                                        </span>
-                                    </a>
-                                    {% endif %}
-                                </div>
-                            </div>
+                </div>
+            </nav>
+
+            <!-- MAIN CONTENT -->
+            <div class="main">
+                {% block content %}
+                {% endblock %}
+            </div>
+            
+            
+            <div id="footer" class="container mt-5">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center mb-2">
+                        <nav>
+                            <a class="nav-icon" href="mailto:bryangrigorie@gmail.com" title="Email">
+                                <i class="fa-solid fa-envelope fa-2x"></i>
+                            </a>
+                            <a class="nav-icon" href="https://drive.google.com/file/d/1ZIjcN_pS4R0u772bXl5Yq_89kb0lm01w/" title="Résumé" target="_blank">
+                                <i class="fa-solid fa-address-card fa-2x"></i>
+                            </a>
+                            <a class="nav-icon" href="https://linkedin.com/in/bryangrigorie" title="LinkedIn" target="_blank">
+                                <i class="fa-brands fa-linkedin fa-2x"></i>
+                            </a>
+                            <a class="nav-icon" href="https://github.com/imbryan" title="GitHub" target="_blank">
+                                <i class="fa-brands fa-square-github fa-2x"></i>
+                            </a>
+                            <a class="nav-icon" href="https://ko-fi.com/imbryan" title="Ko-Fi" target="_blank">
+                                <i class="fa-solid fa-mug-saucer fa-2x"></i>
+                            </a>
                         </nav>
                     </div>
-                </div>
-            </div>
-        </header>
-
-
-        <div class="main">
-            {% block content %}
-
-            {% endblock %}
-        </div>
-
-        <div id="footer" class="container mt-5">
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center mb-2">
-                    <nav>
-                        <a class="nav-icon" href="mailto:bryangrigorie@gmail.com" title="Email">
-                            <i class="fa-solid fa-envelope fa-2x"></i>
-                        </a>
-                        <a class="nav-icon" href="https://drive.google.com/file/d/1ZIjcN_pS4R0u772bXl5Yq_89kb0lm01w/" title="Résumé" target="_blank">
-                            <i class="fa-solid fa-address-card fa-2x"></i>
-                        </a>
-                        <a class="nav-icon" href="https://linkedin.com/in/bryangrigorie" title="LinkedIn" target="_blank">
-                            <i class="fa-brands fa-linkedin fa-2x"></i>
-                        </a>
-                        <a class="nav-icon" href="https://github.com/imbryan" title="GitHub" target="_blank">
-                            <i class="fa-brands fa-square-github fa-2x"></i>
-                        </a>
-                        <a class="nav-icon" href="https://ko-fi.com/imbryan" title="Ko-Fi" target="_blank">
-                            <i class="fa-solid fa-mug-saucer fa-2x"></i>
-                        </a>
-                    </nav>
-                </div>
-                <div class="col-12 d-flex justify-content-center mb-4">
-                    <p class="text-muted">&copy; {% now "Y" %} Bryan Grigorie</p>
+                    <div class="col-12 d-flex justify-content-center mb-4">
+                        <p class="text-muted">&copy; {% now "Y" %} Bryan Grigorie</p>
+                    </div>
                 </div>
             </div>
         </div>
-
+        <!-- END BASE DIV -->
+            
         <!-- SCRIPT -->
         {% block body_script %}
         <!-- Webpack -->
