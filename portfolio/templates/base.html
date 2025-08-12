@@ -28,7 +28,7 @@
     
     <body>
         <!-- BASE DIV -->
-        <div id="base">
+        <div id="base" class="min-vh-100">
             <!-- TOP NAVBAR -->
             <nav class="navbar navbar-expand-lg bg-light sticky-top shadow-sm py-3" data-bs-theme="light" id="top-nav">
                 <div class="container">
@@ -99,33 +99,19 @@
                 {% endblock %}
             </div>
             
-            
-            <div id="footer" class="container mt-5">
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-center mb-2">
-                        <nav>
-                            <a class="nav-icon" href="mailto:bryangrigorie@gmail.com" title="Email">
-                                <i class="fa-solid fa-envelope fa-2x"></i>
-                            </a>
-                            <a class="nav-icon" href="https://drive.google.com/file/d/1ZIjcN_pS4R0u772bXl5Yq_89kb0lm01w/" title="Résumé" target="_blank">
-                                <i class="fa-solid fa-address-card fa-2x"></i>
-                            </a>
-                            <a class="nav-icon" href="https://linkedin.com/in/bryangrigorie" title="LinkedIn" target="_blank">
-                                <i class="fa-brands fa-linkedin fa-2x"></i>
-                            </a>
-                            <a class="nav-icon" href="https://github.com/imbryan" title="GitHub" target="_blank">
-                                <i class="fa-brands fa-square-github fa-2x"></i>
-                            </a>
-                            <a class="nav-icon" href="https://ko-fi.com/imbryan" title="Ko-Fi" target="_blank">
-                                <i class="fa-solid fa-mug-saucer fa-2x"></i>
-                            </a>
-                        </nav>
+            <!-- FOOTER -->
+            <footer class="footer py-3 bg-light fixed-bottom" data-bs-theme="light" id="bottom-footer">
+                <div class="container text-center mb-2">
+                    <div class="d-flex justify-content-center gap-4 mb-2">
+                        <a href="mailto:bryangrigorie@gmail.com">Contact</a>
+                        <a href="https://drive.google.com/file/d/1ZIjcN_pS4R0u772bXl5Yq_89kb0lm01w/" target="_blank">Résumé</a>
+                        <a href="https://github.com/imbryan" target="_blank">GitHub</a>
+                        <a href="https://linkedin.com/in/bryangrigorie" target="_blank">LinkedIn</a>
+                        <a href="https://ko-fi.com/imbryan" target="_blank">Ko-Fi</a>
                     </div>
-                    <div class="col-12 d-flex justify-content-center mb-4">
-                        <p class="text-muted">&copy; {% now "Y" %} Bryan Grigorie</p>
-                    </div>
+                    <small class="text-muted">&copy; {% now "Y" %} Bryan Grigorie</small>
                 </div>
-            </div>
+            </footer>
         </div>
         <!-- END BASE DIV -->
             

@@ -37,3 +37,16 @@ $link-hover-color: darken($primary, 10%);
         }
     }
 }
+
+#bottom-footer {
+
+    a {
+        color: $dark;
+        text-decoration: none;
+
+        &:hover {
+            color: $primary;
+            text-decoration: underline;
+        }
+    }
+}
