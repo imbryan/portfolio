@@ -15,9 +15,9 @@ nav {
 nav a {
 }
 
-.nav-icon {
+/* .nav-icon {
     text-decoration: none;
-}
+} */
 
 nav a:hover {
 }
@@ -27,10 +27,10 @@ nav a:hover {
 .main {
 }
 
-.main a.card-link {
+/* .main a.card-link {
     color: #0066ff;
     text-decoration: none;
-}
+} */
 
 /*
 #footer {
