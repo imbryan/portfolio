@@ -8,31 +8,23 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            {% for achievement in achievements %}
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card mb-4" style="min-height: 10rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{achievement.achievement_name}}</h5>
-                        {% if achievement.achievement_issuer %}
-                        <h6 class="card-subtitle mb-2 text-muted">{{achievement.achievement_issuer}}</h6>
-                        {% endif %}
-                        {% if achievement.achievement_body %}
-                        <p class="card-text">
-                            {{achievement.achievement_body}}
-                        </p>
-                        {% endif %}
-                        {% if achievement.achievement_url %}
-                        <a href="{{achievement.achievement_url}}" class="card-link" target="_blank">
-                            <i class="fa-solid fa-up-right-from-square"></i>
-                            Link
-                        </a>
-                        {% endif %}
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">{{achievement.achievement_date|date:"F Y"}}</small>
-                    </div>
-                </div>
+            <div class="col-12" id="education">
+                <h1 class="mb-3">
+                    <a class="heading-anchor" href="#education">#</a>
+                    <span>Education</span>
+                </h1>
             </div>
+            {% for education in educations %}
+            {% include "home/snippets/credential_card.html" with credential=education %}
+            {% endfor %}
+            <div class="col-12 mt-4" id="certifications">
+                <h1 class="mb-3">
+                    <a class="heading-anchor" href="#certifications">#</a>
+                    <span>Certifications</span>
+                </h1>
+            </div>
+            {% for cert in certs %}
+            {% include "home/snippets/credential_card.html" with credential=cert %}
             {% endfor %}
         </div>
     </div>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogPost, Skill, Project, SkillCategory, Achievement, Initiative
+from .models import BlogPost, Skill, Project, SkillCategory, Achievement, Initiative, Education, Certification
 
 
 class BlogPostAdmin(admin.ModelAdmin):
@@ -31,8 +31,25 @@ class ProjectAdmin(admin.ModelAdmin):
 
 
 class AchievementAdmin(admin.ModelAdmin):
+    """
+    Deprecated model
+    """
     fieldsets = [
         ('Achievement content', {'fields': ['achievement_name', 'achievement_body', 'achievement_issuer', 'achievement_url', 'achievement_date']}),
+        ('Flags', {'fields': ['hidden']})
+    ]
+
+
+class EducationAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Education content', {'fields': ['degree', 'major', 'issuer', 'date_issued', 'description', 'url', 'credential_id']}),
+        ('Flags', {'fields': ['hidden']})
+    ]
+
+
+class CertificationAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Certification content', {'fields': ['cert_name', 'cert_level', 'issuer', 'date_issued', 'expiration_date', 'description', 'url', 'credential_id']}),
         ('Flags', {'fields': ['hidden']})
     ]
 
@@ -49,3 +66,5 @@ admin.site.register(Skill, SkillAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Achievement, AchievementAdmin)
 admin.site.register(Initiative, InitiativeAdmin)
+admin.site.register(Education, EducationAdmin)
+admin.site.register(Certification, CertificationAdmin)

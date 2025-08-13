@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import BlogPost, Skill, Project, Achievement, Initiative
+from .models import BlogPost, Skill, Project, Education, Certification, Initiative
 
 
 def index(request):
@@ -16,10 +16,14 @@ def index(request):
     #     'projects': projects,
     # }
 
-    achievements = Achievement.objects.filter(hidden=False).order_by('-achievement_date')
+    # achievements = Achievement.objects.filter(hidden=False).order_by('-achievement_date')
+
+    educations = Education.objects.filter(hidden=False).order_by('-date_issued')
+    certs = Certification.objects.filter(hidden=False).order_by('-date_issued')
 
     context = {
-        'achievements': achievements,
+        'educations': educations,
+        'certs': certs,
     }
 
     return render(request, 'home/index.html', context=context)
