@@ -28,7 +28,7 @@
     
     <body>
         <!-- BASE DIV -->
-        <div id="base" class="min-vh-100">
+        <div id="base" class="d-flex flex-column min-vh-100">
             <!-- TOP NAVBAR -->
             <nav class="navbar navbar-expand-lg bg-light sticky-top shadow-sm py-3" data-bs-theme="light" id="top-nav">
                 <div class="container">
@@ -94,13 +94,13 @@
             </nav>
 
             <!-- MAIN CONTENT -->
-            <div id="main">
+            <div id="main" class="flex-grow-1">
                 {% block content %}
                 {% endblock %}
             </div>
             
             <!-- FOOTER -->
-            <footer class="footer py-3 bg-light fixed-bottom" data-bs-theme="light" id="bottom-footer">
+            <footer class="footer py-3 bg-light" data-bs-theme="light" id="bottom-footer">
                 <div class="container text-center mb-2">
                     <div class="d-flex justify-content-center gap-4 mb-2">
                         <a href="mailto:bryangrigorie@gmail.com">Contact</a>
