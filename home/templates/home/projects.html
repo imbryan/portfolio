@@ -26,47 +26,47 @@
     <div class="container">
         <div class="row">
             {% for project in projects %}
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="card mb-4" style="min-height: 13.75rem;">
-                    <img src="" class="card-img-top">
-                    <div class="card-body d-flex flex-column">
+                    {% if project.image_url %}
+                    <img src="{{project.image_url}}" class="card-img-top">
+                    {% else %}
+                    <div class="card-img-top">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
                         <h5 class="card-title">{{ project.project_title }}</h5>
                         {% if project.project_role %}
-                        <h6 class="card-subtitle mb-2 text-body-secondary">{{ project.project_role }}</h6>
+                        <h6 class="card-subtitle">{{ project.project_role }}</h6>
                         {% endif %}
-                        <p class="card-text">
+                        <p class="card-text mb-3">
                             {{ project.project_body }}
                         </p>
-                        <div class="mt-auto">
-                            {% if project.project_repository_url %}
-                            <a href="{{ project.project_repository_url }}" class="btn btn-primary card-link" title="Code repository" target="_blank">
-                                <i class="fa-solid fa-up-right-from-square"></i>
-                                Repository
-                            </a>
-                            {% endif %}
-                            {% if project.project_demo_url %}
-                            <a href="{{ project.project_demo_url }}" class="btn btn-primary card-link" title="Live demo" target="_blank">
-                                <i class="fa-solid fa-up-right-from-square"></i>
-                                Demo
-                            </a>
-                            {% endif %}
-                            {% if project.project_board_url %}
-                            <a href="{{ project.project_board_url }}" class="btn btn-primary card-link" title="Issue board" target="_blank">
-                                <i class="fa-solid fa-up-right-from-square"></i>
-                                Board
-                            </a>
-                            {% endif %}
-                            {% if project.project_download_url %}
-                            <a href="{{ project.project_download_url }}" class="btn btn-primary card-link" title="Download" target="_blank">
-                                <i class="fa-solid fa-download"></i>
-                                Download
-                            </a>
-                            {% endif %}
-                        </div>
+                        {% if project.project_repository_url %}
+                        <a href="{{ project.project_repository_url }}" class="badge text-bg-secondary" title="Code repository" target="_blank">
+                            <i class="fa-solid fa-up-right-from-square"></i> Repository
+                        </a>
+                        {% endif %}
+                        {% if project.project_demo_url %}
+                        <a href="{{ project.project_demo_url }}" class="badge text-bg-secondary" title="Live demo" target="_blank">
+                            <i class="fa-solid fa-up-right-from-square"></i> Demo
+                        </a>
+                        {% endif %}
+                        {% if project.project_board_url %}
+                        <a href="{{ project.project_board_url }}" class="badge text-bg-secondary" title="Issue board" target="_blank">
+                            <i class="fa-solid fa-up-right-from-square"></i> Board
+                        </a>
+                        {% endif %}
+                        {% if project.project_download_url %}
+                        <a href="{{ project.project_download_url }}" class="badge text-bg-secondary" title="Download" target="_blank">
+                            <i class="fa-solid fa-download"></i> Download
+                        </a>
+                        {% endif %}
                     </div>
                     <div class="card-footer">
                         {% if project.date %}
-                        <small class="text-body-secondary">{{project.date|date:"F Y"}}</small>
+                        <small>{{project.date|date:"F Y"}}</small>
                         {% endif %}
                     </div>
                 </div>
