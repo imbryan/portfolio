@@ -39,6 +39,8 @@ $link-hover-color: darken($primary, 10%);
 }
 
 #main {
+    padding-top: 3rem;
+    
     .card {
         border-radius: 0;
         border: 1px solid rgba(0,0,0,0.1);
