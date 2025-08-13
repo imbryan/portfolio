@@ -1,7 +1,7 @@
 services:
   portfolio:
     build:
-      context: portfolio
+      context: .
       dockerfile: Dockerfile.prod
     command: >
       sh -c "
@@ -9,13 +9,13 @@ services:
       python manage.py collectstatic --noinput &&
       gunicorn portfolio.wsgi:application --bind 0.0.0.0:8000"
     volumes:
-      - ./portfolio/db:/db
-      - ./portfolio/staticfiles:/app/staticfiles
+      - ./db:/db
+      - ./staticfiles:/app/staticfiles
     # No ports when on docker net
     # ports:
     #  - 8000:8000
     env_file:
-      - portfolio/.env
+      - .env
     environment:
       - DATABASE_PATH=/db/db.sqlite3
     restart: unless-stopped
