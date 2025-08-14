@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from .models import BlogPost, Skill, Project, Education, Certification, Initiative
 
@@ -51,8 +52,20 @@ def activism(request):
 
 
 def blog(request):
-    # Blog list view
+    """
+    Blog list view
+    """
     posts = BlogPost.objects.filter(about_content=False, hidden=False).order_by('-date_published')
+
+    paginator = Paginator(posts, 6)
+    page_num = request.GET.get('page', 1)
+
+    try:
+        posts = paginator.page(page_num)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
 
     context = {
         'posts': posts,
