@@ -25,7 +25,7 @@ class SkillAdmin(admin.ModelAdmin):
 
 class ProjectAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Project content', {'fields': ['project_title', 'project_role','project_body', 'project_repository_url', 'project_demo_url', 'project_board_url', 'project_download_url', 'date']}),
+        ('Project content', {'fields': ['project_title', 'project_role','project_body', 'project_repository_url', 'project_demo_url', 'project_board_url', 'project_download_url', 'image_url', 'date']}),
         ('Flags', {'fields': ['is_activism_tool', 'hidden']})
     ]
 

@@ -57,6 +57,25 @@ $link-hover-color: darken($primary, 10%);
             text-decoration: none;
         }
 
+        .card-img-top {
+            background-color: lighten($body-secondary-color, 55%);
+            border-radius: 0;
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+
+            &:not(img) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .fa-image {
+                font-size: 3rem;
+                color: lighten($body-secondary-color, 25%);
+            }
+        }
+
         .card-body {
             .card-title {
                 font-weight: 600;

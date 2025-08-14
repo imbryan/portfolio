@@ -46,12 +46,13 @@ class Skill(models.Model):
 class Project(models.Model):
     id = models.AutoField(primary_key=True)
     project_title = models.CharField(max_length=200)
-    project_role = models.CharField(max_length=200, null=False, default='', blank=True)  # Role in the project
+    project_role = models.CharField(max_length=200, null=True, blank=True)  # Role in the project
     project_body = models.TextField()
-    project_repository_url = models.URLField(null=False, default='', blank=True)
-    project_demo_url = models.URLField(null=False, default='', blank=True)
-    project_board_url = models.URLField(null=False, default='', blank=True)
-    project_download_url = models.URLField(null=False, default='', blank=True)
+    project_repository_url = models.URLField(null=True, blank=True)
+    project_demo_url = models.URLField(null=True, blank=True)
+    project_board_url = models.URLField(null=True, blank=True)
+    project_download_url = models.URLField(null=True, blank=True)
+    image_url = models.URLField(null=True, blank=True)
     date = models.DateField(null=True, blank=True)
     hidden = models.BooleanField(default=False)
     is_activism_tool = models.BooleanField(default=False)
