@@ -7,24 +7,20 @@
 
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="col-12 mb-2">
-                <a href="{% url 'home:blog' %}" class="">Return to all posts</a>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 mb-3">
+                <a href="{% url 'home:blog' %}" class="btn btn-light rounded-circle d-inline-flex align-items-center justify-content-center shadow-sm" style="width: 2.5rem; height: 2.5rem;" title="All posts">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
             </div>
-            <div class="col-12">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">{{post.post_title}}</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">{{post.date_published|date}}</h6>
-                        <p class="card-text">
-                            {{post.post_body}}
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        {% if post.updated %}
-                        <small class="text-body-secondary">Edited on {{post.updated|date}}</small>
-                        {% endif %}
-                    </div>
+            <div class="col-12 col-lg-8">
+                <h1 class="mb-2">{{post.post_title}}</h1>
+                <p class="mb-3 text-body-secondary small">
+                    {{post.date_published|date:"F d, Y"}}
+                    {% if post.updated and post.updated > post.date_published %}&middot; Last updated {{post.updated|date:"M d, Y"}}{% endif %}
+                </p>
+                <div class="blog-post-body border-top pt-3">
+                    {{post.post_body|safe}}
                 </div>
             </div>
         </div>
