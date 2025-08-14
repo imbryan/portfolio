@@ -27,7 +27,7 @@
         <div class="row">
             {% for project in projects %}
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card mb-4" style="min-height: 13.75rem;">
+                <div class="card mb-5" style="min-height: 13.75rem;">
                     {% if project.image_url %}
                     <img src="{{project.image_url}}" class="card-img-top">
                     {% else %}
@@ -38,14 +38,14 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ project.project_title }}</h5>
                         {% if project.project_role %}
-                        <h6 class="card-subtitle">{{ project.project_role }}</h6>
+                        <h6 class="card-subtitle text-body-secondary">{{ project.project_role }}</h6>
                         {% endif %}
-                        <p class="card-text mb-3">
+                        <p class="card-text {% if project.project_repository_url or project.project_demo_url or project.project_board_url or project.project_download_url %}mb-3{% endif %}">
                             {{ project.project_body }}
                         </p>
                         {% if project.project_repository_url %}
                         <a href="{{ project.project_repository_url }}" class="badge text-bg-secondary me-1" title="Code repository" target="_blank">
-                            <i class="fa-solid fa-up-right-from-square"></i> Repository
+                            <i class="fa-solid fa-code-branch"></i> Repository
                         </a>
                         {% endif %}
                         {% if project.project_demo_url %}
@@ -64,11 +64,11 @@
                         </a>
                         {% endif %}
                     </div>
+                    {% if project.date %}
                     <div class="card-footer">
-                        {% if project.date %}
                         <small>{{project.date|date:"F Y"}}</small>
-                        {% endif %}
                     </div>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}

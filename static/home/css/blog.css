@@ -1,0 +1,8 @@
+.blog-post-card .card-title {
+    letter-spacing: 0.025em;
+    margin-bottom: 0.75rem;
+}
+
+.blog-post-card .card-subtitle {
+    letter-spacing: 0.075em;
+}
