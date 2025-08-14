@@ -27,7 +27,7 @@ $link-hover-color: darken($primary, 10%);
         color: $dark;
         font-weight: 500;
 
-        &:hover, &:focus {
+        &:hover {
             color: $primary;
         }
 
