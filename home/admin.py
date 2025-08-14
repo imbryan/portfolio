@@ -4,7 +4,9 @@ from .models import BlogPost, Skill, Project, SkillCategory, Achievement, Initia
 
 class BlogPostAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Post content', {'fields': ['post_title', 'post_body']}),
+        ('Post content', 
+            {'fields': ['post_title', 'preview_text', 'post_body']}
+        ),
         ('Date information', {'fields': ['date_published']}),
         ('Flags', {'fields': ['about_content', 'hidden']}),
     ]

@@ -1,11 +1,14 @@
+from bs4 import BeautifulSoup
 from django.db import models
+from tinymce.models import HTMLField
 
 
 class BlogPost(models.Model):
     id = models.AutoField(primary_key=True)
     date_published = models.DateTimeField('date field')
     post_title = models.CharField(max_length=200)
-    post_body = models.TextField()
+    post_body = HTMLField()  # Caution, check best practices
+    preview_text = models.TextField(null=True, blank=True)
     about_content = models.BooleanField(default=False)
     hidden = models.BooleanField(default=False)
     updated = models.DateTimeField(auto_now=True, null=True, blank=True)
@@ -15,6 +18,15 @@ class BlogPost(models.Model):
 
     def is_about_content(self):
         return self.about_content
+    
+    def save(self, *args, **kwargs):
+        if not self.preview_text:
+            soup = BeautifulSoup(self.post_body, 'html.parser')
+            words = soup.get_text().split()
+            self.preview_text = ' '.join(words[:50])
+            if len(words) > 50:
+                self.preview_text += "…"
+        super().save(*args, **kwargs)
 
 
 class SkillCategory(models.Model):
