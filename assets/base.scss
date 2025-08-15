@@ -41,6 +41,8 @@ $link-hover-color: darken($primary, 10%);
 
 #main {
     padding-top: 3rem;
+    flex: 1;
+    margin-bottom: 6rem;
     
     .card {
         border-radius: 0;

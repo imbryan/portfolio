@@ -2,6 +2,7 @@
 {% load static %}
 {% block style %}
     {{block.super}}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/blog_post.css' %}">
 {% endblock %}
 {% block extra_title %}{{post.post_title}} | {% endblock %}
 
