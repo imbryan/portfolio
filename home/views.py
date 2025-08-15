@@ -76,9 +76,12 @@ def blog(request):
     return render(request, 'home/blog.html', context=context)
 
 
-def blog_post(request, id):
+def blog_post(request, id=None, slug=None):
     # Blog detail view
-    post = get_object_or_404(BlogPost, id=id)
+    if id:
+        post = get_object_or_404(BlogPost, id=id)
+    else:
+        post = get_object_or_404(BlogPost, slug=slug)
 
     context = {
         'post': post

@@ -22,7 +22,7 @@
                             {{ post.post_body|truncatewords:50 }}
                             {% endif %}
                         </p>
-                        <a href="{% url 'home:blog_post' post.id %}" class="card-link stretched-link ms-auto mt-auto mb-1" title="Read more">
+                        <a href="{% if post.slug %}{% url 'home:blog_post_by_slug' post.slug %}{% else %}{% url 'home:blog_post_by_id' post.id %}{% endif %}" class="card-link stretched-link ms-auto mt-auto mb-1" title="Read more">
                             <span>Read more</span>
                         </a>
                     </div>

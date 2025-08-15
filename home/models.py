@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from django.db import models
+from django.utils.text import slugify
 from tinymce.models import HTMLField
 
 
@@ -7,6 +8,7 @@ class BlogPost(models.Model):
     id = models.AutoField(primary_key=True)
     date_published = models.DateTimeField('date field')
     post_title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=100, unique=True, null=True, blank=True, allow_unicode=True)
     post_body = HTMLField()  # Caution, check best practices
     preview_text = models.TextField(null=True, blank=True)
     about_content = models.BooleanField(default=False)
@@ -26,6 +28,8 @@ class BlogPost(models.Model):
             self.preview_text = ' '.join(words[:50])
             if len(words) > 50:
                 self.preview_text += "…"
+        if not self.slug:
+            self.slug = slugify(self.post_title, allow_unicode=True)[:100]
         super().save(*args, **kwargs)
 
 

@@ -5,11 +5,12 @@ from .models import *
 class BlogPostAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Post content', 
-            {'fields': ['post_title', 'preview_text', 'post_body']}
+            {'fields': ['post_title', 'slug', 'preview_text', 'post_body']}
         ),
         ('Date information', {'fields': ['date_published']}),
         ('Flags', {'fields': ['about_content', 'hidden']}),
     ]
+    prepopulated_fields = {'slug': ['post_title']}
 
 
 class SkillCategoryAdmin(admin.ModelAdmin):
