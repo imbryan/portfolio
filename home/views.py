@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
-from .models import BlogPost, Skill, Project, Education, Certification, Initiative
+from .models import BlogPost, Skill, Project, Education, Certification, Initiative, Experience
 
 
 def index(request):
@@ -21,10 +21,12 @@ def index(request):
 
     educations = Education.objects.filter(hidden=False).order_by('-date_issued')
     certs = Certification.objects.filter(hidden=False).order_by('-date_issued')
+    experiences = Experience.objects.filter(hidden=False).order_by('-start_date')
 
     context = {
         'educations': educations,
         'certs': certs,
+        'experiences': experiences,
     }
 
     return render(request, 'home/index.html', context=context)

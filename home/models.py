@@ -73,6 +73,18 @@ class Project(models.Model):
         return self.project_title
 
 
+class Experience(models.Model):
+    id = models.AutoField(primary_key=True)
+    employer = models.CharField(max_length=200)
+    position = models.CharField(max_length=200)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    hidden = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.position} at {self.employer}"
+
+
 class Achievement(models.Model):
     """
     Deprecated class. See Credential instead.

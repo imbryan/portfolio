@@ -8,7 +8,28 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-12" id="education">
+            <div class="col-12" id="experience">
+                <h1 class="mb-3">
+                    <a class="heading-anchor" href="#experience">#</a>
+                    <span>Experience</span>
+                </h1>
+            </div>
+            {% for experience in experiences %}
+            <div class="col-12 col-md-6 col-lg-4 d-flex">
+                <div class="card credential-card mb-4 flex-fill">
+                    <div class="card-body">
+                        <h5 class="card-title">{{experience.employer}}</h5>
+                        <h6 class="card-subtitle">{{experience.position}}</h6>
+                    </div>
+                    {% if experience.start_date %}
+                    <div class="card-footer">
+                        <small>{{experience.start_date|date:"F Y"}}{% if experience.end_date %} &ndash; {{experience.end_date|date:"F Y"}}{% endif %}</small>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-12 mt-4" id="education">
                 <h1 class="mb-3">
                     <a class="heading-anchor" href="#education">#</a>
                     <span>Education</span>

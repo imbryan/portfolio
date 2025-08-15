@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogPost, Skill, Project, SkillCategory, Achievement, Initiative, Education, Certification
+from .models import *
 
 
 class BlogPostAdmin(admin.ModelAdmin):
@@ -29,6 +29,13 @@ class ProjectAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Project content', {'fields': ['project_title', 'project_role','project_body', 'project_repository_url', 'project_demo_url', 'project_board_url', 'project_download_url', 'image_url', 'date']}),
         ('Flags', {'fields': ['is_activism_tool', 'hidden']})
+    ]
+
+
+class ExperienceAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Experience content', {'fields': ['employer', 'position', 'start_date', 'end_date']}),
+        ('Flags', {'fields': ['hidden']})
     ]
 
 
@@ -66,6 +73,7 @@ admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(SkillCategory, SkillCategoryAdmin)
 admin.site.register(Skill, SkillAdmin)
 admin.site.register(Project, ProjectAdmin)
+admin.site.register(Experience, ExperienceAdmin)
 admin.site.register(Achievement, AchievementAdmin)
 admin.site.register(Initiative, InitiativeAdmin)
 admin.site.register(Education, EducationAdmin)
