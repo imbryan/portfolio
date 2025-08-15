@@ -1,17 +1,4 @@
-.centeredtext {
-    text-align: center;
-}
-
-#projects {
-    max-width: 50%;
-    margin: auto;
-}
-
-#skills {
-    max-width: 33%;
-    margin: auto;
-}
-
-#skills td {
-    padding: 15px;
+#hero p {
+    line-height: 1.75;
+    font-size: 1.25rem;
 }

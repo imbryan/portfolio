@@ -8,11 +8,18 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-12" id="experience">
-                <h1 class="mb-3">
+            <div class="col-12 text-center" id="hero">
+                <h1 class="mb-3 fw-bolder">Hello, world! I'm Bryan.</h1>
+                <p class="mb-4">
+                    Problem solver, building secure, scalable applications. Home lab enthusiast.
+                </p>
+                <a class="btn btn-primary btn-lg fw-bold" href="{% url 'home:projects' %}">See My Work</a>
+            </div>
+            <div class="col-12 mt-5" id="experience">
+                <h2 class="mb-3">
                     <a class="heading-anchor" href="#experience">#</a>
                     <span>Experience</span>
-                </h1>
+                </h2>
             </div>
             {% for experience in experiences %}
             <div class="col-12 col-md-6 col-lg-4 d-flex">
@@ -30,10 +37,10 @@
             </div>
             {% endfor %}
             <div class="col-12 mt-4" id="education">
-                <h1 class="mb-3">
+                <h2 class="mb-3">
                     <a class="heading-anchor" href="#education">#</a>
                     <span>Education</span>
-                </h1>
+                </h2>
             </div>
             {% for education in educations %}
             <div class="col-12 col-md-6 col-lg-4 d-flex">
@@ -41,10 +48,10 @@
             </div>
             {% endfor %}
             <div class="col-12 mt-4" id="certifications">
-                <h1 class="mb-3">
+                <h2 class="mb-3">
                     <a class="heading-anchor" href="#certifications">#</a>
                     <span>Certifications</span>
-                </h1>
+                </h2>
             </div>
             {% for cert in certs %}
             <div class="col-12 col-md-6 col-lg-4 d-flex">
