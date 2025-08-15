@@ -58,6 +58,15 @@
                 {% include "home/snippets/credential_card.html" with credential=cert %}
             </div>
             {% endfor %}
+            <div class="col-12 mt-4" id="latest-blog-post">
+                <h2 class="mb-3">
+                    <a class="heading-anchor" href="#latest-blog-post">#</a>
+                    <span>Latest post</span>
+                </h2>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                {% include "home/snippets/blog_post_card.html" with post=latest_blog_post %}
+            </div>
         </div>
     </div>
 

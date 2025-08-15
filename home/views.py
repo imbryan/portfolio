@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from .models import BlogPost, Skill, Project, Education, Certification, Initiative, Experience
 
@@ -23,10 +24,13 @@ def index(request):
     certs = Certification.objects.filter(hidden=False).order_by('-date_issued')
     experiences = Experience.objects.filter(hidden=False).order_by('-start_date')
 
+    latest_blog_post = BlogPost.objects.filter(about_content=False, hidden=False).order_by('-date_published').first()
+
     context = {
         'educations': educations,
         'certs': certs,
         'experiences': experiences,
+        'latest_blog_post': latest_blog_post,
     }
 
     return render(request, 'home/index.html', context=context)
@@ -82,6 +86,9 @@ def blog_post(request, id=None, slug=None):
         post = get_object_or_404(BlogPost, id=id)
     else:
         post = get_object_or_404(BlogPost, slug=slug)
+
+    if post.hidden:
+        raise Http404()
 
     context = {
         'post': post

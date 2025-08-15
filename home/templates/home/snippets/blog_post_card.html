@@ -1,0 +1,16 @@
+<div class="card blog-post-card mb-4 mb-md-5 flex-fill">
+    <div class="card-body d-flex flex-column px-4">
+        <h5 class="card-title">{{post.post_title}}</h5>
+        <h6 class="card-subtitle text-body-secondary small">{{ post.date_published|date:"M d, Y" }}</h6>
+        <p class="card-text">
+            {% if post.preview_text %}
+            {{ post.preview_text }}
+            {% else %}
+            {{ post.post_body|truncatewords:50 }}
+            {% endif %}
+        </p>
+        <a href="{% if post.slug %}{% url 'home:blog_post_by_slug' post.slug %}{% else %}{% url 'home:blog_post_by_id' post.id %}{% endif %}" class="btn btn-primary btn-sm card-link stretched-link ms-auto mt-auto mb-1" title="Read more">
+            <span>Read more</span>
+        </a>
+    </div>
+</div>
