@@ -23,6 +23,7 @@
                 <div class="blog-post-body border-top pt-3">
                     {{post.post_body|safe}}
                 </div>
+                {% if post.tags.all %}
                 <div class="post-tags mt-4">
                     {% for tag in post.tags.all %}
                     <a href="{% url 'home:blog' %}?tag={{tag.slug}}" class="badge text-bg-secondary me-1">
@@ -30,6 +31,7 @@
                     </a>
                     {% endfor %}
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
