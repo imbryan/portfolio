@@ -8,9 +8,16 @@ class BlogPostAdmin(admin.ModelAdmin):
             {'fields': ['post_title', 'slug', 'preview_text', 'post_body']}
         ),
         ('Date information', {'fields': ['date_published']}),
+        ('Tags', {'fields': ['tags']}),
         ('Flags', {'fields': ['about_content', 'hidden']}),
     ]
     prepopulated_fields = {'slug': ['post_title']}
+
+
+class TagAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Tag content', {'fields': ['name', 'fa_css']})
+    ]
 
 
 class SkillCategoryAdmin(admin.ModelAdmin):
@@ -29,6 +36,7 @@ class SkillAdmin(admin.ModelAdmin):
 class ProjectAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Project content', {'fields': ['project_title', 'project_role','project_body', 'project_repository_url', 'project_demo_url', 'project_board_url', 'project_download_url', 'image_url', 'date']}),
+        ('Tags', {'fields': ['tags']}),
         ('Flags', {'fields': ['is_activism_tool', 'hidden']})
     ]
 
@@ -36,6 +44,7 @@ class ProjectAdmin(admin.ModelAdmin):
 class ExperienceAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Experience content', {'fields': ['employer', 'position', 'start_date', 'end_date']}),
+        ('Tags', {'fields': ['tags']}),
         ('Flags', {'fields': ['hidden']})
     ]
 
@@ -53,6 +62,7 @@ class AchievementAdmin(admin.ModelAdmin):
 class EducationAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Education content', {'fields': ['degree', 'major', 'issuer', 'date_issued', 'description', 'url', 'credential_id']}),
+        ('Tags', {'fields': ['tags']}),
         ('Flags', {'fields': ['hidden']})
     ]
 
@@ -60,6 +70,7 @@ class EducationAdmin(admin.ModelAdmin):
 class CertificationAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Certification content', {'fields': ['cert_name', 'cert_level', 'issuer', 'date_issued', 'expiration_date', 'description', 'url', 'credential_id']}),
+        ('Tags', {'fields': ['tags']}),
         ('Flags', {'fields': ['hidden']})
     ]
 
@@ -79,3 +90,4 @@ admin.site.register(Achievement, AchievementAdmin)
 admin.site.register(Initiative, InitiativeAdmin)
 admin.site.register(Education, EducationAdmin)
 admin.site.register(Certification, CertificationAdmin)
+admin.site.register(Tag, TagAdmin)

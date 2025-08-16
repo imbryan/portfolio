@@ -11,6 +11,7 @@ class BlogPost(models.Model):
     slug = models.SlugField(max_length=100, unique=True, null=True, blank=True, allow_unicode=True)
     post_body = HTMLField()  # Caution, check best practices
     preview_text = models.TextField(null=True, blank=True)
+    tags = models.ManyToManyField('Tag', related_name='posts', blank=True)
     about_content = models.BooleanField(default=False)
     hidden = models.BooleanField(default=False)
     updated = models.DateTimeField(auto_now=True, null=True, blank=True)
@@ -33,7 +34,25 @@ class BlogPost(models.Model):
         super().save(*args, **kwargs)
 
 
+class Tag(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True, blank=True)
+    fa_css = models.CharField(max_length=100, blank=True, null=None)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
+
 class SkillCategory(models.Model):
+    """
+    Deprecated class. See Tag instead.
+    """
     id = models.AutoField(primary_key=True)
     category_name = models.CharField(max_length=200)
 
@@ -70,6 +89,7 @@ class Project(models.Model):
     project_download_url = models.URLField(null=True, blank=True)
     image_url = models.URLField(null=True, blank=True)
     date = models.DateField(null=True, blank=True)
+    tags = models.ManyToManyField('Tag', related_name='projects', blank=True)
     hidden = models.BooleanField(default=False)
     is_activism_tool = models.BooleanField(default=False)
 
@@ -83,6 +103,7 @@ class Experience(models.Model):
     position = models.CharField(max_length=200)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
+    tags = models.ManyToManyField('Tag', related_name='experiences', blank=True)
     hidden = models.BooleanField(default=False)
 
     def __str__(self):
@@ -126,6 +147,7 @@ class Education(Credential):
     name = models.CharField(max_length=200, blank=True)
     degree = models.CharField(max_length=200)
     major = models.CharField(max_length=200)
+    tags = models.ManyToManyField('Tag', related_name='educations', blank=True)
 
     def save(self, *args, **kwargs):
         self.name = f"{self.degree}, {self.major}"
@@ -137,6 +159,7 @@ class Certification(Credential):
     cert_name = models.CharField(max_length=200)
     cert_level = models.CharField(max_length=200, null=True, blank=True)
     expiration_date = models.DateField(null=True, blank=True)
+    tags = models.ManyToManyField('Tag', related_name='certifications', blank=True)
 
     def save(self, *args, **kwargs):
         if self.cert_level:

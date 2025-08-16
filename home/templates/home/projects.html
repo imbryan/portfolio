@@ -62,10 +62,15 @@
                         </a>
                         {% endif %}
                         {% if project.project_download_url %}
-                        <a href="{{ project.project_download_url }}" class="badge text-bg-secondary" title="Download" target="_blank">
+                        <a href="{{ project.project_download_url }}" class="badge text-bg-secondary me-1" title="Download" target="_blank">
                             <i class="fa-solid fa-download"></i> Download
                         </a>
                         {% endif %}
+                        {% for tag in project.tags.all %}
+                        <a class="badge text-bg-secondary me-1">
+                            <i class="{{tag.fa_css}}"></i> {{tag.name}}
+                        </a>
+                        {% endfor %}
                     </div>
                     {% if project.date %}
                     <div class="card-footer">

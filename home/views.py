@@ -63,8 +63,16 @@ def blog(request):
     """
     posts = BlogPost.objects.filter(about_content=False, hidden=False).order_by('-date_published')
 
+    tag = request.GET.get('tag', None)
+    if tag:
+        posts = posts.filter(tags__slug=tag)
+
     paginator = Paginator(posts, 6)
     page_num = request.GET.get('page', 1)
+
+    get_params = request.GET.copy()
+    if 'page' in get_params:
+        del get_params['page']
 
     try:
         posts = paginator.page(page_num)
@@ -75,6 +83,7 @@ def blog(request):
 
     context = {
         'posts': posts,
+        'params': get_params.urlencode(),
     }
 
     return render(request, 'home/blog.html', context=context)

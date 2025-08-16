@@ -2,3 +2,7 @@
     line-height: 1.75;
     font-size: 1.25rem;
 }
+
+.post-tags a {
+    text-decoration: none;
+}
