@@ -46,31 +46,33 @@
                         <p class="card-text {% if project.project_repository_url or project.project_demo_url or project.project_board_url or project.project_download_url %}mb-3{% endif %}">
                             {{ project.project_body }}
                         </p>
-                        {% if project.project_repository_url %}
-                        <a href="{{ project.project_repository_url }}" class="badge text-bg-secondary me-1" title="Code repository" target="_blank">
-                            <i class="fa-solid fa-code-branch"></i> Repository
-                        </a>
-                        {% endif %}
-                        {% if project.project_demo_url %}
-                        <a href="{{ project.project_demo_url }}" class="badge text-bg-secondary me-1" title="Live demo" target="_blank">
-                            <i class="fa-solid fa-up-right-from-square"></i> Demo
-                        </a>
-                        {% endif %}
-                        {% if project.project_board_url %}
-                        <a href="{{ project.project_board_url }}" class="badge text-bg-secondary me-1" title="Issue board" target="_blank">
-                            <i class="fa-solid fa-up-right-from-square"></i> Board
-                        </a>
-                        {% endif %}
-                        {% if project.project_download_url %}
-                        <a href="{{ project.project_download_url }}" class="badge text-bg-secondary me-1" title="Download" target="_blank">
-                            <i class="fa-solid fa-download"></i> Download
-                        </a>
-                        {% endif %}
-                        {% for tag in project.tags.all %}
-                        <a class="badge text-bg-secondary me-1">
-                            <i class="{{tag.fa_css}}"></i> {{tag.name}}
-                        </a>
-                        {% endfor %}
+                        <div class="d-flex flex-wrap gap-2">
+                            {% if project.project_repository_url %}
+                            <a href="{{ project.project_repository_url }}" class="badge text-bg-secondary" title="Code repository" target="_blank">
+                                <i class="fa-solid fa-code-branch"></i> Repository
+                            </a>
+                            {% endif %}
+                            {% if project.project_demo_url %}
+                            <a href="{{ project.project_demo_url }}" class="badge text-bg-secondary" title="Live demo" target="_blank">
+                                <i class="fa-solid fa-up-right-from-square"></i> Demo
+                            </a>
+                            {% endif %}
+                            {% if project.project_board_url %}
+                            <a href="{{ project.project_board_url }}" class="badge text-bg-secondary" title="Issue board" target="_blank">
+                                <i class="fa-solid fa-up-right-from-square"></i> Board
+                            </a>
+                            {% endif %}
+                            {% if project.project_download_url %}
+                            <a href="{{ project.project_download_url }}" class="badge text-bg-secondary" title="Download" target="_blank">
+                                <i class="fa-solid fa-download"></i> Download
+                            </a>
+                            {% endif %}
+                            {% for tag in project.sorted_tags %}
+                            <a class="badge text-bg-secondary">
+                                <i class="{{tag.fa_css}}"></i> {{tag.name}}
+                            </a>
+                            {% endfor %}
+                        </div>
                     </div>
                     {% if project.date %}
                     <div class="card-footer">

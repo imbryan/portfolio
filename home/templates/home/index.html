@@ -27,11 +27,13 @@
                     <div class="card-body">
                         <h5 class="card-title">{{experience.employer}}</h5>
                         <h6 class="card-subtitle">{{experience.position}}</h6>
-                        {% for tag in experience.tags.all %}
-                        <a class="badge text-bg-secondary me-1">
-                            <i class="{{tag.fa_css}}"></i> {{tag.name}}
-                        </a>
-                        {% endfor %}
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for tag in experience.sorted_tags %}
+                            <a class="badge text-bg-secondary">
+                                <i class="{{tag.fa_css}}"></i> {{tag.name}}
+                            </a>
+                            {% endfor %}
+                        </div>
                     </div>
                     {% if experience.start_date %}
                     <div class="card-footer">

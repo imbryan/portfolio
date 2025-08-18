@@ -21,6 +21,10 @@ class BlogPost(models.Model):
 
     def is_about_content(self):
         return self.about_content
+
+    @property
+    def sorted_tags(self):
+        return self.tags.all().order_by('name')
     
     def save(self, *args, **kwargs):
         if not self.preview_text:
@@ -95,6 +99,10 @@ class Project(models.Model):
 
     def __str__(self):
         return self.project_title
+    
+    @property
+    def sorted_tags(self):
+        return self.tags.all().order_by('name')
 
 
 class Experience(models.Model):
@@ -108,6 +116,10 @@ class Experience(models.Model):
 
     def __str__(self):
         return f"{self.position} at {self.employer}"
+    
+    @property
+    def sorted_tags(self):
+        return self.tags.all().order_by('name')
 
 
 class Achievement(models.Model):
@@ -149,6 +161,10 @@ class Education(Credential):
     major = models.CharField(max_length=200)
     tags = models.ManyToManyField('Tag', related_name='educations', blank=True)
 
+    @property
+    def sorted_tags(self):
+        return self.tags.all().order_by('name')
+
     def save(self, *args, **kwargs):
         self.name = f"{self.degree}, {self.major}"
         super().save(*args, **kwargs)
@@ -160,6 +176,10 @@ class Certification(Credential):
     cert_level = models.CharField(max_length=200, null=True, blank=True)
     expiration_date = models.DateField(null=True, blank=True)
     tags = models.ManyToManyField('Tag', related_name='certifications', blank=True)
+
+    @property
+    def sorted_tags(self):
+        return self.tags.all().order_by('name')
 
     def save(self, *args, **kwargs):
         if self.cert_level:
