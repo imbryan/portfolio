@@ -39,6 +39,10 @@ def index(request):
 def projects(request):
     projects = Project.objects.filter(hidden=False).order_by('-date')
 
+    tag = request.GET.get('tag', None)
+    if tag:
+        projects=projects.filter(tags__slug=tag)
+
     context = {
         'projects': projects,
     }

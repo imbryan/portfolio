@@ -68,7 +68,7 @@
                             </a>
                             {% endif %}
                             {% for tag in project.sorted_tags %}
-                            <a class="badge text-bg-secondary">
+                            <a href="?tag={{tag.slug}}" class="badge text-bg-secondary">
                                 <i class="{{tag.fa_css}}"></i> {{tag.name}}
                             </a>
                             {% endfor %}
