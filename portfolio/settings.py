@@ -39,8 +39,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'polls.apps.PollsConfig',
-    'django.contrib.admin',
+    'portfolio.apps.CustomAdminConfig',
     'django.contrib.auth',
+    'mozilla_django_oidc',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -91,6 +92,22 @@ DATABASES = {
 }
 
 
+# Auth
+AUTHENTICATION_BACKENDS = [
+    'home.auth_backends.CustomOIDCAuthenticationBackend',  # https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html#add-settings-to-settings-py
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+# https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html#acquire-a-client-id-and-client-secret
+OIDC_RP_CLIENT_ID = config('OIDC_RP_CLIENT_ID')
+OIDC_RP_CLIENT_SECRET = config('OIDC_RP_CLIENT_SECRET')
+OIDC_RP_SIGN_ALGO = config('OIDC_RP_SIGN_ALGO')
+
+OIDC_OP_JWKS_ENDPOINT = config('OIDC_OP_JWKS_ENDPOINT')
+OIDC_OP_AUTHORIZATION_ENDPOINT = config('OIDC_OP_AUTHORIZATION_ENDPOINT')
+OIDC_OP_TOKEN_ENDPOINT = config('OIDC_OP_TOKEN_ENDPOINT')
+OIDC_OP_USER_ENDPOINT = config('OIDC_OP_USER_ENDPOINT')
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -111,6 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Login redirect
 LOGIN_REDIRECT_URL = 'home:index'
+LOGOUT_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
