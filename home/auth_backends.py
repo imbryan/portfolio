@@ -12,7 +12,6 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
         # https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
         sub = claims.get('sub')
         email = claims.get('email')
-        preferred_username = claims.get('preferred_username')
 
         if sub:
             try:
@@ -23,12 +22,6 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
         if email:
             try:
                 user = User.objects.get(email=email)
-                return [user]
-            except User.DoesNotExist:
-                pass
-        if preferred_username:
-            try:
-                user = User.objects.get(username=preferred_username)
                 return [user]
             except User.DoesNotExist:
                 pass
