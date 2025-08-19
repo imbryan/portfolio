@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 from tinymce.models import HTMLField
@@ -201,3 +202,12 @@ class Initiative(models.Model):
 
     def __str__(self):
         return self.initiative_name
+    
+
+class OIDCProfile(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='oidc_profile')
+    sub = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return f"{self.user.username} ({self.sub})"

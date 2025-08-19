@@ -1,5 +1,9 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth import get_user_model
 from .models import *
+
+User = get_user_model()
 
 
 class BlogPostAdmin(admin.ModelAdmin):
@@ -81,6 +85,18 @@ class InitiativeAdmin(admin.ModelAdmin):
     ]
 
 
+class OIDCProfileInline(admin.StackedInline):
+    model = OIDCProfile
+    can_delete = False
+    verbose_name_plural = "OIDC Profile"
+
+
+class CustomUserAdmin(UserAdmin):
+    inlines = (OIDCProfileInline,)
+
+
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(SkillCategory, SkillCategoryAdmin)
 admin.site.register(Skill, SkillAdmin)
