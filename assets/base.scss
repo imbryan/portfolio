@@ -13,6 +13,8 @@ $body-secondary-color: $gray-600;
 $link-color: $primary;
 $link-hover-color: darken($primary, 10%);
 
+$white-accent: #ffffff;
+
 @import "~bootstrap/scss/bootstrap";
 
 @import "~@fortawesome/fontawesome-free/css/fontawesome.min.css";
@@ -21,6 +23,8 @@ $link-hover-color: darken($primary, 10%);
 @import "~@fortawesome/fontawesome-free/css/brands.min.css";
 
 #top-nav {
+    background-color: $white-accent;
+
     .navbar-brand {
         color: $primary;
         font-weight: 700;
@@ -50,14 +54,15 @@ $link-hover-color: darken($primary, 10%);
     margin-bottom: 4rem;
     
     .card {
-        border-radius: 0;
-        border: 1px solid rgba(0,0,0,0.1);
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        border-radius: 0.5rem;
+        border: 1px solid rgba(0,0,0,0.15);
+        // box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         margin-bottom: 1.5rem;
-        background-color: $light;
+        background-color: $white-accent;
+        overflow: hidden;
 
         &:has(.stretched-link):hover {
-            background-color: darken($light, 2%);
+            background-color: darken($white-accent, 2%);
         }
 
         a {
@@ -94,8 +99,10 @@ $link-hover-color: darken($primary, 10%);
         }
 
         .card-footer {
-            background-color: darken($light, 3%);
-            border-top: 1px solid darken($light, 8%);
+            background-color: darken($white-accent, 5%);
+            // background-color: $white-accent;
+            // border-top: 1px solid darken($white-accent, 9%);
+            border: none;
             color: $body-secondary-color;
         }
     }
