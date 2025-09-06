@@ -17,8 +17,10 @@
                 {% include 'home/snippets/blog_post_card.html' with post=post params=params %}
             </div>
             {% endfor %}
+            <div class="col-12">
+                {% include 'home/snippets/pagination.html' with paginator=posts %}
+            </div>
         </div>
-        {% include 'home/snippets/pagination.html' with paginator=posts %}
     </div>
 
     

@@ -82,6 +82,9 @@
                 </div>
             </div>
             {% endfor %}
+            <div class="col-12">
+                {% include 'home/snippets/pagination.html' with paginator=projects %}
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -43,8 +43,23 @@ def projects(request):
     if tag:
         projects=projects.filter(tags__slug=tag)
 
+    paginator = Paginator(projects, 6)
+    page_num = request.GET.get('page', 1)
+
+    get_params = request.GET.copy()
+    if 'page' in get_params:
+        del get_params['page']
+
+    try:
+        projects = paginator.page(page_num)
+    except PageNotAnInteger:
+        projects = paginator.page(1)
+    except EmptyPage:
+        projects = paginator.page(paginator.num_pages)
+
     context = {
         'projects': projects,
+        'params': get_params.urlencode(),
     }
 
     return render(request, 'home/projects.html', context=context)
