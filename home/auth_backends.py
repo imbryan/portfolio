@@ -12,6 +12,10 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
         # https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
         sub = claims.get('sub')
         email = claims.get('email')
+        # TODO iss is missing from claims
+        iss = claims.get('iss')
+        # print('iss', iss)
+        # print('claims', claims)
 
         if sub:
             try:
@@ -39,6 +43,7 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
         OIDCProfile.objects.create(
             user=user,
             sub=claims.get('sub'),
+            iss=claims.get('iss'),
         )
         return user
     
@@ -46,6 +51,11 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
         profile, created = OIDCProfile.objects.get_or_create(user=user)
         if created:
             profile.sub = claims.get('sub')
+            profile.iss = claims.get('iss')
+            profile.save()
+        # Get iss if not set
+        elif profile.iss is None:
+            profile.iss = claims.get('iss')
             profile.save()
         return user
 
