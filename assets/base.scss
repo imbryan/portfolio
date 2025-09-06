@@ -118,13 +118,23 @@ $white-accent: #ffffff;
 
 #bottom-footer {
 
-    a {
-        color: $dark;
-        text-decoration: none;
+    #footer-links {
+        p {
+            margin-bottom: 0.5rem;
+        }
 
-        &:hover {
-            color: $primary;
-            text-decoration: underline;
+        a {
+            color: $dark;
+            text-decoration: none;
+
+            &:hover {
+                color: $primary;
+                text-decoration: underline;
+            }
+        }
+
+        .footer-link-group {
+            font-weight: 500;
         }
     }
 }

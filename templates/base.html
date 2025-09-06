@@ -99,15 +99,27 @@
             
             <!-- FOOTER -->
             <footer class="footer py-3 bg-light" data-bs-theme="light" id="bottom-footer">
-                <div class="container text-center mb-2">
-                    <div class="d-flex justify-content-center gap-4 mb-2">
-                        <a href="mailto:bryangrigorie@gmail.com">Contact</a>
-                        <a href="https://drive.google.com/file/d/1ZIjcN_pS4R0u772bXl5Yq_89kb0lm01w/" target="_blank">Résumé</a>
-                        <a href="https://github.com/imbryan" target="_blank">GitHub</a>
-                        <a href="https://linkedin.com/in/bryangrigorie" target="_blank">LinkedIn</a>
-                        <a href="https://ko-fi.com/imbryan" target="_blank">Ko-Fi</a>
+                <div class="container mb-2">
+                    <div class="row mb-2" id="footer-links">
+                        <div class="col-2">
+                            <p class="footer-link-group text-uppercase">Connect</p>
+                            <p><a class="small" href="mailto:bryangrigorie@gmail.com">Email</a></p>
+                            <p><a class="small" href="https://linkedin.com/in/bryangrigorie" target="_blank">LinkedIn</a></p>
+                        </div>
+                        <div class="col-2">
+                            <p class="footer-link-group text-uppercase">Portfolio</p>
+                            <p><a class="small" href="https://drive.google.com/file/d/1ZIjcN_pS4R0u772bXl5Yq_89kb0lm01w/" target="_blank">Résumé</a></p>
+                            <p><a class="small" href="https://github.com/imbryan" target="_blank">GitHub</a></p>
+                            <p><a class="small" href="{{ projects_url }}">Projects</a></p>
+                        </div>
+                        <div class="col-2">
+                            <p class="footer-link-group text-uppercase">Support</p>
+                            <p><a class="small" href="https://ko-fi.com/imbryan" target="_blank">Ko-Fi</a></p>
+                        </div>
+                        <div class="col text-center">
+                            <small class="text-body-secondary">&copy; {% now "Y" %} Bryan Grigorie</small>
+                        </div>
                     </div>
-                    <small class="text-body-secondary">&copy; {% now "Y" %} Bryan Grigorie</small>
                 </div>
             </footer>
         </div>
