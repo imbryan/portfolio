@@ -1,4 +1,4 @@
-name: Testing (CI)
+name: Testing and Deploying (CI/CD)
 
 on:
   push:
@@ -17,3 +17,17 @@ jobs:
 
       - name: Build Docker image
         run: docker build --file Dockerfile.prod .
+  redeploy:
+    runs-on: ubuntu-latest
+    needs: [build_docker_image]
+    if: github.event_name == 'push'
+    steps:
+      - name: Trigger deployment webhook
+        run: |
+          payload='{"event": "push-to-main"}'
+          hash=$(echo -n "$payload" | openssl dgst -sha256 -hmac "${{ secrets.WEBHOOK_SECRET }}")
+          curl -X POST \
+          -H "Content-Type: application/json" \
+          -H "X-Hub-Signature-256: sha256=$hash" \
+          -d "$payload" \
+          ${{ secrets.WEBHOOK_URL }}
