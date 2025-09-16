@@ -24,10 +24,10 @@ jobs:
     steps:
       - name: Trigger deployment webhook
         run: |
-          payload='{"event": "push-to-main"}'
-          hash=$(echo -n "$payload" | openssl dgst -sha256 -hmac "${{ secrets.WEBHOOK_SECRET }}")
+          printf '{"event": "push-to-main"}' > payload.json
+          hash=$(openssl dgst -sha256 -hmac "${{ secrets.WEBHOOK_SECRET }}" payload.json)
           curl -X POST \
           -H "Content-Type: application/json" \
           -H "X-Hub-Signature-256: sha256=$hash" \
-          -d "$payload" \
+          -d @payload.json \
           ${{ secrets.WEBHOOK_URL }}
