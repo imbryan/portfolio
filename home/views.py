@@ -30,7 +30,7 @@ def index(request):
         'educations': educations,
         'certs': certs,
         'experiences': experiences,
-        'latest_blog_post': latest_blog_posts,
+        'latest_blog_posts': latest_blog_posts,
     }
 
     return render(request, 'home/index.html', context=context)
