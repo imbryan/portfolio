@@ -138,3 +138,17 @@ $white-accent: #ffffff;
         }
     }
 }
+
+.btn-white-accent {
+    --bs-btn-background: #{$white-accent};
+    --bs-btn-border-color: #{$white-accent};
+
+    --bs-btn-disabled-bg: #{$white-accent};
+    --bs-btn-disabled-border-color: #{$white-accent};
+
+    --bs-btn-hover-bg: #{darken($white-accent, 10%)};
+    --bs-btn-hover-border-color: #{darken($white-accent, 10%)};
+
+    --bs-btn-active-bg: #{darken($white-accent, 15%)};
+    --bs-btn-active-border-color: #{darken($white-accent, 15%)};
+}
