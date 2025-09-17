@@ -24,13 +24,13 @@ def index(request):
     certs = Certification.objects.filter(hidden=False).order_by('-date_issued')
     experiences = Experience.objects.filter(hidden=False).order_by('-start_date')
 
-    latest_blog_post = BlogPost.objects.filter(about_content=False, hidden=False).order_by('-date_published').first()
+    latest_blog_posts = BlogPost.objects.filter(about_content=False, hidden=False).order_by('-date_published').all()[:3]
 
     context = {
         'educations': educations,
         'certs': certs,
         'experiences': experiences,
-        'latest_blog_post': latest_blog_post,
+        'latest_blog_post': latest_blog_posts,
     }
 
     return render(request, 'home/index.html', context=context)

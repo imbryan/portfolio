@@ -71,9 +71,11 @@
                     <span>Latest post</span>
                 </h2>
             </div>
+            {% for post in latest_blog_posts %}
             <div class="col-12 col-md-6 col-lg-4">
-                {% include "home/snippets/blog_post_card.html" with post=latest_blog_post %}
+                {% include "home/snippets/blog_post_card.html" with post=post %}
             </div>
+            {% endfor %}
         </div>
     </div>
 
