@@ -140,7 +140,7 @@ $white-accent: #ffffff;
 }
 
 .btn-white-accent {
-    --bs-btn-background: #{$white-accent};
+    --bs-btn-bg: #{$white-accent};
     --bs-btn-border-color: #{$white-accent};
 
     --bs-btn-disabled-bg: #{$white-accent};
