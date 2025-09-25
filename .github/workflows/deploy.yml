@@ -1,0 +1,24 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [Test]
+    types:
+    - completed
+    branches:
+    - main
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: Trigger deployment webhook
+        run: |
+          printf '{"event": "push-to-main"}' > payload.json
+          hash=$(openssl dgst -sha256 -hmac "${{ secrets.WEBHOOK_SECRET }}" -hex payload.json | sed 's/^.*= *//')
+          curl -X POST \
+          -H "Content-Type: application/json" \
+          -H "X-Hub-Signature-256: sha256=$hash" \
+          -d @payload.json \
+          ${{ secrets.WEBHOOK_URL }}

@@ -1,4 +1,4 @@
-name: Testing and Deploying (CI/CD)
+name: Test
 
 on:
   push:
@@ -9,25 +9,34 @@ on:
       - main
 
 jobs:
+  run_unit_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+      - name: Run Django tests
+        run: |
+          source venv/bin/activate
+          python manage.py test home
+
   build_docker_image:
     runs-on: ubuntu-latest
+    needs: [run_unit_tests]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Build Docker image
         run: docker build --file Dockerfile.prod .
-  redeploy:
-    runs-on: ubuntu-latest
-    needs: [build_docker_image]
-    if: github.event_name == 'push'
-    steps:
-      - name: Trigger deployment webhook
-        run: |
-          printf '{"event": "push-to-main"}' > payload.json
-          hash=$(openssl dgst -sha256 -hmac "${{ secrets.WEBHOOK_SECRET }}" -hex payload.json | sed 's/^.*= *//')
-          curl -X POST \
-          -H "Content-Type: application/json" \
-          -H "X-Hub-Signature-256: sha256=$hash" \
-          -d @payload.json \
-          ${{ secrets.WEBHOOK_URL }}
