@@ -1,6 +1,6 @@
 # Running
 ## Environment
-- Always set: ``DEBUG``, ``SECRET_KEY``, ``ALOWED_HOSTS``
+- Always set: ``DEBUG``, ``SECRET_KEY``, ``ALLOWED_HOSTS``
 - Set for development: ``DATABASE_PATH``
 - Set for OIDC SSO: ``OIDC_RP_CLIENT_ID``, ``OIDC_RP_CLIENT_SECRET``, ``OIDC_RP_SIGN_ALGO``, ``OIDC_OP_JWKS_ENDPOINT``, ``OIDC_OP_AUTHORIZATION_ENDPOINT``, ``OIDC_OP_TOKEN_ENDPOINT``, ``OIDC_OP_USER_ENDPOINT`` (see [docs](https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html))
 
