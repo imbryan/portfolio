@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='.localhost', cast=Csv())
 
 # FIXING CSRF ISSUE 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  
@@ -38,7 +38,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 INSTALLED_APPS = [
     'home.apps.HomeConfig',
-    'polls.apps.PollsConfig',
+    # 'polls.apps.PollsConfig',
     'portfolio.apps.CustomAdminConfig',
     'django.contrib.auth',
     'mozilla_django_oidc',
@@ -99,14 +99,14 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html#acquire-a-client-id-and-client-secret
-OIDC_RP_CLIENT_ID = config('OIDC_RP_CLIENT_ID')
-OIDC_RP_CLIENT_SECRET = config('OIDC_RP_CLIENT_SECRET')
-OIDC_RP_SIGN_ALGO = config('OIDC_RP_SIGN_ALGO')
+OIDC_RP_CLIENT_ID = config('OIDC_RP_CLIENT_ID', default=None)
+OIDC_RP_CLIENT_SECRET = config('OIDC_RP_CLIENT_SECRET', default=None)
+OIDC_RP_SIGN_ALGO = config('OIDC_RP_SIGN_ALGO', default=None)
 
-OIDC_OP_JWKS_ENDPOINT = config('OIDC_OP_JWKS_ENDPOINT')
-OIDC_OP_AUTHORIZATION_ENDPOINT = config('OIDC_OP_AUTHORIZATION_ENDPOINT')
-OIDC_OP_TOKEN_ENDPOINT = config('OIDC_OP_TOKEN_ENDPOINT')
-OIDC_OP_USER_ENDPOINT = config('OIDC_OP_USER_ENDPOINT')
+OIDC_OP_JWKS_ENDPOINT = config('OIDC_OP_JWKS_ENDPOINT', default=None)
+OIDC_OP_AUTHORIZATION_ENDPOINT = config('OIDC_OP_AUTHORIZATION_ENDPOINT', default=None)
+OIDC_OP_TOKEN_ENDPOINT = config('OIDC_OP_TOKEN_ENDPOINT', default=None)
+OIDC_OP_USER_ENDPOINT = config('OIDC_OP_USER_ENDPOINT', default=None)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -178,4 +178,4 @@ LOGGING = {
 }
 
 # ADSENSE CLIENT (publisher ID)
-ADSENSE_CLIENT = config('ADSENSE_CLIENT')
+ADSENSE_CLIENT = config('ADSENSE_CLIENT', default=None)
