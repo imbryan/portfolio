@@ -25,6 +25,7 @@ jobs:
       - name: Run Django tests
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DATABASE_PATH: 'db/db.sqlite3'
         run: |
           source venv/bin/activate
           python manage.py test home
