@@ -38,6 +38,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 INSTALLED_APPS = [
     'home.apps.HomeConfig',
+    'api.apps.APIConfig',
     # 'polls.apps.PollsConfig',
     'portfolio.apps.CustomAdminConfig',
     'django.contrib.auth',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tinymce',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
