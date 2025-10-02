@@ -6,3 +6,4 @@ django-tinymce==4.1.0
 gunicorn==23.0.0
 beautifulsoup4==4.14.2
 mozilla-django-oidc==4.0.1
+djangorestframework==3.16.1

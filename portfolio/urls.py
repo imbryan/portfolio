@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('tinymce/', include('tinymce.urls')),
     path('oidc/', include('mozilla_django_oidc.urls')),
+    path('api/', include('api.urls')),
     path('', include('home.urls')),
 ]
