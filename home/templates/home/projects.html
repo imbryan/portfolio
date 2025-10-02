@@ -47,6 +47,11 @@
                             {{ project.project_body }}
                         </p>
                         <div class="d-flex flex-wrap gap-2">
+                            {% for tag in project.sorted_tags %}
+                            <a href="?tag={{tag.slug}}" class="badge text-bg-secondary">
+                                <i class="{{tag.fa_css}}"></i> {{tag.name}}
+                            </a>
+                            {% endfor %}
                             {% if project.project_repository_url %}
                             <a href="{{ project.project_repository_url }}" class="badge text-bg-primary" title="Code repository" target="_blank">
                                 <i class="fa-solid fa-code-branch"></i> Repository
@@ -67,11 +72,6 @@
                                 <i class="fa-solid fa-download"></i> Download
                             </a>
                             {% endif %}
-                            {% for tag in project.sorted_tags %}
-                            <a href="?tag={{tag.slug}}" class="badge text-bg-secondary">
-                                <i class="{{tag.fa_css}}"></i> {{tag.name}}
-                            </a>
-                            {% endfor %}
                         </div>
                     </div>
                     {% if project.date %}
