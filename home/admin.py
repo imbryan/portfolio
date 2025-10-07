@@ -13,7 +13,7 @@ class BlogPostAdmin(admin.ModelAdmin):
         ),
         ('Date information', {'fields': ['date_published']}),
         ('Tags', {'fields': ['tags']}),
-        ('Flags', {'fields': ['about_content', 'hidden']}),
+        ('Flags', {'fields': ['pinned', 'about_content', 'hidden']}),
     ]
     prepopulated_fields = {'slug': ['post_title']}
 
@@ -41,7 +41,7 @@ class ProjectAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Project content', {'fields': ['project_title', 'project_role','project_body', 'project_repository_url', 'project_demo_url', 'project_board_url', 'project_download_url', 'image_url', 'date']}),
         ('Tags', {'fields': ['tags']}),
-        ('Flags', {'fields': ['is_activism_tool', 'hidden']})
+        ('Flags', {'fields': ['pinned', 'is_activism_tool', 'hidden']})
     ]
 
 

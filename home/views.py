@@ -37,7 +37,7 @@ def index(request):
 
 
 def projects(request):
-    projects = Project.objects.filter(hidden=False).order_by('-date')
+    projects = Project.objects.filter(hidden=False).order_by('-pinned', '-date')
 
     tag = request.GET.get('tag', None)
     if tag:
@@ -80,7 +80,7 @@ def blog(request):
     """
     Blog list view
     """
-    posts = BlogPost.objects.filter(about_content=False, hidden=False).order_by('-date_published')
+    posts = BlogPost.objects.filter(about_content=False, hidden=False).order_by('-pinned', '-date_published')
 
     tag = request.GET.get('tag', None)
     if tag:

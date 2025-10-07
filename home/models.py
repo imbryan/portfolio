@@ -15,6 +15,7 @@ class BlogPost(models.Model):
     tags = models.ManyToManyField('Tag', related_name='posts', blank=True)
     about_content = models.BooleanField(default=False)
     hidden = models.BooleanField(default=False)
+    pinned = models.BooleanField(default=False)
     updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
@@ -96,6 +97,7 @@ class Project(models.Model):
     date = models.DateField(null=True, blank=True)
     tags = models.ManyToManyField('Tag', related_name='projects', blank=True)
     hidden = models.BooleanField(default=False)
+    pinned = models.BooleanField(default=False)
     is_activism_tool = models.BooleanField(default=False)
 
     def __str__(self):
