@@ -22,7 +22,12 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
 
-      - name: Run Django tests
+      - name: Run Django checks
+        run: |
+          source venv/bin/activate
+          python manage.py check && python manage.py makemigrations --check --dry-run
+
+      - name: Run Django unit tests
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DATABASE_PATH: 'db/db.sqlite3'
