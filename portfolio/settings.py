@@ -75,6 +75,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'home.context_processors.global_settings',  # custom context processor
+                'users.context_processors.global_settings',
             ],
         },
     },
@@ -101,6 +102,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html#acquire-a-client-id-and-client-secret
+
 OIDC_RP_CLIENT_ID = config('OIDC_RP_CLIENT_ID', default=None)
 OIDC_RP_CLIENT_SECRET = config('OIDC_RP_CLIENT_SECRET', default=None)
 OIDC_RP_SIGN_ALGO = config('OIDC_RP_SIGN_ALGO', default=None)
@@ -109,6 +111,9 @@ OIDC_OP_JWKS_ENDPOINT = config('OIDC_OP_JWKS_ENDPOINT', default=None)
 OIDC_OP_AUTHORIZATION_ENDPOINT = config('OIDC_OP_AUTHORIZATION_ENDPOINT', default=None)
 OIDC_OP_TOKEN_ENDPOINT = config('OIDC_OP_TOKEN_ENDPOINT', default=None)
 OIDC_OP_USER_ENDPOINT = config('OIDC_OP_USER_ENDPOINT', default=None)
+
+OIDC_OP_DISPLAY_NAME = config('OIDC_OP_DISPLAY_NAME', default=None)
+OIDC_CONFIGURED = all([OIDC_RP_CLIENT_ID, OIDC_RP_CLIENT_SECRET])
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

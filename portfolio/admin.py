@@ -10,4 +10,4 @@ class CustomAdminSite(admin.AdminSite):
     site_header = site_title = 'Portfolio site administration'
 
     def login(self, request, extra_context=None):
-        return redirect(reverse('oidc_authentication_init'))
+        return redirect(reverse('login'))

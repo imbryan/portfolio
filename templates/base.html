@@ -74,6 +74,16 @@
                                 </a>
                             </li>
                             {% endif %}
+                            {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}">
+                                    <span class="">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        Logout
+                                    </span>
+                                </a>
+                            </li>
+                            {% endif %}
                         </ul>
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
