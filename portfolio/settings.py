@@ -33,6 +33,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # https://stackoverflow.com/a/71482883/1615284 
 # https://docs.djangoproject.com/en/5.1/ref/settings/#secure-proxy-ssl-header
 
+USE_X_FORWARDED_HOST = True
+
 
 # Application definition
 
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tinymce',
     'rest_framework',
+    'axes',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'axes.middleware.AxesMiddleware',  # https://django-axes.readthedocs.io/en/stable/2_installation.html
 ]
 
 ROOT_URLCONF = 'portfolio.urls'
@@ -97,6 +101,7 @@ DATABASES = {
 
 # Auth
 AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesStandaloneBackend',  # https://django-axes.readthedocs.io/en/stable/2_installation.html
     'users.auth_backends.CustomOIDCAuthenticationBackend',  # https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html#add-settings-to-settings-py
     'django.contrib.auth.backends.ModelBackend',
 ]
@@ -131,6 +136,13 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+# Axes
+AXES_IPWARE_PROXY_COUNT = config('AXES_IPWARE_PROXY_COUNT', None)
+AXES_IPWARE_META_PRECEDENCE_ORDER = [
+    'HTTP_X_FORWARDED_FOR',
+    'REMOTE_ADDR',
 ]
 
 # Login redirect
