@@ -39,6 +39,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'api.apps.APIConfig',
+    'users.apps.UsersConfig',
     'portfolio.apps.CustomAdminConfig',
     'django.contrib.auth',
     'mozilla_django_oidc',
@@ -95,7 +96,7 @@ DATABASES = {
 
 # Auth
 AUTHENTICATION_BACKENDS = [
-    'home.auth_backends.CustomOIDCAuthenticationBackend',  # https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html#add-settings-to-settings-py
+    'users.auth_backends.CustomOIDCAuthenticationBackend',  # https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html#add-settings-to-settings-py
     'django.contrib.auth.backends.ModelBackend',
 ]
 
