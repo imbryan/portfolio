@@ -20,6 +20,9 @@
         {% comment %}<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ADSENSE_CLIENT }}" 
         crossorigin="anonymous"></script> <!-- AdSense -->{% endcomment %}
         {% endif %}
+        {% if TURNSTILE_SITE_KEY %}
+        <script async src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
+        {% endif %}
         {% endblock %}
         <!-- TITLE -->
         <title>{% block extra_title %}{% endblock %}Bryan Grigorie</title>
