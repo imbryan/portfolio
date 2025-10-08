@@ -29,12 +29,17 @@
                                 <label for="password-input" class="form-label">Password</label>
                                 <input id="password-input" name="password" class="form-control" type="password" required>
                             </div>
+                            {% if TURNSTILE_SITE_KEY %}
+                            <div class="mb-2">
+                                <div class="cf-turnstile" data-sitekey="{{TURNSTILE_SITE_KEY}}" data-size="flexible"></div>
+                            </div>
+                            {% endif %}
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary w-100">Log in</button>
                             </div>
-                            {% if oidc_configured %}
+                            {% if OIDC_CONFIGURED %}
                             <div>
-                                <a href="{% url 'oidc_authentication_init' %}" class="btn btn-secondary w-100">Log in with {{oidc_op_display_name}}</a>
+                                <a href="{% url 'oidc_authentication_init' %}" class="btn btn-secondary w-100">Log in with {{OIDC_OP_DISPLAY_NAME}}</a>
                             </div>
                             {% endif %}
                         </form>
