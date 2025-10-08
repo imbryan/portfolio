@@ -12,7 +12,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h5 class="card-title mb-3">Log in</h5>
-                        <form method="post">
+                        <form method="post" id="login-form">
                             {% csrf_token %}
                             {% if form.non_field_errors %}
                             <div class="alert alert-danger mb-3" role="alert">
@@ -35,11 +35,17 @@
                             </div>
                             {% endif %}
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary w-100">Log in</button>
+                                <button type="submit" class="btn btn-primary w-100" id="login-btn">
+                                    <span class="default">Log in</span>
+                                    <span class="loading d-none">
+                                        <span class="spinner-border spinner-border-sm me-1" role="status"></span>
+                                        Logging in
+                                    </span>
+                                </button>
                             </div>
                             {% if OIDC_CONFIGURED %}
                             <div>
-                                <a href="{% url 'oidc_authentication_init' %}" class="btn btn-secondary w-100">Log in with {{OIDC_OP_DISPLAY_NAME}}</a>
+                                <a href="{% url 'oidc_authentication_init' %}" class="btn btn-secondary w-100" id="oidc-login-btn">Log in with {{OIDC_OP_DISPLAY_NAME}}</a>
                             </div>
                             {% endif %}
                         </form>
@@ -48,4 +54,37 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    const loginButtons = document.querySelectorAll('#login-btn, #oidc-login-btn');
+
+    function disableButtons(buttons) {
+        buttons.forEach(button => {
+            button.disabled = true;
+            button.classList.add('disabled');
+        });
+    }
+    
+    document.querySelector('#login-form').addEventListener('submit', function() {
+        disableButtons(loginButtons);
+        const button = document.querySelector('#login-btn');
+        button.querySelector('.default').classList.add('d-none');
+        button.querySelector('.loading').classList.remove('d-none');
+    });
+
+    document.querySelector('#oidc-login-btn').addEventListener('click', function() {
+        disableButtons(loginButtons);
+    });
+
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            loginButtons.forEach(button => {
+                button.disabled = false;
+                button.classList.remove('disabled');
+            });
+        }
+    })
+</script>
 {% endblock %}

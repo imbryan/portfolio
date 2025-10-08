@@ -143,6 +143,7 @@
         {% block body_script %}
         <!-- Webpack -->
         <script src="{% static 'js/bundles/index-bundle.js' %}"></script>
+        {% block extra_scripts %}{% endblock %}
         {% endblock %}
     </body>
 </html>
