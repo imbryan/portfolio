@@ -10,3 +10,4 @@ db/
 staticfiles/
 node_modules
 static/js/bundles
+static/favicons
