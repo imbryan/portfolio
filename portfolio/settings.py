@@ -183,19 +183,26 @@ STATICFILES_DIRS = [
 #STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # LOGGING https://docs.djangoproject.com/en/5.1/howto/logging/
+LOG_LEVEL = config('LOG_LEVEL', default='INFO')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
         'console': {
-            'level': 'ERROR',
+            'level': LOG_LEVEL,
             'class': 'logging.StreamHandler',
         },
     },
     'loggers': {
+        # Root logger
+        '': {
+            'handlers': ['console'],
+            'level': LOG_LEVEL,
+        },
         'django': {
             'handlers': ['console'],
-            'level': 'ERROR',
+            'level': LOG_LEVEL,
+            'propagate': False,
         }
     }
 }
