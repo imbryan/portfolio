@@ -39,19 +39,23 @@ USE_X_FORWARDED_HOST = True
 # Application definition
 
 INSTALLED_APPS = [
-    'home.apps.HomeConfig',
-    'api.apps.APIConfig',
-    'users.apps.UsersConfig',
-    'portfolio.apps.CustomAdminConfig',
+    # Django core
     'django.contrib.auth',
-    'mozilla_django_oidc',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'portfolio.apps.CustomAdminConfig',
+    # Third party
+    'mozilla_django_oidc',
     'tinymce',
     'rest_framework',
     'axes',
+    'constance',
+    # Project apps
+    'home.apps.HomeConfig',
+    'api.apps.APIConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +82,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'home.context_processors.global_settings',  # custom context processor
+                'constance.context_processors.config',
+                # Project app context processors
+                'home.context_processors.global_settings',
                 'users.context_processors.global_settings',
             ],
         },
@@ -214,3 +220,23 @@ ADSENSE_CLIENT = config('ADSENSE_CLIENT', default=None)
 TURNSTILE_SITE_KEY = config('TURNSTILE_SITE_KEY', default=None)
 TURNSTILE_SECRET_KEY = config('TURNSTILE_SECRET_KEY', default=None)
 TURNSTILE_CONFIGURED = all([TURNSTILE_SITE_KEY, TURNSTILE_SECRET_KEY])
+
+# Constance
+# https://django-constance.readthedocs.io/en/stable/
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_CONFIG = {
+    'BRAND': ('Portfolio', 'Site name', str),
+    'EMAIL': ('', 'Admin email', str),
+    'GITHUB_URL': ('', 'GitHub link', str),
+    'LINKEDIN_URL': ('', 'LinkedIn link', str),
+    'RESUME_URL': ('', 'Résumé link', str),
+    'KO_FI_URL': ('', 'Ko-fi link', str),
+    'PAYPAL_URL': ('', 'PayPal link', str),
+    'HERO_HEADING': ('Hello, world!', 'Hero section heading', str),
+    'HERO_SUBHEADING': ('', 'Hero section subheading', str),
+}
+CONSTANCE_CONFIG_FIELDSETS = {
+    'Global': ('BRAND', 'EMAIL'),
+    'Links': ('GITHUB_URL', 'LINKEDIN_URL', 'RESUME_URL', 'KO_FI_URL', 'PAYPAL_URL'),
+    'Hero Section': ('HERO_HEADING', 'HERO_SUBHEADING'),
+}

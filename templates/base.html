@@ -28,7 +28,7 @@
         {% endif %}
         {% endblock %}
         <!-- TITLE -->
-        <title>{% block extra_title %}{% endblock %}Bryan Grigorie</title>
+        <title>{% block extra_title %}{% endblock %}{{ config.BRAND }}</title>
     </head>
     
     <body>
@@ -40,7 +40,7 @@
                     {% url 'home:index' as home_index_url %}
                     {% url 'home:projects' as projects_url %}
                     {% url 'home:blog' as blog_url %}
-                    <a class="navbar-brand" href="{{ home_index_url }}">Bryan Grigorie</a>
+                    <a class="navbar-brand" href="{{ home_index_url }}">{{ config.BRAND }}</a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-navbar-nav">
                         <span class="navbar-toggler-icon"></span>
@@ -92,16 +92,20 @@
                             {% endif %}
                         </ul>
                         <ul class="navbar-nav ms-auto">
+                            {% if config.GITHUB_URL %}
                             <li class="nav-item">
-                                <a class="nav-link" href="https://github.com/imbryan" title="GitHub" target="_blank">
+                                <a class="nav-link" href="{{ config.GITHUB_URL }}" title="GitHub" target="_blank">
                                     <i class="fa-brands fa-github"></i>
                                 </a>
                             </li>
+                            {% endif %}
+                            {% if config.LINKEDIN_URL %}
                             <li class="nav-item">
-                                <a class="nav-link" href="https://linkedin.com/in/bryangrigorie" title="LinkedIn" target="_blank">
+                                <a class="nav-link" href="{{ config.LINKEDIN_URL }}" title="LinkedIn" target="_blank">
                                     <i class="fa-brands fa-linkedin-in"></i>
                                 </a>
                             </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -119,22 +123,34 @@
                     <div class="row mb-2" id="footer-links">
                         <div class="col-6 col-md-2">
                             <p class="footer-link-group text-uppercase">Connect</p>
-                            <p><a class="small" href="mailto:bryangrigorie@gmail.com">Email</a></p>
-                            <p><a class="small" href="https://linkedin.com/in/bryangrigorie" target="_blank">LinkedIn</a></p>
+                            {% if config.EMAIL %}
+                            <p><a class="small" href="mailto:{{ config.EMAIL }}">Email</a></p>
+                            {% endif %}
+                            {% if config.LINKEDIN_URL %}
+                            <p><a class="small" href="{{ config.LINKEDIN_URL }}" target="_blank">LinkedIn</a></p>
+                            {% endif %}
                         </div>
                         <div class="col-6 col-md-2">
                             <p class="footer-link-group text-uppercase">Portfolio</p>
-                            <p><a class="small" href="https://drive.google.com/file/d/1ZIjcN_pS4R0u772bXl5Yq_89kb0lm01w/" target="_blank">Résumé</a></p>
-                            <p><a class="small" href="https://github.com/imbryan" target="_blank">GitHub</a></p>
+                            {% if config.RESUME_URL %}
+                            <p><a class="small" href="{{ config.RESUME_URL }}" target="_blank">Résumé</a></p>
+                            {% endif %}
+                            {% if config.GITHUB_URL %}
+                            <p><a class="small" href="{{ config.GITHUB_URL }}" target="_blank">GitHub</a></p>
+                            {% endif %}
                             <p><a class="small" href="{{ projects_url }}">Projects</a></p>
                         </div>
                         <div class="col-6 col-md-2">
                             <p class="footer-link-group text-uppercase">Support my work</p>
-                            <p><a class="small" href="https://ko-fi.com/imbryan" target="_blank">Ko-Fi</a></p>
-                            <p><a class="small" href="https://paypal.me/bgrigoriework" target="_blank">PayPal</a></p>
+                            {% if config.KO_FI_URL %}
+                            <p><a class="small" href="{{ config.KO_FI_URL }}" target="_blank">Ko-fi</a></p>
+                            {% endif %}
+                            {% if config.PAYPAL_URL %}
+                            <p><a class="small" href="{{ config.PAYPAL_URL }}" target="_blank">PayPal</a></p>
+                            {% endif %}
                         </div>
                         <div class="col text-center">
-                            <small class="text-body-secondary">&copy; {% now "Y" %} Bryan Grigorie</small>
+                            <small class="text-body-secondary">&copy; {% now "Y" %} {{ config.BRAND }}</small>
                         </div>
                     </div>
                 </div>

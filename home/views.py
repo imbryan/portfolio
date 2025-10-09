@@ -65,17 +65,6 @@ def projects(request):
     return render(request, 'home/projects.html', context=context)
 
 
-def activism(request):
-    tools = Project.objects.filter(hidden=False, is_activism_tool=True).order_by('-date')
-    initiatives = Initiative.objects.filter(hidden=False).order_by('-date_introduced')
-
-    context = {
-        'tools': tools,
-        'initiatives': initiatives,
-    }
-    return render(request, 'home/activism.html', context=context)
-
-
 def blog(request):
     """
     Blog list view

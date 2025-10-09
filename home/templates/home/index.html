@@ -9,9 +9,9 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center" id="hero">
-                <h1 class="mb-3 fw-bolder">Hello, world! I'm Bryan.</h1>
+                <h1 class="mb-3 fw-bolder">{{ config.HERO_HEADING }}</h1>
                 <p class="mb-4">
-                    Problem solver crafting secure and reliable software solutions.
+                    {{ config.HERO_SUBHEADING }}
                 </p>
                 <a class="btn btn-primary btn-lg fw-bold" href="{% url 'home:projects' %}">See My Work</a>
             </div>

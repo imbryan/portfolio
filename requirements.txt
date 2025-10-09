@@ -7,3 +7,4 @@ beautifulsoup4==4.14.2
 mozilla-django-oidc==4.0.1
 djangorestframework==3.16.1
 django-axes[ipware]==8.0.0
+django-constance==4.3.2
