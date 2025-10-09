@@ -140,6 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Axes
 # https://django-axes.readthedocs.io/en/stable/4_configuration.html
+AXES_ENABLED = config('AXES_ENABLED', False)
 AXES_IPWARE_PROXY_COUNT = config('AXES_IPWARE_PROXY_COUNT', None)
 AXES_IPWARE_META_PRECEDENCE_ORDER = config(
     'AXES_IPWARE_META_PRECEDENCE_ORDER',
