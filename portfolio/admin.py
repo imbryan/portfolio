@@ -8,8 +8,16 @@ class CustomAdminSite(admin.AdminSite):
     https://docs.djangoproject.com/en/5.2/ref/contrib/admin/#customizing-the-adminsite-class
     https://docs.djangoproject.com/en/5.2/ref/contrib/admin/#overriding-the-default-admin-site
     """
-    site_header = site_title = f'{getattr(config, 'BRAND')} Admin'
     index_title = 'Admin interface'
+
+    # Defer config database access to fix RuntimeWarning
+    @property
+    def site_title(self):
+        return f'{getattr(config, 'BRAND')} Admin'
+    
+    @property
+    def site_header(self):
+        return self.site_title
 
     def login(self, request, extra_context=None):
         return redirect(reverse('login'))
