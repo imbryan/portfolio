@@ -13,6 +13,12 @@ class BlogPostAdmin(admin.ModelAdmin):
     ]
     prepopulated_fields = {'slug': ['post_title']}
 
+    class Media:
+        js = [
+            'admin/js/jquery.init.js',
+            'admin/js/preview_text_word_count.js',
+        ]
+
 
 class TagAdmin(admin.ModelAdmin):
     fieldsets = [
