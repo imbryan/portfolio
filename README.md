@@ -11,6 +11,19 @@
 ## Production
 ``docker compose -f docker-compose.prod.yml up -d --build``
 
+# Structure
+## Django project apps
+- ``api``: REST API.
+- ``home``: index page, project portfolio, and blog features.
+- ``users``: authentication.
+
+## Other directories
+- ``assets``: Webpack source (pre-bundle).
+- ``core``: Django project utils.
+- ``portfolio``: Django project settings.
+- ``static``: Django static files (pre-collection).
+- ``templates``: Django project templates.
+
 # Workflow
 ## Models
 1. Make changes in ``models.py``
