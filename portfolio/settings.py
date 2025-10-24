@@ -232,11 +232,12 @@ CONSTANCE_CONFIG = {
     'RESUME_URL': ('', 'Résumé link', str),
     'KO_FI_URL': ('', 'Ko-fi link', str),
     'PAYPAL_URL': ('', 'PayPal link', str),
+    'UPWORK_URL': ('', 'Upwork link', str),
     'HERO_HEADING': ('Hello, world!', 'Hero section heading', str),
     'HERO_SUBHEADING': ('', 'Hero section subheading', str),
 }
 CONSTANCE_CONFIG_FIELDSETS = {
     'Global': ('BRAND', 'EMAIL'),
-    'Links': ('GITHUB_URL', 'LINKEDIN_URL', 'RESUME_URL', 'KO_FI_URL', 'PAYPAL_URL'),
+    'Links': ('GITHUB_URL', 'LINKEDIN_URL', 'UPWORK_URL', 'RESUME_URL', 'KO_FI_URL', 'PAYPAL_URL'),
     'Hero Section': ('HERO_HEADING', 'HERO_SUBHEADING'),
 }
