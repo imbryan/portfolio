@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portfolio"
+version = "2025.11"
+readme = "README.md"
+requires-python = ">=3.13"
+authors = [
+    {name = "Bryan Grigorie", email = "bryangrigorie@gmail.com"},
+]
+
+dependencies = [
+    "Django==5.2.7",
+    "python-decouple==3.8",
+    "Pillow==11.3.0",
+    "django-tinymce==4.1.0",
+    "gunicorn==23.0.0",
+    "beautifulsoup4==4.14.2",
+    "mozilla-django-oidc==4.0.1",
+    "djangorestframework==3.16.1",
+    "django-axes[ipware]==8.0.0",
+    "django-constance==4.3.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pip-tools",
+    "ruff",
+]

@@ -3,16 +3,17 @@
 
 Personal website that includes a portfolio and a blog. Made with [Django](https://github.com/django/django).
 
-## Environment variables
-### Always required
+## Setup
+### Environment variables
+#### Always required
 - ``DEBUG`` (True/False)
 - ``SECRET_KEY``
 - ``ALLOWED_HOSTS`` (comma-separated values)
 
-### For development
+#### For development
 - ``DATABASE_PATH`` (e.g. ``path/to/portfolio/db/db.sqlite3``)
 
-### [OpenID Connect](https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html)
+#### [OpenID Connect](https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html)
 - ``OIDC_RP_CLIENT_ID``
 - ``OIDC_RP_CLIENT_SECRET``
 - ``OIDC_RP_SIGN_ALGO``
@@ -21,11 +22,11 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 - ``OIDC_OP_TOKEN_ENDPOINT``
 - ``OIDC_OP_USER_ENDPOINT``
 
-### Cloudflare Turnstile
+#### Cloudflare Turnstile
 - ``TURNSTILE_SITE_KEY``
 - ``TURNSTILE_SECRET_KEY``
 
-### Django-Axes
+#### Django-Axes
 - ``AXES_ENABLED``
 - ``AXES_IPWARE_PROXY_COUNT``
 - ``AXES_FAILURE_LIMIT``
@@ -49,15 +50,23 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 - ``templates``: Django project templates.
 
 ## Development
+### Generating the requirements lock
+- ``pip-compile pyproject.toml --output-file requirements.txt``
+- ``pip-compile pyproject.toml --output-file requirements.dev.txt --extra dev``
+
 ### Making changes to models
 1. Make changes in ``models.py``
 2. Register as needed in ``admin.py``
 3. Make sure ``DATABASE_PATH`` is set in ``.env`` (cross-reference ``docker-compose*.yml``)
 4. In a venv, run ``python manage.py makemigrations``
 
-### Run in Docker
+### Linting
+- ``ruff check``
+
+### Running in Docker
 ``docker compose -f docker-compose.yml up -d --build``
 
+
 ## Production
-### Run in Docker
+### Running in Docker
 ``docker compose -f docker-compose.prod.yml up -d --build``
