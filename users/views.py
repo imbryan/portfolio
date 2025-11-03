@@ -21,7 +21,7 @@ def login(request):
                 request.headers.get('X-Forwarded-For') or \
                 request.META.get('REMOTE_ADDR')
             cf_validation = validate_turnstile(token, settings.TURNSTILE_SECRET_KEY, remoteip)
-            if cf_validation['success'] == False:
+            if not cf_validation['success']:
                 form.add_error(None, "Security challenge failed. Please refresh and try again.")
                 return render(request, 'users/login.html', {'form': form})
         # Validate credentials

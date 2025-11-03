@@ -14,7 +14,7 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
         sub = claims.get('sub')
         email = claims.get('email')
         # TODO iss is missing from claims
-        iss = claims.get('iss')
+        # iss = claims.get('iss')
         # print('iss', iss)
         # print('claims', claims)
 

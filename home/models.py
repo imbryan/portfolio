@@ -76,11 +76,16 @@ class Skill(models.Model):
         return self.skill_title
 
     def level_text(self):
-        if self.skill_level == 1: return "Basic knowledge"
-        elif self.skill_level == 2: return "Novice"
-        elif self.skill_level == 3: return "Intermediate"
-        elif self.skill_level == 4: return "Advanced"
-        elif self.skill_level == 5: return "Expert"
+        if self.skill_level == 1: 
+            return "Basic knowledge"
+        elif self.skill_level == 2: 
+            return "Novice"
+        elif self.skill_level == 3: 
+            return "Intermediate"
+        elif self.skill_level == 4: 
+            return "Advanced"
+        elif self.skill_level == 5: 
+            return "Expert"
 
 
 class Project(models.Model):
