@@ -1,7 +1,8 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
-from .models import BlogPost, Skill, Project, Education, Certification, Initiative, Experience
+
+from .models import BlogPost, Project, Education, Certification, Experience
 
 
 def index(request):

@@ -6,7 +6,7 @@
 - ``ALLOWED_HOSTS`` (comma-separated values)
 
 ### For development
-- ``DATABASE_PATH``
+- ``DATABASE_PATH`` (e.g. ``path/to/portfolio/db/db.sqlite3``)
 
 ### [OpenID Connect](https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html)
 - ``OIDC_RP_CLIENT_ID``
@@ -27,6 +27,11 @@
 - ``AXES_FAILURE_LIMIT``
 
 ## File structure
+### Python imports
+1. Third-party libraries
+2. Python standard library
+3. Custom modules
+
 ### Django project apps
 - ``api``: REST API.
 - ``home``: index page, project portfolio, and blog features.

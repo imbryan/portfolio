@@ -1,5 +1,7 @@
 from django.test import TestCase
+
 from datetime import datetime
+
 from home.models import BlogPost
 
 
