@@ -1,4 +1,8 @@
-# Personal Website with Portfolio and Blog
+# Portfolio
+[![Tests](https://github.com/imbryan/portfolio/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/imbryan/portfolio/actions/workflows/test.yml)
+
+Personal website that includes a portfolio and a blog. Made with [Django](https://github.com/django/django).
+
 ## Environment variables
 ### Always required
 - ``DEBUG`` (True/False)
