@@ -28,13 +28,13 @@ def login(request):
         if form.is_valid():
             user = form.get_user()
             auth_login(request, user)
-            if request.headers.get('HX-Request') == 'true':
+            if request.htmx:
                 response = HttpResponse()
                 response['HX-Redirect'] = reverse('home:index')
                 return response
             return redirect(reverse('home:index'))
         else:
-            if request.headers.get('HX-Request') == 'true':
+            if request.htmx:
                 return render(request, 'users/partials/login_form.html', {'form': form})
             return render(request, 'users/login.html', {'form': form})
 

@@ -68,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'axes.middleware.AxesMiddleware',  # https://django-axes.readthedocs.io/en/stable/2_installation.html
+    'core.utils.middleware.HTMXMiddleware',
 ]
 
 ROOT_URLCONF = 'portfolio.urls'
