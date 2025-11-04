@@ -19,7 +19,10 @@ class LoginTestView(TestCase):
         self.mock_failed_turnstile_response = Mock()
         self.mock_failed_turnstile_response.json.return_value = {'success': False, 'error-codes': {'internal-error'}}
 
-    @override_settings(OIDC_OP_JWKS_ENDPOINT='http://test/jwks')
+    @override_settings(
+        OIDC_OP_JWKS_ENDPOINT='http://test/jwks',
+        TURNSTILE_CONFIGURED=True,
+    )
     @patch('requests.post')
     @patch('core.utils.turnstile_utils.validate_turnstile')
     def test_login_successful_htmx(self, mock_validate_turnstile, mock_requests_post):
@@ -35,7 +38,10 @@ class LoginTestView(TestCase):
         self.assertIn('HX-Redirect', response.headers)
         self.assertEqual(response.status_code, 200)
 
-    @override_settings(OIDC_OP_JWKS_ENDPOINT='http://test/jwks')
+    @override_settings(
+        OIDC_OP_JWKS_ENDPOINT='http://test/jwks',
+        TURNSTILE_CONFIGURED=True,
+    )
     @patch('requests.post')
     @patch('core.utils.turnstile_utils.validate_turnstile')
     def test_login_successful(self, mock_validate_turnstile, mock_requests_post):
@@ -51,7 +57,10 @@ class LoginTestView(TestCase):
         self.assertNotIn('HX-Redirect', response.headers)
         self.assertEqual(response.status_code, 302)
 
-    @override_settings(OIDC_OP_JWKS_ENDPOINT='http://test/jwks')
+    @override_settings(
+        OIDC_OP_JWKS_ENDPOINT='http://test/jwks',
+        TURNSTILE_CONFIGURED=True,
+    )
     @patch('requests.post')
     @patch('core.utils.turnstile_utils.validate_turnstile')
     def test_login_failed_turnstile_invalid(self, mock_validate_turnstile, mock_requests_post):
@@ -67,7 +76,10 @@ class LoginTestView(TestCase):
         self.assertNotIn('HX-Redirect', response.headers)
         self.assertEqual(response.status_code, 200)
 
-    @override_settings(OIDC_OP_JWKS_ENDPOINT='http://test/jwks')
+    @override_settings(
+        OIDC_OP_JWKS_ENDPOINT='http://test/jwks',
+        TURNSTILE_CONFIGURED=True,
+    )
     @patch('requests.post')
     @patch('core.utils.turnstile_utils.validate_turnstile')
     def test_login_failed_credentials_invalid(self, mock_validate_turnstile, mock_requests_post):
