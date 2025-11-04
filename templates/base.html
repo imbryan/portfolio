@@ -8,12 +8,14 @@
         {% if ADSENSE_CLIENT %}
         <meta name="google-adsense-account" content="{{ ADSENSE_CLIENT }}">
         {% endif %}
+        {% block extra_metas %}{% endblock %}
         <!-- favicons -->
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/32x32.png' %}">
         <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/16x16.png' %}">
         <!-- STYLE -->
         {% block style %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+        {% block extra_styles %}{% endblock %}
         <!-- mini css -->
         <link rel="stylesheet" type="text/css" href="{% static 'js/bundles/styles.css' %}">
         {% endblock %}
