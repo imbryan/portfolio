@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block extra_metas %}
-{% comment %}https://htmx.org/quirks/#by-default-4xx-5xx-responses-do-not-swap{% endcomment %}
-<meta name="htmx-config" content='{"responseHandling": [{"code":"401", "swap": true}]}'>
-{% endblock %}
 {% block extra_styles %}
 <style>
     .login-loading {

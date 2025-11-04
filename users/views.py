@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.conf import settings
+from django.http import HttpResponse
 
 from core.utils.turnstile_utils import validate_turnstile
 
@@ -27,12 +28,14 @@ def login(request):
         if form.is_valid():
             user = form.get_user()
             auth_login(request, user)
+            if request.headers.get('HX-Request') == 'true':
+                response = HttpResponse()
+                response['HX-Redirect'] = reverse('home:index')
+                return response
             return redirect(reverse('home:index'))
         else:
             if request.headers.get('HX-Request') == 'true':
-                response = render(request, 'users/partials/login_form.html', {'form': form})
-                response.status_code = 401
-                return response
+                return render(request, 'users/partials/login_form.html', {'form': form})
             return render(request, 'users/login.html', {'form': form})
 
     form = AuthenticationForm()
