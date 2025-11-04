@@ -11,3 +11,4 @@ staticfiles/
 node_modules
 static/js/bundles
 static/favicons
+*.override.yml

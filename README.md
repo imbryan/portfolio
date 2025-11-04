@@ -66,7 +66,7 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 - ``ruff check``
 
 ### Running in Docker
-``docker compose -f docker-compose.yml up -d --build``
+``docker compose -f docker-compose.yml [-f docker-compose.override.yml] up -d --build``
 
 
 ## Production

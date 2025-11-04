@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.0.1",
-    "bootstrap": "^5.3.7"
+    "bootstrap": "^5.3.7",
+    "htmx.org": "^2.0.8"
   }
 }
