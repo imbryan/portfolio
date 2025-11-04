@@ -12,16 +12,9 @@
             <div class="col-12 text-center">
                 <h1 class="mb-3 mb-md-4">Blog</h1>
             </div>
-            {% for post in posts %}
-            <div class="col-12 col-md-6 col-lg-4 d-flex">
-                {% include 'home/partials/blog_post_card.html' with post=post params=params show_pin=True %}
-            </div>
-            {% endfor %}
-            <div class="col-12">
-                {% include 'home/partials/pagination.html' with paginator=posts %}
-            </div>
+        </div>
+        <div class="row" id="blog-post-list">
+            {% include 'home/partials/blog_post_list.html' with posts=posts params=params %}
         </div>
     </div>
-
-    
 {% endblock %}

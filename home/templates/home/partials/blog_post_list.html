@@ -1,0 +1,8 @@
+{% for post in posts %}
+<div class="col-12 col-md-6 col-lg-4 d-flex">
+    {% include 'home/partials/blog_post_card.html' with post=post params=params show_pin=True %}
+</div>
+{% endfor %}
+<div class="col-12">
+    {% include 'home/partials/pagination.html' with page=posts hx_target="#blog-post-list" %}
+</div>

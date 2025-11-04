@@ -95,6 +95,9 @@ def blog(request):
         'params': get_params.urlencode(),
     }
 
+    if request.headers.get('HX-Request'):
+        return render(request, 'home/partials/blog_post_list.html', context=context)
+
     return render(request, 'home/blog.html', context=context)
 
 
