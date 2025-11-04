@@ -63,6 +63,9 @@ def projects(request):
         'params': get_params.urlencode(),
     }
 
+    if request.htmx:
+        return render(request, 'home/partials/project_list.html', context=context)
+
     return render(request, 'home/projects.html', context=context)
 
 
@@ -94,6 +97,9 @@ def blog(request):
         'posts': posts,
         'params': get_params.urlencode(),
     }
+
+    if request.htmx:
+        return render(request, 'home/partials/blog_post_list.html', context=context)
 
     return render(request, 'home/blog.html', context=context)
 

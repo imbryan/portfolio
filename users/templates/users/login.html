@@ -1,7 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block style %}
-    {{ block.super }}
+{% block extra_styles %}
+<style>
+    .login-loading {
+        display: none;
+    }
+    form.htmx-request .login-loading {
+        display: inline-flex;
+    }
+    form.htmx-request .login-default {
+        display: none;
+    }
+    #oidc-login-btn[disabled] {
+        pointer-events: none;
+        opacity: 0.65;
+        cursor: default;
+    }
+</style>
 {% endblock %}
 {% block extra_title %}Login | {% endblock %}
 
@@ -12,43 +27,14 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h5 class="card-title mb-3">Log in</h5>
-                        <form method="post" id="login-form">
-                            {% csrf_token %}
-                            {% if form.non_field_errors %}
-                            <div class="alert alert-danger mb-3" role="alert">
-                                {% for error in form.non_field_errors %}
-                                {{error}}
-                                {% endfor %}
-                            </div>
-                            {% endif %}
-                            <div class="mb-3">
-                                <label for="username-input" class="form-label">Username</label>
-                                <input id="username-input" name="username" class="form-control" value="{{form.username.value|default_if_none:''}}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password-input" class="form-label">Password</label>
-                                <input id="password-input" name="password" class="form-control" type="password" required>
-                            </div>
-                            {% if TURNSTILE_SITE_KEY %}
-                            <div class="mb-2">
-                                <div class="cf-turnstile" data-sitekey="{{TURNSTILE_SITE_KEY}}" data-size="flexible"></div>
-                            </div>
-                            {% endif %}
-                            <div class="mb-3">
-                                <button type="submit" class="btn btn-primary w-100" id="login-btn">
-                                    <span class="default">Log in</span>
-                                    <span class="loading d-none">
-                                        <span class="spinner-border spinner-border-sm me-1" role="status"></span>
-                                        Logging in
-                                    </span>
-                                </button>
-                            </div>
-                            {% if OIDC_CONFIGURED %}
-                            <div>
-                                <a href="{% url 'oidc_authentication_init' %}" class="btn btn-secondary w-100" id="oidc-login-btn">Log in with {{OIDC_OP_DISPLAY_NAME}}</a>
-                            </div>
-                            {% endif %}
-                        </form>
+                        <div id="login-form-container">
+                            {% include 'users/partials/login_form.html' with form=form %}
+                        </div>
+                        {% if OIDC_CONFIGURED %}
+                        <div>
+                            <a href="{% url 'oidc_authentication_init' %}" class="btn btn-secondary w-100" role="button" id="oidc-login-btn">Log in with {{OIDC_OP_DISPLAY_NAME}}</a>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -66,13 +52,19 @@
             button.classList.add('disabled');
         });
     }
-    
-    document.querySelector('#login-form').addEventListener('submit', function() {
-        disableButtons(loginButtons);
-        const button = document.querySelector('#login-btn');
-        button.querySelector('.default').classList.add('d-none');
-        button.querySelector('.loading').classList.remove('d-none');
-    });
+
+    function renderTurnstileWidget() {
+        const turnstileElements = document.querySelectorAll('.cf-turnstile');
+        turnstileElements.forEach((element) => {
+            const sitekey = element.dataset.sitekey;
+            const size = element.dataset.size;
+
+            window.turnstile.render(element, {
+                sitekey: sitekey,
+                size: size
+            });
+        });
+    }
 
     document.querySelector('#oidc-login-btn').addEventListener('click', function() {
         disableButtons(loginButtons);
@@ -85,6 +77,10 @@
                 button.classList.remove('disabled');
             });
         }
-    })
+    });
+
+    document.addEventListener('htmx:afterSwap', function(evt) {
+        renderTurnstileWidget();
+    });
 </script>
 {% endblock %}

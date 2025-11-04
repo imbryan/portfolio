@@ -1,0 +1,50 @@
+<nav>
+    <ul class="pagination justify-content-center">
+        <li class="page-item {% if page.number == 1 %}disabled{% endif %}">
+            <a class="page-link" 
+                hx-get="?{{ params }}{{ params|yesno:'&,' }}page=1"
+                hx-target="{{ hx_target }}"
+                hx-push-url="true"
+                href="?{{ params }}{{ params|yesno:'&,' }}page=1"
+                ><i class="fa-solid fa-angles-left"></i>
+            </a>
+        </li>
+        {% if page.has_previous %}
+        <li class="page-item">
+            <a class="page-link"
+                hx-get="?{{ params }}{{ params|yesno:'&,' }}page={{ page.previous_page_number }}"
+                hx-target="{{ hx_target }}"
+                hx-push-url="true"
+                href="?{{ params }}{{ params|yesno:'&,' }}page={{ page.previous_page_number }}"
+                >{{ page.previous_page_number }}</a>
+        </li>
+        {% endif %}
+        <li class="page-item active">
+            <a class="page-link" 
+                hx-get="?{{ params }}{{ params|yesno:'&,' }}page={{ page.number }}"
+                hx-target="{{ hx_target }}"
+                hx-push-url="true"
+                href="?{{ params }}{{ params|yesno:'&,' }}page={{ page.number }}"
+                >{{ page.number }}</a>
+        </li>
+        {% if page.has_next %}
+        <li class="page-item">
+            <a class="page-link"
+                hx-get="?{{ params }}{{ params|yesno:'&,' }}page={{ page.next_page_number }}"
+                hx-target="{{ hx_target }}"
+                hx-push-url="true"
+                href="?{{ params }}{{ params|yesno:'&,' }}page={{ page.next_page_number }}"
+                >{{ page.next_page_number }}</a>
+        </li>
+        {% endif %}
+        <li class="page-item {% if page.number == page.paginator.num_pages %}disabled{% endif %}">
+            <a class="page-link"
+                hx-get="?{{ params }}{{ params|yesno:'&,' }}page={{ page.paginator.num_pages }}"
+                hx-target="{{ hx_target }}"
+                hx-push-url="true"
+                href="?{{ params }}{{ params|yesno:'&,' }}page={{ page.paginator.num_pages }}"
+                ><i class="fa-solid fa-angles-right"></i>
+            </a>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,36 @@
+<form 
+    hx-post="{% url 'login' %}"
+    hx-target="#login-form-container"
+    hx-disabled-elt="#login-btn,#oidc-login-btn"
+    method="post">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger mb-3" role="alert">
+        {% for error in form.non_field_errors %}
+        {{error}}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="mb-3">
+        <label for="username-input" class="form-label">Username</label>
+        <input id="username-input" name="username" class="form-control" value="{{form.username.value|default_if_none:''}}" required>
+    </div>
+    <div class="mb-3">
+        <label for="password-input" class="form-label">Password</label>
+        <input id="password-input" name="password" class="form-control" type="password" required>
+    </div>
+    {% if TURNSTILE_SITE_KEY %}
+    <div class="mb-2">
+        <div class="cf-turnstile" data-sitekey="{{TURNSTILE_SITE_KEY}}" data-size="flexible"></div>
+    </div>
+    {% endif %}
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary w-100" id="login-btn">
+            <span class="login-default">Log in</span>
+            <span class="login-loading">
+                <span class="spinner-border spinner-border-sm me-1" role="status"></span>
+                Logging in
+            </span>
+        </button>
+    </div>
+</form>

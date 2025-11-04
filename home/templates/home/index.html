@@ -51,7 +51,7 @@
             </div>
             {% for education in educations %}
             <div class="col-12 col-md-6 col-lg-4 d-flex">
-                {% include "home/snippets/credential_card.html" with credential=education %}
+                {% include "home/partials/credential_card.html" with credential=education %}
             </div>
             {% endfor %}
             <div class="col-12 mt-4" id="certifications">
@@ -62,7 +62,7 @@
             </div>
             {% for cert in certs %}
             <div class="col-12 col-md-6 col-lg-4 d-flex">
-                {% include "home/snippets/credential_card.html" with credential=cert %}
+                {% include "home/partials/credential_card.html" with credential=cert %}
             </div>
             {% endfor %}
             <div class="col-12 mt-4" id="latest-blog-posts">
@@ -73,7 +73,7 @@
             </div>
             {% for post in latest_blog_posts %}
             <div class="col-12 col-md-6 col-lg-4">
-                {% include "home/snippets/blog_post_card.html" with post=post %}
+                {% include "home/partials/blog_post_card.html" with post=post %}
             </div>
             {% endfor %}
         </div>
