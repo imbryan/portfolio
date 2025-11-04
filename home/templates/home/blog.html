@@ -14,11 +14,11 @@
             </div>
             {% for post in posts %}
             <div class="col-12 col-md-6 col-lg-4 d-flex">
-                {% include 'home/snippets/blog_post_card.html' with post=post params=params show_pin=True %}
+                {% include 'home/partials/blog_post_card.html' with post=post params=params show_pin=True %}
             </div>
             {% endfor %}
             <div class="col-12">
-                {% include 'home/snippets/pagination.html' with paginator=posts %}
+                {% include 'home/partials/pagination.html' with paginator=posts %}
             </div>
         </div>
     </div>
