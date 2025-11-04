@@ -67,8 +67,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'axes.middleware.AxesMiddleware',  # https://django-axes.readthedocs.io/en/stable/2_installation.html
     'core.utils.middleware.HTMXMiddleware',
+    'axes.middleware.AxesMiddleware',  # Wants to be last, see: https://django-axes.readthedocs.io/en/stable/2_installation.html
 ]
 
 ROOT_URLCONF = 'portfolio.urls'
@@ -118,7 +118,7 @@ AUTHENTICATION_BACKENDS = [
 
 OIDC_RP_CLIENT_ID = config('OIDC_RP_CLIENT_ID', default=None)
 OIDC_RP_CLIENT_SECRET = config('OIDC_RP_CLIENT_SECRET', default=None)
-OIDC_RP_SIGN_ALGO = config('OIDC_RP_SIGN_ALGO', default=None)
+OIDC_RP_SIGN_ALGO = config('OIDC_RP_SIGN_ALGO', default='RS256')
 
 OIDC_OP_JWKS_ENDPOINT = config('OIDC_OP_JWKS_ENDPOINT', default=None)
 OIDC_OP_AUTHORIZATION_ENDPOINT = config('OIDC_OP_AUTHORIZATION_ENDPOINT', default=None)
