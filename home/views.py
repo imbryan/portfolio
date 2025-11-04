@@ -63,6 +63,9 @@ def projects(request):
         'params': get_params.urlencode(),
     }
 
+    if request.headers.get('HX-Request'):
+        return render(request, 'home/partials/project_list.html', context=context)
+
     return render(request, 'home/projects.html', context=context)
 
 

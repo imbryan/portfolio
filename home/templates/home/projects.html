@@ -7,89 +7,14 @@
 {% block extra_title %}Projects | {% endblock %}
 
 {% block content %}
-    {# Old code #}
-    {% comment %}
-    {% if projects %}
-        {% for project in projects %}
-            <article>
-                <h2>{{ project.project_title }}</h2>
-                <p>{{ project.project_body }}</p>
-                <p><a href="{{ project.project_url }}">Link</a></p>
-            </article>
-
-        {% endfor %}
-    {% else %}
-    <p>No projects to show.</p>
-    {% endif %}
-    {% endcomment %}
-
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
                 <h1 class="mb-3 mb-md-4">Projects</h1>
             </div>
-            {% for project in projects %}
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card mb-4 mb-md-5" style="min-height: 13.75rem;">
-                    {% if project.image_url %}
-                    <img src="{{project.image_url}}" class="card-img-top">
-                    {% else %}
-                    <div class="card-img-top">
-                        <i class="fa-solid fa-image"></i>
-                    </div>
-                    {% endif %}
-                    <div class="card-body position-relative">
-                        <h5 class="card-title">{{ project.project_title }}</h5>
-                        {% if project.pinned %}
-                        <div class="position-absolute top-0 end-0 mt-3 me-3">
-                            <i class="fa-solid fa-thumbtack fa-rotate-by" style="--fa-rotate-angle: 45deg;"></i>
-                        </div>
-                        {% endif %}
-                        {% if project.project_role %}
-                        <h6 class="card-subtitle text-body-secondary">{{ project.project_role }}</h6>
-                        {% endif %}
-                        <p class="card-text {% if project.project_repository_url or project.project_demo_url or project.project_board_url or project.project_download_url %}mb-3{% endif %}">
-                            {{ project.project_body }}
-                        </p>
-                        <div class="d-flex flex-wrap gap-2">
-                            {% for tag in project.sorted_tags %}
-                            <a href="?tag={{tag.slug}}" class="badge text-bg-secondary">
-                                <i class="{{tag.fa_css}}"></i> {{tag.name}}
-                            </a>
-                            {% endfor %}
-                            {% if project.project_repository_url %}
-                            <a href="{{ project.project_repository_url }}" class="badge text-bg-primary" title="Code repository" target="_blank">
-                                <i class="fa-solid fa-code-branch"></i> Repository
-                            </a>
-                            {% endif %}
-                            {% if project.project_demo_url %}
-                            <a href="{{ project.project_demo_url }}" class="badge text-bg-primary" title="Live demo" target="_blank">
-                                <i class="fa-solid fa-up-right-from-square"></i> Demo
-                            </a>
-                            {% endif %}
-                            {% if project.project_board_url %}
-                            <a href="{{ project.project_board_url }}" class="badge text-bg-primary" title="Issue board" target="_blank">
-                                <i class="fa-solid fa-up-right-from-square"></i> Board
-                            </a>
-                            {% endif %}
-                            {% if project.project_download_url %}
-                            <a href="{{ project.project_download_url }}" class="badge text-bg-primary" title="Download" target="_blank">
-                                <i class="fa-solid fa-download"></i> Download
-                            </a>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% if project.date %}
-                    <div class="card-footer">
-                        <small>{{project.date|date:"F Y"}}</small>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
-            <div class="col-12">
-                {% include 'home/partials/pagination.html' with paginator=projects %}
-            </div>
+        </div>
+        <div class="row" id="project-list">
+            {% include 'home/partials/project_list.html' %}
         </div>
     </div>
 {% endblock %}
