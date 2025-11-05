@@ -22,18 +22,18 @@
                         {% if post.updated and post.updated > post.date_published %}&middot; Last updated {{post.updated|date:"M d, Y"}}{% endif %}
                     </p>
                 </div>
-                <div class="blog-post-body pt-3">
+                <div class="blog-post-body pt-4">
                     {{post.post_body|safe}}
+                    {% if post.tags.all %}
+                    <div class="post-tags d-flex flex-wrap gap-2 mt-5">
+                        {% for tag in post.sorted_tags %}
+                        <a href="{% url 'home:blog' %}?tag={{tag.slug}}" class="badge text-bg-secondary">
+                            <i class="{{tag.fa_css}}"></i> {{tag.name}}
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
-                {% if post.tags.all %}
-                <div class="post-tags d-flex flex-wrap gap-2 mt-4">
-                    {% for tag in post.sorted_tags %}
-                    <a href="{% url 'home:blog' %}?tag={{tag.slug}}" class="badge text-bg-secondary">
-                        <i class="{{tag.fa_css}}"></i> {{tag.name}}
-                    </a>
-                    {% endfor %}
-                </div>
-                {% endif %}
             </div>
         </div>
     </div>
