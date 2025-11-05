@@ -6,7 +6,9 @@
 Personal website that includes a portfolio and a blog. Made with [Django](https://github.com/django/django). Licensed under GPL-3.0 (see ``LICENSE`` file).
 
 ## Setup
-See ``pyproject.toml`` and ``package.json`` for dependencies.
+### Dependencies
+- ``pyproject.toml``
+- ``package.json``
 
 ### Environment variables
 #### Always required
