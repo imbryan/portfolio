@@ -8,8 +8,8 @@
     "build": "cross-env NODE_ENV=production webpack --mode production"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Bryan Grigorie",
+  "license": "GPL-3.0",
   "description": "",
   "devDependencies": {
     "cross-env": "^10.0.0",

@@ -3,9 +3,13 @@
 ![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fimbryan%2Fportfolio%2Fmain%2Fpyproject.toml)
 [![Tests](https://github.com/imbryan/portfolio/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/imbryan/portfolio/actions/workflows/test.yml)
 
-Personal website that includes a portfolio and a blog. Made with [Django](https://github.com/django/django).
+Personal website that includes a portfolio and a blog. Made with [Django](https://github.com/django/django). Licensed under GPL-3.0 (see ``LICENSE`` file).
 
 ## Setup
+### Dependencies
+- ``pyproject.toml``
+- ``package.json``
+
 ### Environment variables
 #### Always required
 - ``DEBUG`` (True/False)
