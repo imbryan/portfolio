@@ -1,12 +1,14 @@
-<div class="card blog-post-card mb-4 mb-md-5 flex-fill">
+<div class="card blog-post-card flex-fill">
     <div class="card-body d-flex flex-column px-4">
-        <h5 class="card-title">{{post.post_title}}</h5>
+        <small class="date">{{ post.date_published|date:"M d, Y" }}</small>
+        <h5 class="">
+            <a href="{{ post.url }}" class="heading-anchor card-title">{{post.post_title}}</a>
+        </h5>
         {% if post.pinned and show_pin %}
         <div class="position-absolute top-0 end-0 mt-3 me-4">
             <i class="fa-solid fa-thumbtack fa-rotate-by" style="--fa-rotate-angle: 45deg;"></i>
         </div>
         {% endif %}
-        <h6 class="card-subtitle text-body-secondary small">{{ post.date_published|date:"M d, Y" }}</h6>
         <p class="card-text">
             {% if post.preview_text %}
             {{ post.preview_text|truncatewords:50 }}
@@ -14,8 +16,21 @@
             {{ post.post_body|truncatewords:50 }}
             {% endif %}
         </p>
-        <a href="{% if post.slug %}{% url 'home:blog_post_by_slug' post.slug %}{% else %}{% url 'home:blog_post_by_id' post.id %}{% endif %}" class="btn btn-primary btn-sm card-link stretched-link ms-auto mt-auto mb-1" title="Read more">
-            <span>Read more</span>
-        </a>
+        <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center flex-wrap gap-2">
+                {% for tag in post.sorted_tags %}
+                <a class="badge text-bg-secondary"
+                hx-get="?tag={{ tag.slug }}"
+                hx-target="{{ hx_target }}"
+                hx-push-url="true"
+                href="?tag={{ tag.slug }}"
+                ><i class="{{tag.fa_css}}"></i> {{tag.name}}
+            </a>
+            {% endfor %}
+            </div>
+            <a href="{{ post.url }}" class="btn btn-primary btn-sm card-link ms-auto mt-auto mb-1" title="Read more">
+                <span>Read more</span>
+            </a>
+        </div>
     </div>
 </div>

@@ -59,11 +59,30 @@ $white-accent: #ffffff;
     flex: 1;
     margin-bottom: 4rem;
     
+    .heading-anchor {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    
+    .badge {
+        &:hover {
+            box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+    }
+
+    .card-row {
+        --bs-gutter-x: 2rem;
+    }
+
     .card {
         border-radius: 0.5rem;
         border: 1px solid rgba(0,0,0,0.15);
         // box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
         background-color: $white-accent;
         overflow: hidden;
 
@@ -94,13 +113,23 @@ $white-accent: #ffffff;
             }
         }
 
+        .card-img-side {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
         .card-body {
             .card-title {
                 font-weight: 600;
+                margin-bottom: 0.75rem;
             }
             .card-subtitle {
                 margin-bottom: 0.75rem;
                 color: $body-secondary-color;
+            }
+            .card-text {
+                line-height: 2;
             }
         }
 
@@ -113,12 +142,42 @@ $white-accent: #ffffff;
         }
     }
 
-    .heading-anchor {
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
+    .credential-card {
+        .card-body {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
         }
+
+        .date {
+            color: $body-secondary-color;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .project-card {
+
+    }
+
+    .blog-post-card {
+        // min-height: 19.25rem;
+
+        .card-title {
+            /* letter-spacing: 0.025em; */
+            margin-bottom: 0.75rem;
+            color: $body-color;
+        }
+        
+        .card-subtitle {
+            letter-spacing: 0.075em;
+        }
+
+        .date {
+            color: $body-secondary-color;
+            margin-bottom: 0.5rem;
+        }
+
     }
 
     .blog-post-li {
@@ -127,6 +186,10 @@ $white-accent: #ffffff;
         margin-top: 1.5rem;
         padding-bottom: 1.5rem;
 
+        h5 {
+            margin-bottom: 0.75rem;
+        }
+
         .blog-post-title {
             color: $body-color;
         }
@@ -134,10 +197,6 @@ $white-accent: #ffffff;
         .badge {
             text-decoration: none;
         }
-    }
-
-    .card-row {
-        --bs-gutter-x: 2rem;
     }
 }
 

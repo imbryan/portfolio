@@ -1,6 +1,6 @@
 {% for post in posts %}
 <div class="col-12 d-flex">
-    {% include 'home/partials/blog_post_card.html' with post=post params=params show_pin=True %}
+    {% include 'home/partials/blog_post_card.html' with post=post params=params show_pin=True hx_target="#blog-post-list" %}
 </div>
 {% endfor %}
 <div class="col-12">
