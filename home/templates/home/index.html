@@ -22,7 +22,7 @@
                 </h2>
             </div>
             {% for experience in experiences %}
-            <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <div class="col-12 col-md-6 d-flex">
                 <div class="card credential-card mb-4 flex-fill">
                     <div class="card-body">
                         <h5 class="card-title">{{experience.employer}}</h5>
@@ -50,7 +50,7 @@
                 </h2>
             </div>
             {% for education in educations %}
-            <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <div class="col-12 col-md-6 d-flex">
                 {% include "home/partials/credential_card.html" with credential=education %}
             </div>
             {% endfor %}
@@ -61,7 +61,7 @@
                 </h2>
             </div>
             {% for cert in certs %}
-            <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <div class="col-12 col-md-6 d-flex">
                 {% include "home/partials/credential_card.html" with credential=cert %}
             </div>
             {% endfor %}
