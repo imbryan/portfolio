@@ -22,6 +22,12 @@ $white-accent: #ffffff;
 @import "~@fortawesome/fontawesome-free/css/regular.min.css";
 @import "~@fortawesome/fontawesome-free/css/brands.min.css";
 
+.container-slick {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #top-nav {
     background-color: $white-accent;
 
