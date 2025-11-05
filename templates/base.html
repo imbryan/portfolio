@@ -38,7 +38,7 @@
         <div id="base" class="d-flex flex-column min-vh-100">
             <!-- TOP NAVBAR -->
             <nav class="navbar navbar-expand-lg sticky-top shadow-sm py-3" data-bs-theme="light" id="top-nav">
-                <div class="container">
+                <div class="container container-slick">
                     {% url 'home:index' as home_index_url %}
                     {% url 'home:projects' as projects_url %}
                     {% url 'home:blog' as blog_url %}
@@ -54,7 +54,6 @@
                                 <a class="nav-link {% if request.path == home_index_url %}active{% endif %}" href="{{ home_index_url }}">
                                     <span class="">
                                         <i class="fa-solid fa-house"></i>
-                                        Home
                                     </span>
                                 </a>
                             </li>
@@ -121,41 +120,50 @@
             
             <!-- FOOTER -->
             <footer class="footer py-3 bg-light" data-bs-theme="light" id="bottom-footer">
-                <div class="container mb-2">
-                    <div class="row mb-2" id="footer-links">
-                        <div class="col-6 col-md-2">
-                            <p class="footer-link-group text-uppercase">Connect</p>
-                            {% if config.EMAIL %}
-                            <p><a class="small" href="mailto:{{ config.EMAIL }}">Email</a></p>
-                            {% endif %}
-                            {% if config.LINKEDIN_URL %}
-                            <p><a class="small" href="{{ config.LINKEDIN_URL }}" target="_blank">LinkedIn</a></p>
-                            {% endif %}
-                            {% if config.UPWORK_URL %}
-                            <p><a class="small" href="{{ config.UPWORK_URL }}" target="_blank">Upwork</a></p>
-                            {% endif %}
+                <div class="container container-slick mb-2">
+                    <div class="row gy-3 mb-2" id="footer-links">
+                        <div class="col-12 col-md-2 d-flex flex-column justify-content-md-start">
+                            <div class="text-center text-md-start">
+                                <p class="footer-link-group text-uppercase">Connect</p>
+                                {% if config.EMAIL %}
+                                <p><a class="small" href="mailto:{{ config.EMAIL }}">Email</a></p>
+                                {% endif %}
+                                {% if config.LINKEDIN_URL %}
+                                <p><a class="small" href="{{ config.LINKEDIN_URL }}" target="_blank">LinkedIn</a></p>
+                                {% endif %}
+                                {% if config.UPWORK_URL %}
+                                <p><a class="small" href="{{ config.UPWORK_URL }}" target="_blank">Upwork</a></p>
+                                {% endif %}
+                            </div>
                         </div>
-                        <div class="col-6 col-md-2">
-                            <p class="footer-link-group text-uppercase">Portfolio</p>
-                            {% if config.RESUME_URL %}
-                            <p><a class="small" href="{{ config.RESUME_URL }}" target="_blank">Résumé</a></p>
-                            {% endif %}
-                            {% if config.GITHUB_URL %}
-                            <p><a class="small" href="{{ config.GITHUB_URL }}" target="_blank">GitHub</a></p>
-                            {% endif %}
-                            <p><a class="small" href="{{ projects_url }}">Projects</a></p>
+                        <div class="col-12 col-md-2 d-flex flex-column justify-content-md-start">
+                            <div class="text-center text-md-start">
+                                <p class="footer-link-group text-uppercase">Portfolio</p>
+                                {% if config.RESUME_URL %}
+                                <p><a class="small" href="{{ config.RESUME_URL }}" target="_blank">Résumé</a></p>
+                                {% endif %}
+                                {% if config.GITHUB_URL %}
+                                <p><a class="small" href="{{ config.GITHUB_URL }}" target="_blank">GitHub</a></p>
+                                {% endif %}
+                                <p><a class="small" href="{{ projects_url }}">Projects</a></p>
+                            </div>
                         </div>
-                        <div class="col-6 col-md-2">
-                            <p class="footer-link-group text-uppercase">Contribute</p>
-                            {% if config.KO_FI_URL %}
-                            <p><a class="small" href="{{ config.KO_FI_URL }}" target="_blank">Ko-fi</a></p>
-                            {% endif %}
-                            {% if config.PAYPAL_URL %}
-                            <p><a class="small" href="{{ config.PAYPAL_URL }}" target="_blank">PayPal</a></p>
-                            {% endif %}
+                        <div class="col-12 col-md-2 d-flex flex-column justify-content-md-start">
+                            <div class="text-center text-md-start">
+                                <p class="footer-link-group text-uppercase">Contribute</p>
+                                {% if config.KO_FI_URL %}
+                                <p><a class="small" href="{{ config.KO_FI_URL }}" target="_blank">Ko-fi</a></p>
+                                {% endif %}
+                                {% if config.PAYPAL_URL %}
+                                <p><a class="small" href="{{ config.PAYPAL_URL }}" target="_blank">PayPal</a></p>
+                                {% endif %}
+                            </div>
                         </div>
-                        <div class="col text-center">
-                            <small class="text-body-secondary">&copy; {% now "Y" %} {{ config.BRAND }}</small>
+                        <div class="col d-flex flex-column">
+                            <div class="text-center text-md-end">
+                                <p>&copy; {% now "Y" %} {{ config.BRAND }}</p>
+                                <p class="text-body-secondary small">Made with <a href="https://www.djangoproject.com/" target="_blank">Django</a>.</p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 {% for project in projects %}
-<div class="col-12 col-md-6 col-lg-4">
+<div class="col-12">
     {% include 'home/partials/project_card.html' with project=project hx_target="#project-list" %}
 </div>
 {% endfor %}

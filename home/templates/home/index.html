@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container container-slick">
         <div class="row">
             <div class="col-12 text-center" id="hero">
                 <h1 class="mb-3 fw-bolder">{{ config.HERO_HEADING }}</h1>
@@ -15,16 +15,21 @@
                 </p>
                 <a class="btn btn-primary btn-lg fw-bold" href="{% url 'home:projects' %}">See My Work</a>
             </div>
-            <div class="col-12 mt-5" id="experience">
+        </div>
+        <div class="row card-row mt-5">
+            <div class="col-12" id="experience">
                 <h2 class="mb-3">
                     <a class="heading-anchor" href="#experience">#</a>
                     <span>Experience</span>
                 </h2>
             </div>
             {% for experience in experiences %}
-            <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <div class="col-12 col-md-6 d-flex">
                 <div class="card credential-card mb-4 flex-fill">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
+                        {% if experience.start_date %}
+                        <small class="date">{{experience.start_date|date:"F Y"}}{% if experience.end_date %} &ndash; {{experience.end_date|date:"F Y"}}{% endif %}</small>
+                        {% endif %}
                         <h5 class="card-title">{{experience.employer}}</h5>
                         <h6 class="card-subtitle">{{experience.position}}</h6>
                         <div class="d-flex flex-wrap gap-2">
@@ -35,45 +40,65 @@
                             {% endfor %}
                         </div>
                     </div>
-                    {% if experience.start_date %}
-                    <div class="card-footer">
-                        <small>{{experience.start_date|date:"F Y"}}{% if experience.end_date %} &ndash; {{experience.end_date|date:"F Y"}}{% endif %}</small>
-                    </div>
-                    {% endif %}
                 </div>
             </div>
             {% endfor %}
-            <div class="col-12 mt-4" id="education">
+        </div>
+        <div class="row card-row mt-3">
+            <div class="col-12" id="education">
                 <h2 class="mb-3">
                     <a class="heading-anchor" href="#education">#</a>
                     <span>Education</span>
                 </h2>
             </div>
             {% for education in educations %}
-            <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <div class="col-12 col-md-6 d-flex">
                 {% include "home/partials/credential_card.html" with credential=education %}
             </div>
             {% endfor %}
-            <div class="col-12 mt-4" id="certifications">
+        </div>
+        <div class="row card-row mt-3">
+            <div class="col-12" id="certifications">
                 <h2 class="mb-3">
                     <a class="heading-anchor" href="#certifications">#</a>
                     <span>Certifications</span>
                 </h2>
             </div>
             {% for cert in certs %}
-            <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <div class="col-12 col-md-6 d-flex">
                 {% include "home/partials/credential_card.html" with credential=cert %}
             </div>
             {% endfor %}
-            <div class="col-12 mt-4" id="latest-blog-posts">
-                <h2 class="mb-3">
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 d-flex justify-content-between" id="latest-blog-posts">
+                <h2 class="mb-2">
                     <a class="heading-anchor" href="#latest-blog-posts">#</a>
                     <span>Latest posts</span>
                 </h2>
+                <div>
+                    <a class="btn btn-primary btn-sm" href="{% url 'home:blog' %}">See all</a>
+                </div>
             </div>
             {% for post in latest_blog_posts %}
-            <div class="col-12 col-md-6 col-lg-4">
-                {% include "home/partials/blog_post_card.html" with post=post %}
+            <div class="col-12">
+                <div class="blog-post-li{% if not forloop.last %} border-bottom{% endif %}">
+                    <div>
+                        <h5 class="">
+                            <a href="{{ post.url }}" class="heading-anchor blog-post-title">{{ post.post_title }}</a>
+                        </h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for tag in post.sorted_tags %}
+                            <a class="badge text-bg-secondary" href="{% url 'home:blog' %}?tag={{ tag.slug }}">
+                                <i class="{{tag.fa_css}}"></i> {{tag.name}}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-body-secondary">{{ post.date_published|date:"M d, Y" }}</span>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>
