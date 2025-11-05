@@ -15,6 +15,8 @@
                 </p>
                 <a class="btn btn-primary btn-lg fw-bold" href="{% url 'home:projects' %}">See My Work</a>
             </div>
+        </div>
+        <div class="row card-row">
             <div class="col-12 mt-5" id="experience">
                 <h2 class="mb-3">
                     <a class="heading-anchor" href="#experience">#</a>
@@ -43,6 +45,8 @@
                 </div>
             </div>
             {% endfor %}
+        </div>
+        <div class="row card-row">
             <div class="col-12 mt-4" id="education">
                 <h2 class="mb-3">
                     <a class="heading-anchor" href="#education">#</a>
@@ -54,6 +58,8 @@
                 {% include "home/partials/credential_card.html" with credential=education %}
             </div>
             {% endfor %}
+        </div>
+        <div class="row card-row">
             <div class="col-12 mt-4" id="certifications">
                 <h2 class="mb-3">
                     <a class="heading-anchor" href="#certifications">#</a>
@@ -64,6 +70,8 @@
             <div class="col-12 col-md-6 d-flex">
                 {% include "home/partials/credential_card.html" with credential=cert %}
             </div>
+        </div>
+        <div class="row">
             {% endfor %}
             <div class="col-12 mt-4 d-flex justify-content-between" id="latest-blog-posts">
                 <h2 class="mb-2">
