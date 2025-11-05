@@ -120,6 +120,21 @@ $white-accent: #ffffff;
             text-decoration: underline;
         }
     }
+
+    .blog-post-li {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+        padding-bottom: 1.5rem;
+
+        .blog-post-title {
+            color: $body-color;
+        }
+
+        .badge {
+            text-decoration: none;
+        }
+    }
 }
 
 #bottom-footer {

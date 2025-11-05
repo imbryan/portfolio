@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from django.db import models
 from django.utils.text import slugify
+from django.urls import reverse
 from tinymce.models import HTMLField
 
 
@@ -26,6 +27,12 @@ class BlogPost(models.Model):
     @property
     def sorted_tags(self):
         return self.tags.all().order_by('name')
+    
+    @property
+    def url(self):
+        if self.slug:
+            return reverse('home:blog_post_by_slug', kwargs={'slug': self.slug})
+        return reverse('home:blog_post_by_id', kwargs={'id': self.id})
     
     def save(self, *args, **kwargs):
         if not self.preview_text:

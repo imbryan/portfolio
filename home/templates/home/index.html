@@ -65,15 +65,34 @@
                 {% include "home/partials/credential_card.html" with credential=cert %}
             </div>
             {% endfor %}
-            <div class="col-12 mt-4" id="latest-blog-posts">
-                <h2 class="mb-3">
+            <div class="col-12 mt-4 d-flex justify-content-between" id="latest-blog-posts">
+                <h2 class="mb-2">
                     <a class="heading-anchor" href="#latest-blog-posts">#</a>
                     <span>Latest posts</span>
                 </h2>
+                <div>
+                    <a class="btn btn-primary btn-sm" href="{% url 'home:blog' %}">See all</a>
+                </div>
             </div>
             {% for post in latest_blog_posts %}
-            <div class="col-12 col-md-6 col-lg-4">
-                {% include "home/partials/blog_post_card.html" with post=post %}
+            <div class="col-12">
+                <div class="blog-post-li{% if not forloop.last %} border-bottom{% endif %}">
+                    <div>
+                        <h5 class="">
+                            <a href="{{ post.url }}" class="heading-anchor blog-post-title">{{ post.post_title }}</a>
+                        </h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for tag in post.sorted_tags %}
+                            <a class="badge text-bg-secondary" href="{% url 'home:blog' %}?tag={{ tag.slug }}">
+                                <i class="{{tag.fa_css}}"></i> {{tag.name}}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-body-secondary">{{ post.date_published|date:"M d, Y" }}</span>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>
