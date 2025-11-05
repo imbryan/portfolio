@@ -24,7 +24,7 @@ cryptography==46.0.3
     # via
     #   josepy
     #   mozilla-django-oidc
-django==5.2.7
+django==5.2.8
     # via
     #   django-axes
     #   django-tinymce
