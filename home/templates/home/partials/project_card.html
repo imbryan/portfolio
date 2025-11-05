@@ -23,6 +23,7 @@
                         hx-get="?tag={{tag.slug}}"
                         hx-target="{{ hx_target }}"
                         hx-push-url="true"
+                        hx-on::after-request="window.scrollTo({top: 0, behavior: 'smooth'})"
                         href="?tag={{tag.slug}}" 
                         class="badge text-bg-secondary"
                         ><i class="{{tag.fa_css}}"></i> {{tag.name}}

@@ -5,6 +5,7 @@
                 hx-get="?{{ params }}{{ params|yesno:'&,' }}page=1"
                 hx-target="{{ hx_target }}"
                 hx-push-url="true"
+                hx-on::after-request="window.scrollTo({top: 0, behavior: 'smooth'})"
                 href="?{{ params }}{{ params|yesno:'&,' }}page=1"
                 ><i class="fa-solid fa-angles-left"></i>
             </a>
@@ -15,6 +16,7 @@
                 hx-get="?{{ params }}{{ params|yesno:'&,' }}page={{ page.previous_page_number }}"
                 hx-target="{{ hx_target }}"
                 hx-push-url="true"
+                hx-on::after-request="window.scrollTo({top: 0, behavior: 'smooth'})"
                 href="?{{ params }}{{ params|yesno:'&,' }}page={{ page.previous_page_number }}"
                 >{{ page.previous_page_number }}</a>
         </li>
@@ -24,6 +26,7 @@
                 hx-get="?{{ params }}{{ params|yesno:'&,' }}page={{ page.number }}"
                 hx-target="{{ hx_target }}"
                 hx-push-url="true"
+                hx-on::after-request="window.scrollTo({top: 0, behavior: 'smooth'})"
                 href="?{{ params }}{{ params|yesno:'&,' }}page={{ page.number }}"
                 >{{ page.number }}</a>
         </li>
@@ -33,6 +36,7 @@
                 hx-get="?{{ params }}{{ params|yesno:'&,' }}page={{ page.next_page_number }}"
                 hx-target="{{ hx_target }}"
                 hx-push-url="true"
+                hx-on::after-request="window.scrollTo({top: 0, behavior: 'smooth'})"
                 href="?{{ params }}{{ params|yesno:'&,' }}page={{ page.next_page_number }}"
                 >{{ page.next_page_number }}</a>
         </li>
@@ -42,6 +46,7 @@
                 hx-get="?{{ params }}{{ params|yesno:'&,' }}page={{ page.paginator.num_pages }}"
                 hx-target="{{ hx_target }}"
                 hx-push-url="true"
+                hx-on::after-request="window.scrollTo({top: 0, behavior: 'smooth'})"
                 href="?{{ params }}{{ params|yesno:'&,' }}page={{ page.paginator.num_pages }}"
                 ><i class="fa-solid fa-angles-right"></i>
             </a>
