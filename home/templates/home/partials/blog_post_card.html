@@ -1,11 +1,11 @@
 <div class="card blog-post-card flex-fill">
-    <div class="card-body d-flex flex-column px-4">
+    <div class="card-body d-flex flex-column p-4">
         <small class="date">{{ post.date_published|date:"M d, Y" }}</small>
         <h5 class="">
             <a href="{{ post.url }}" class="heading-anchor card-title">{{post.post_title}}</a>
         </h5>
         {% if post.pinned and show_pin %}
-        <div class="position-absolute top-0 end-0 mt-3 me-4">
+        <div class="position-absolute top-0 end-0 mt-3 me-3">
             <i class="fa-solid fa-thumbtack fa-rotate-by" style="--fa-rotate-angle: 45deg;"></i>
         </div>
         {% endif %}
