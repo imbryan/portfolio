@@ -75,4 +75,4 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 
 ## Production
 ### Running in Docker
-``docker compose -f docker-compose.prod.yml up -d --build``
+``docker compose -f docker-compose.yml -f docker-compose.prod.yml [-f docker-compose.override.yml] up -d --build``
