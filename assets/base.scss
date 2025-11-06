@@ -74,6 +74,12 @@ $white-accent: #ffffff;
         }
     }
 
+    .return-btn {
+        &:hover {
+            transform: translateY(-1px);
+        }
+    }
+
     .card-row {
         --bs-gutter-x: 2rem;
     }
