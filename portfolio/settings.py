@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'api.apps.APIConfig',
     'users.apps.UsersConfig',
+    'sponsors.apps.SponsorsConfig',
 ]
 
 MIDDLEWARE = [
