@@ -18,3 +18,11 @@
         </div>
     </div>
 {% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('htmx:afterSettle', function(evt) {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+</script>
+{% endblock %}
