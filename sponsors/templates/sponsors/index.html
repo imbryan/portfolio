@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'sponsors/css/index.css' %}">
+{% endblock %}
+{% block extra_title %}Sponsors | {% endblock %}
+
+{% block content %}
+    <div class="container container-slick">
+        <div class="row">
+            <div class="col-12 text-center" id="hero">
+                <h1 class="mb-3 fw-bolder">Sponsors</h1>
+                <p class="">
+                    Contributions will be displayed for up to 30 days.
+                </p>
+                <p class="mb-4">
+                    Make a minimum contribution of $5 to include a display message.
+                </p>
+                <a class="btn btn-primary btn-lg fw-bold" href="">Donate Now</a>
+                <div class="small text-body-secondary mt-3">Messages are subject to removal if deemed inappropriate.</div>
+            </div>
+        </div>
+        <div class="row card-row mt-4">
+            <div class="col-12 text-center">
+                {% if sponsors %}
+                <h2 class="mb-3">Special thanks to</h2>
+                {% else %}
+                <h2>Be the first sponsor!</h2>
+                {% endif %}
+            </div>
+            {% for sponsor in sponsors %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-4 flex-fill">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title">{{ sponsor.name }}</h5>
+                        {% if sponsor.is_message_public and sponsor.message %}
+                        <p class="card-text">
+                            &ldquo;{{ sponsor.message }}&rdquo;
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

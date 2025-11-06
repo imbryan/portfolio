@@ -14,7 +14,7 @@ class Sponsorship(models.Model):
 
     raw_payload = models.JSONField(null=True, blank=True)
     expiration_date = models.DateTimeField()
-    processed = models.DateTimeField(auto_now_add=True)
+    processed = models.DateTimeField(auto_now=True)
     hidden = models.BooleanField(default=False)
 
     class Meta:
