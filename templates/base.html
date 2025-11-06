@@ -42,11 +42,12 @@
                     {% url 'home:index' as home_index_url %}
                     {% url 'home:projects' as projects_url %}
                     {% url 'home:blog' as blog_url %}
-                    <a class="navbar-brand" href="{{ home_index_url }}">{{ config.BRAND }}</a>
-
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-navbar-nav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                    <div class="navbar-brand-container">
+                        <a class="navbar-brand" href="{{ home_index_url }}">{{ config.BRAND }}</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-navbar-nav">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                    </div>
 
                     <div class="collapse navbar-collapse" id="top-navbar-nav">
                         <ul class="navbar-nav">

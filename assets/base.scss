@@ -22,6 +22,8 @@ $white-accent: #ffffff;
 @import "~@fortawesome/fontawesome-free/css/regular.min.css";
 @import "~@fortawesome/fontawesome-free/css/brands.min.css";
 
+$md-breakpoint: map-get($grid-breakpoints, "md");
+
 .container-slick {
     max-width: 1000px;
     margin-left: auto;
@@ -31,11 +33,31 @@ $white-accent: #ffffff;
 #top-nav {
     background-color: $body-bg;
 
+
+    .navbar-brand-container {
+        display: flex;
+        position: relative;
+        align-items: center;
+        width: 100%;
+
+        @media (min-width: $md-breakpoint) {
+            width: auto;
+        }
+    }
+
     .navbar-brand {
         color: $primary;
         font-weight: 700;
         font-size: 1.5rem;
         letter-spacing: 0.05em;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        @media (min-width: $md-breakpoint) {
+            margin-left: 0;
+            margin-right: var(--bs-navbar-brand-margin-end);
+        }
     }
 
     .nav-link {
@@ -52,12 +74,31 @@ $white-accent: #ffffff;
             border-bottom: 2px solid $primary;
         }
     }
+
+    .navbar-toggler {
+        border: none;
+        position: absolute;
+        right: 0;
+
+        &:focus {
+            border: none;
+            box-shadow: none;
+        }
+
+        &:hover {
+            background-color: darken($body-bg, 5%);
+        }
+    }
 }
 
 #main {
-    padding-top: 3rem;
+    padding-top: 1.5rem;
     flex: 1;
     margin-bottom: 4rem;
+
+    @media (min-width: $md-breakpoint) {
+        padding-top: 3rem;
+    }
     
     .heading-anchor {
         text-decoration: none;
@@ -202,6 +243,15 @@ $white-accent: #ffffff;
 
         .badge {
             text-decoration: none;
+        }
+    }
+
+    .blog-post-content {
+        margin-left: auto;
+        margin-right: auto;
+
+        @media (min-width: $md-breakpoint) {
+            max-width: 85%;
         }
     }
 }

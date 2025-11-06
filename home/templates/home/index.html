@@ -82,7 +82,7 @@
             </div>
             {% for post in latest_blog_posts %}
             <div class="col-12">
-                <div class="blog-post-li{% if not forloop.last %} border-bottom{% endif %}">
+                <div class="blog-post-li{% if not forloop.last %} border-bottom{% endif %} mx-2 mx-md-0">
                     <div>
                         <h5 class="">
                             <a href="{{ post.url }}" class="heading-anchor blog-post-title">{{ post.post_title }}</a>
