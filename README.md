@@ -32,6 +32,9 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 - ``TURNSTILE_SITE_KEY``
 - ``TURNSTILE_SECRET_KEY``
 
+#### Ko-fi
+- ``KOFI_VERIFICATION_TOKEN``
+
 #### Django-Axes
 - ``AXES_ENABLED``
 - ``AXES_IPWARE_PROXY_COUNT``

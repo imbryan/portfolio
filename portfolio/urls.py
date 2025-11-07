@@ -23,6 +23,7 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('oidc/', include('mozilla_django_oidc.urls')),
     path('api/', include('api.urls')),
+    path('sponsors/', include('sponsors.urls')),
     path('login/', users_views.login, name='login'),
     path('logout/', users_views.logout, name='logout'),
     path('', include('home.urls')),

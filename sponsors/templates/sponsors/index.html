@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'sponsors/css/index.css' %}">
+{% endblock %}
+{% block extra_title %}Sponsors | {% endblock %}
+
+{% block content %}
+    <div class="container container-slick">
+        <div class="row">
+            <div class="col-12 text-center" id="hero">
+                <h1 class="mb-3 fw-bolder">Sponsors</h1>
+                <p class="mb-1">
+                    Contributions will be displayed for {{ config.SPONSOR_DURATION }} days.
+                </p>
+                <p class="mb-4">
+                    Minimum contribution of {{ config.SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION|floatformat:2 }} {{ config.DEFAULT_CURRENCY }} required to display a message.
+                </p>
+                <a class="btn btn-primary btn-lg fw-bold" href="{{ config.SPONSOR_DONATION_URL }}">Donate Now</a>
+                <div class="small text-body-secondary mt-4">Messages are subject to removal if deemed inappropriate.</div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                {% if sponsors %}
+                <h2 class="mb-4">Special thanks to</h2>
+                {% else %}
+                <h2>Be the first sponsor!</h2>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row card-row d-flex justify-content-center">
+            {% for sponsor in sponsors %}
+            <div class="col-8 col-md-4 mb-4">
+                <div class="card mb-0 h-100">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <h5 class="card-title">{{ sponsor.name }}</h5>
+                        {% if sponsor.is_message_public and sponsor.message %}
+                        <p class="card-text">
+                            &ldquo;{{ sponsor.message }}&rdquo;
+                        </p>
+                        {% else %}
+                        <br />
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:2 %}
+            <div class="w-100 d-none d-md-block"></div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
