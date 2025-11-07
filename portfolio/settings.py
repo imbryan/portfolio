@@ -238,9 +238,14 @@ CONSTANCE_CONFIG = {
     'UPWORK_URL': ('', 'Upwork link', str),
     'HERO_HEADING': ('Hello, world!', 'Hero section heading', str),
     'HERO_SUBHEADING': ('', 'Hero section subheading', str),
+    'SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION': (5.00, 'Minimum contribution to display sponsor message', float),
+    'SPONSOR_DURATION': (30, 'Number of days a sponsorship is valid for', int),
+    'SPONSOR_DONATION_URL': ('', 'Donation link for sponsors', str),
+    'DEFAULT_CURRENCY': ('USD', 'Default currency (as an ISO 4217 code)', str)
 }
 CONSTANCE_CONFIG_FIELDSETS = {
-    'Global': ('BRAND', 'EMAIL'),
+    'Global': ('BRAND', 'EMAIL', 'DEFAULT_CURRENCY'),
     'Links': ('GITHUB_URL', 'LINKEDIN_URL', 'UPWORK_URL', 'RESUME_URL', 'KO_FI_URL', 'PAYPAL_URL'),
     'Hero Section': ('HERO_HEADING', 'HERO_SUBHEADING'),
+    'Sponsors': ('SPONSOR_DURATION', 'SPONSOR_DONATION_URL', 'SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION'), 
 }
