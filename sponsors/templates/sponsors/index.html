@@ -36,7 +36,7 @@
                 <div class="card mb-0 h-100">
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <h5 class="card-title">{{ sponsor.name }}</h5>
-                        {% if sponsor.is_message_public and sponsor.message %}
+                        {% if sponsor.message and sponsor.is_message_public and sponsor.display_eligible %}
                         <p class="card-text">
                             &ldquo;{{ sponsor.message }}&rdquo;
                         </p>

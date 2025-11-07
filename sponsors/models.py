@@ -1,3 +1,4 @@
+from constance import config
 from django.db import models
 
 
@@ -17,6 +18,14 @@ class Sponsorship(models.Model):
     expiration_date = models.DateTimeField()
     processed = models.DateTimeField(auto_now=True)
     hidden = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.name}, {self.amount}, {self.currency}, {self.start_date} - {self.expiration_date}, {self.platform}"
+    
+    @property
+    def display_eligible(self):
+        # TODO determine eligibility for other currencies
+        return self.amount >= getattr(config, 'SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION') and self.currency == getattr(config, 'DEFAULT_CURRENCY')
 
     class Meta:
         constraints = [
