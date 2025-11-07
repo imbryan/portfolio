@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 
 from . import views
 
@@ -6,5 +6,5 @@ app_name = 'sponsors'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('webhooks/kofi/', views.kofi, name='kofi'),
+    re_path(r'^webhooks/kofi$', views.kofi, name='kofi'),
 ]
