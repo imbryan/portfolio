@@ -5,6 +5,7 @@ class Sponsorship(models.Model):
     id = models.AutoField(primary_key=True)
     platform = models.CharField(max_length=50)
     platform_message_id = models.CharField(max_length=100)
+    platform_transaction_id = models.CharField(max_length=100, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=3)
     name = models.CharField(max_length=100)

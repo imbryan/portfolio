@@ -224,6 +224,9 @@ TURNSTILE_SITE_KEY = config('TURNSTILE_SITE_KEY', default=None)
 TURNSTILE_SECRET_KEY = config('TURNSTILE_SECRET_KEY', default=None)
 TURNSTILE_CONFIGURED = all([TURNSTILE_SITE_KEY, TURNSTILE_SECRET_KEY])
 
+# Ko-fi
+KOFI_VERIFICATION_TOKEN = config('KOFI_VERIFICATION_TOKEN', default=None)
+
 # Constance
 # https://django-constance.readthedocs.io/en/stable/
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
@@ -233,7 +236,7 @@ CONSTANCE_CONFIG = {
     'GITHUB_URL': ('', 'GitHub link', str),
     'LINKEDIN_URL': ('', 'LinkedIn link', str),
     'RESUME_URL': ('', 'Résumé link', str),
-    'KO_FI_URL': ('', 'Ko-fi link', str),
+    'KOFI_URL': ('', 'Ko-fi link', str),
     'PAYPAL_URL': ('', 'PayPal link', str),
     'UPWORK_URL': ('', 'Upwork link', str),
     'HERO_HEADING': ('Hello, world!', 'Hero section heading', str),
@@ -245,7 +248,7 @@ CONSTANCE_CONFIG = {
 }
 CONSTANCE_CONFIG_FIELDSETS = {
     'Global': ('BRAND', 'EMAIL', 'DEFAULT_CURRENCY'),
-    'Links': ('GITHUB_URL', 'LINKEDIN_URL', 'UPWORK_URL', 'RESUME_URL', 'KO_FI_URL', 'PAYPAL_URL'),
+    'Links': ('GITHUB_URL', 'LINKEDIN_URL', 'UPWORK_URL', 'RESUME_URL', 'KOFI_URL', 'PAYPAL_URL'),
     'Hero Section': ('HERO_HEADING', 'HERO_SUBHEADING'),
     'Sponsors': ('SPONSOR_DURATION', 'SPONSOR_DONATION_URL', 'SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION'), 
 }
