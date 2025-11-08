@@ -15,7 +15,7 @@ class KofiSponsorSerializer(serializers.ModelSerializer):
     amount = serializers.DecimalField(max_digits=10, decimal_places=2)
     currency = serializers.CharField()
     from_name = serializers.CharField(source='name')
-    message = serializers.CharField()
+    message = serializers.CharField(allow_null=True)
     is_public = serializers.BooleanField(source='is_message_public')
     timestamp = serializers.DateTimeField(source='start_date')
 

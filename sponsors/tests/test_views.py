@@ -43,6 +43,18 @@ class KofiTests(APITestCase):
             datetime.fromisoformat(self.TIMESTAMP.replace('Z', '+00:00'))
         )
 
+    def test_single_donation_success_null_message(self):
+        data = self.SINGLE_DONATION.copy()
+        data['message'] = None
+        resp = self.client.post(
+            self.url,
+            urlencode({'data': json.dumps(data)}),
+            content_type='application/x-www-form-urlencoded',
+        )
+
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(Sponsorship.objects.count(), 1)
+
     def test_single_donation_bad_token(self):
         with self.assertLogs('django'):
             resp = self.client.post(
