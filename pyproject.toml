@@ -1,8 +1,8 @@
 [project]
 name = "portfolio"
-version = "2025.11"
+version = "2025.12"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14.2"
 authors = [
     {name = "Bryan Grigorie", email = "bryangrigorie@gmail.com"},
 ]

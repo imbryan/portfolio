@@ -1,18 +1,17 @@
 ##### NODE BUILDER #####
-FROM node:24.5.0-alpine3.22 AS node-builder
+FROM node:25.2.1-alpine3.23 AS node-builder
 
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 
-RUN npm install
+RUN ["/bin/sh", "-c", "npm install"]
 COPY assets ./assets
 COPY webpack.config.js .
 
-RUN npm run build
+RUN ["/bin/sh", "-c", "npm run build"]
 
 ##### PYTHON BUILDER #####
-# FROM python:3.12-slim as builder
-FROM python:3.13.6-alpine3.21 AS python-builder
+FROM python:3.14.2-alpine3.23 AS python-builder
 
 WORKDIR /usr/src/app
 
@@ -21,48 +20,43 @@ ENV PYTHONUNBUFFERED=1
 
 # RUN apt-get update && \
 #     apt-get install -y --no-install-recommends gcc
-RUN apk add --no-cache python3-dev py3-setuptools \
+RUN ["/bin/sh", "-c", "apk add --no-cache python3-dev py3-setuptools \
     musl-dev gcc cargo \
     tiff-dev jpeg-dev openjpeg-dev zlib-dev freetype-dev lcms2-dev \
     libwebp-dev tcl-dev tk-dev harfbuzz-dev fribidi-dev libimagequant-dev \
-    libxcb-dev libpng-dev
+    libxcb-dev libpng-dev"]
 
-# Flake is used for linting
-RUN pip install --upgrade pip
-# RUN pip install flake8==6.0.0
+RUN ["/bin/sh", "-c", "pip install --upgrade pip"]
 COPY . /usr/src/app/
-# RUN flake8 --ignore=E501,F401 .
 
 COPY ./requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+RUN ["/bin/sh", "-c", "pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt"]
 
 ##### FINAL #####
-FROM python:3.13.6-alpine3.21
+FROM python:3.14.2-alpine3.23
 
-RUN mkdir -p /home/app
-# RUN addgroup --system app && adduser --system --group app
-RUN addgroup -S -g 1001 app && adduser -S -u 1001 -G app app
+RUN ["/bin/sh", "-c", "mkdir -p /home/app"]
+RUN ["/bin/sh", "-c", "addgroup -S -g 1001 app && adduser -S -u 1001 -G app app"]
 
 ENV APP_HOME=/app
-RUN mkdir $APP_HOME
+RUN ["/bin/sh", "-c", "mkdir $APP_HOME"]
 WORKDIR $APP_HOME
 
-# RUN apt-get update && apt-get install -y --no-install-recommends netcat-traditional
-RUN apk add --no-cache netcat-openbsd \
+RUN ["/bin/sh", "-c", "apk update && apk upgrade && rm -rf /var/cache/apk/*"]
+RUN ["/bin/sh", "-c", "apk add --no-cache netcat-openbsd \
     tiff-dev jpeg-dev openjpeg-dev zlib-dev freetype-dev lcms2-dev \
     libwebp-dev tcl-dev tk-dev harfbuzz-dev fribidi-dev libimagequant-dev \
-    libxcb-dev libpng-dev
+    libxcb-dev libpng-dev"]
 
 COPY --from=python-builder /usr/src/app/wheels /wheels
 COPY --from=python-builder /usr/src/app/requirements.txt .
-RUN pip install --upgrade pip
-RUN pip install --no-cache /wheels/*
+RUN ["/bin/sh", "-c", "pip install --upgrade pip"]
+RUN ["/bin/sh", "-c", "pip install --no-cache /wheels/*"]
 
 COPY . $APP_HOME
 
-# RUN python manage.py collectstatic --noinput # Error because SECRET_KEY is not passed in yet
 COPY --from=node-builder /usr/src/app/static/js/bundles ./static/js/bundles
 
-RUN chown -R app:app $APP_HOME
+RUN ["/bin/sh", "-c", "chown -R app:app $APP_HOME"]
 
 USER app
