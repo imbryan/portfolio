@@ -10,6 +10,10 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 - ``pyproject.toml``
 - ``package.json``
 
+#### Installation
+- ``pip install -r requirements.txt`` (or ``requirements.dev.txt``)
+- ``npm install``
+
 ### Environment variables
 #### Always required
 - ``DEBUG`` (True/False)
@@ -60,8 +64,7 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 
 ## Development
 ### Generating the requirements lock
-- ``pip-compile pyproject.toml --output-file requirements.txt``
-- ``pip-compile pyproject.toml --output-file requirements.dev.txt --extra dev``
+``./pip-compile.sh``
 
 ### Making changes to models
 1. Make changes in ``models.py``
@@ -70,7 +73,7 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 4. In a venv, run ``python manage.py makemigrations``
 
 ### Linting
-- ``ruff check``
+``ruff check``
 
 ### Running in Docker
 ``docker compose -f docker-compose.yml [-f docker-compose.override.yml] up -d --build``
