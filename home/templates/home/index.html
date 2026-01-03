@@ -28,7 +28,7 @@
                 <div class="card credential-card mb-4 flex-fill">
                     <div class="card-body d-flex flex-column">
                         {% if experience.start_date %}
-                        <small class="date">{{experience.start_date|date:"F Y"}}{% if experience.end_date %} &ndash; {{experience.end_date|date:"F Y"}}{% endif %}</small>
+                        <small class="date">{{experience.start_date|date:"F Y"}} &ndash; {% if experience.end_date %}{{experience.end_date|date:"F Y"}}{% else %}present{% endif %}</small>
                         {% endif %}
                         <h5 class="card-title">{{experience.employer}}</h5>
                         <h6 class="card-subtitle">{{experience.position}}</h6>
@@ -54,6 +54,34 @@
             {% for education in educations %}
             <div class="col-12 col-md-6 d-flex">
                 {% include "home/partials/credential_card.html" with credential=education %}
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row card-row mt-3">
+            <div class="col-12" id="training">
+                <h2 class="mb-3">
+                    <a class="heading-anchor" href="#training">#</a>
+                    <span>Training</span>
+                </h2>
+            </div>
+            {% for training in trainings %}
+            <div class="col-12 col-md-6 d-flex">
+                <div class="card credential-card mb-4 flex-fill">
+                    <div class="card-body d-flex flex-column">
+                        {% if training.start_date %}
+                        <small class="date">{{training.start_date|date:"F Y"}} &ndash; {% if training.end_date %}{{training.end_date|date:"F Y"}}{% else %}present{% endif %}</small>
+                        {% endif %}
+                        <h5 class="card-title">{{training.institution}}</h5>
+                        <h6 class="card-subtitle">{{training.program}}</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for tag in training.sorted_tags %}
+                            <a class="badge text-bg-secondary">
+                                <i class="{{tag.fa_css}}"></i> {{tag.name}}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>

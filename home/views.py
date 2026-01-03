@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 
-from .models import BlogPost, Project, Education, Certification, Experience
+from .models import BlogPost, Project, Education, Certification, Experience, Training
 
 
 def index(request):
@@ -24,6 +24,7 @@ def index(request):
     educations = Education.objects.filter(hidden=False).order_by('-date_issued')
     certs = Certification.objects.filter(hidden=False).order_by('-date_issued')
     experiences = Experience.objects.filter(hidden=False).order_by('-start_date')
+    trainings = Training.objects.filter(hidden=False).order_by('-start_date')
 
     latest_blog_posts = BlogPost.objects.filter(about_content=False, hidden=False).order_by('-date_published').all()[:5]
 
@@ -31,6 +32,7 @@ def index(request):
         'educations': educations,
         'certs': certs,
         'experiences': experiences,
+        'trainings': trainings,
         'latest_blog_posts': latest_blog_posts,
     }
 
