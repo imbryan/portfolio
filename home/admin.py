@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import BlogPost, SkillCategory, Skill, Project, Experience, Achievement, Initiative, Education, Certification, Tag
+from .models import BlogPost, SkillCategory, Skill, Project, Experience, Training, Achievement, Initiative, Education, Certification, Tag
 
 
 class BlogPostAdmin(admin.ModelAdmin):
@@ -56,6 +56,14 @@ class ExperienceAdmin(admin.ModelAdmin):
     ]
 
 
+class TrainingAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Training content', {'fields': ['institution', 'program', 'start_date', 'end_date']}),
+        ('Tags', {'fields': ['tags']}),
+        ('Flags', {'fields': ['hidden']})
+    ]
+
+
 class AchievementAdmin(admin.ModelAdmin):
     """
     Deprecated model
@@ -81,6 +89,7 @@ class CertificationAdmin(admin.ModelAdmin):
         ('Flags', {'fields': ['hidden']})
     ]
 
+
 class InitiativeAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Initiative content', {'fields': ['initiative_name', 'initiative_alt_name', 'initiative_body', 'congress_url', 'petition_url', 'date_introduced']}),
@@ -93,6 +102,7 @@ admin.site.register(SkillCategory, SkillCategoryAdmin)
 admin.site.register(Skill, SkillAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Experience, ExperienceAdmin)
+admin.site.register(Training, TrainingAdmin)
 admin.site.register(Achievement, AchievementAdmin)
 admin.site.register(Initiative, InitiativeAdmin)
 admin.site.register(Education, EducationAdmin)
