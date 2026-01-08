@@ -18,7 +18,7 @@ dependencies = [
     "djangorestframework==3.16.1",
     "django-axes[ipware]==8.0.0",
     "django-constance==4.3.4",
-    "urllib3==2.6.2",
+    "urllib3==2.6.3",
 ]
 
 [project.optional-dependencies]

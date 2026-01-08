@@ -63,7 +63,7 @@ sqlparse==0.5.3
     # via django
 typing-extensions==4.15.0
     # via beautifulsoup4
-urllib3==2.6.2
+urllib3==2.6.3
     # via
     #   portfolio (pyproject.toml)
     #   requests
