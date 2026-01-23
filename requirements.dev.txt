@@ -21,9 +21,7 @@ charset-normalizer==3.4.4
 click==8.3.0
     # via pip-tools
 cryptography==46.0.3
-    # via
-    #   josepy
-    #   mozilla-django-oidc
+    # via mozilla-django-oidc
 django==6.0
     # via
     #   django-axes
@@ -45,20 +43,21 @@ gunicorn==23.0.0
     # via portfolio (pyproject.toml)
 idna==3.11
     # via requests
-josepy==2.2.0
-    # via mozilla-django-oidc
-mozilla-django-oidc==4.0.1
+mozilla-django-oidc==5.0.2
     # via portfolio (pyproject.toml)
 packaging==25.0
     # via
     #   build
     #   gunicorn
+    #   wheel
 pillow==12.0.0
     # via portfolio (pyproject.toml)
-pip-tools==7.5.1
+pip-tools==7.5.2
     # via portfolio (pyproject.toml)
 pycparser==2.23
     # via cffi
+pyjwt==2.10.1
+    # via mozilla-django-oidc
 pyproject-hooks==1.2.0
     # via
     #   build
@@ -78,11 +77,11 @@ sqlparse==0.5.3
 typing-extensions==4.15.0
     # via beautifulsoup4
 urllib3==2.6.3
+    # via requests
+wheel==0.46.3
     # via
+    #   pip-tools
     #   portfolio (pyproject.toml)
-    #   requests
-wheel==0.45.1
-    # via pip-tools
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
