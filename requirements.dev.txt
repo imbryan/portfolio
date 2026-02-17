@@ -74,8 +74,10 @@ ruff==0.14.3
     # via portfolio (pyproject.toml)
 soupsieve==2.8
     # via beautifulsoup4
-sqlparse==0.5.3
-    # via django
+sqlparse==0.5.5
+    # via
+    #   -c constraints.txt
+    #   django
 typing-extensions==4.15.0
     # via beautifulsoup4
 urllib3==2.6.3
