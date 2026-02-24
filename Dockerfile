@@ -1,35 +1,39 @@
-FROM node:25.2.1-alpine3.23 AS node-builder
-
-WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
-
-RUN ["/bin/sh", "-c", "npm install"]
+## NODE BUILDER ##
+FROM node:25.6-slim AS node-builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
 COPY assets ./assets
 COPY webpack.config.js .
+RUN npm run build
 
-RUN ["/bin/sh", "-c", "npm run dev"]
-
-FROM python:3.14.2-alpine3.23
-
-# Security updates
-# RUN apt-get update && apt-get upgrade -y && apt-get clean && rm -rf /var/lib/apt/lists/*
-RUN ["/bin/sh", "-c", "apk update && apk upgrade && rm -rf /var/cache/apk/*"]
-
-# alpine dependencies
-RUN ["/bin/sh", "-c", "apk add --no-cache python3-dev py3-setuptools \
-    musl-dev gcc cargo \
-    tiff-dev jpeg-dev openjpeg-dev zlib-dev freetype-dev lcms2-dev \
-    libwebp-dev tcl-dev tk-dev harfbuzz-dev fribidi-dev libimagequant-dev \
-    libxcb-dev libpng-dev"]
-
+## PYTHON BUILDER ##
+FROM python:3.14-slim AS python-builder
 WORKDIR /app
+COPY --from=ghcr.io/astral-sh/uv:0.10.4 /uv /uvx /bin/
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
-RUN ["/bin/sh", "-c", "pip install --upgrade pip"]
-COPY ./requirements.txt .
-RUN ["/bin/sh", "-c", "pip install -r requirements.txt"]
-
+## DEVELOPMENT STAGE ##
+FROM python-builder AS development
+RUN apt-get update && apt-get install -y nodejs npm && rm -rf /var/lib/apt/lists/*
+RUN --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    uv sync --frozen --group dev
 COPY . .
-COPY --from=node-builder /usr/src/app/static/js/bundles ./static/js/bundles
+ENV PATH="/app/.venv/bin:$PATH"
+
+## PRODUCTION STAGE ##
+FROM python-builder AS production
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+RUN groupadd -g 1001 app && \
+    useradd -u 1001 -g app -s /bin/sh -m app
+WORKDIR /app
+RUN --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    uv sync --frozen --no-dev
+COPY --from=node-builder /app/static/js/bundles ./static/js/bundles
+COPY . .
+RUN chown -R app:app /app
+USER app
+ENV PATH="/app/.venv/bin:$PATH"

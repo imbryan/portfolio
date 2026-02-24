@@ -18,3 +18,4 @@ venv/
 .vscode/
 __pycache__/
 db/
+.venv
