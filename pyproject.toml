@@ -2,7 +2,7 @@
 name = "portfolio"
 version = "2025.12"
 readme = "README.md"
-requires-python = ">=3.14.2"
+requires-python = ">=3.14"
 authors = [
     {name = "Bryan Grigorie", email = "bryangrigorie@gmail.com"},
 ]
@@ -20,9 +20,16 @@ dependencies = [
     "django-constance==4.3.4",
 ]
 
-[project.optional-dependencies]
-dev = [
-    "pip-tools >= 7.5.2",
-    "wheel >= 0.46.2",
+[dependency-groups]
+lint = [
     "ruff",
+]
+dev = [
+    {include-group = "lint"},
+]
+
+[tool.uv]
+constraint-dependencies = [
+    "cryptography>=46.0.5",
+    "sqlparse>=0.5.4",
 ]

@@ -2,7 +2,7 @@
 services:
   portfolio:
     build:
-      dockerfile: Dockerfile.prod
+      target: production
     command: >
       sh -c "
       python manage.py migrate &&

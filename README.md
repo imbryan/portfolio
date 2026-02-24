@@ -11,7 +11,7 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 - ``package.json``
 
 #### Installation
-- ``pip install -r requirements.txt`` (or ``requirements.dev.txt``)
+- ``uv sync [--group dev]``
 - ``npm install``
 
 ### Environment variables
@@ -64,7 +64,8 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 
 ## Development
 ### Generating the requirements lock
-``./pip-compile.sh``
+- ``uv lock [--upgrade]``
+- ``npm update``
 
 ### Making changes to models
 1. Make changes in ``models.py``
