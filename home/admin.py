@@ -5,7 +5,7 @@ from .models import BlogPost, SkillCategory, Skill, Project, Experience, Trainin
 
 class BlogPostAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Post content', 
+        ('Post content',
             {'fields': ['post_title', 'slug', 'preview_text', 'post_body']}
         ),
         ('Date information', {'fields': ['date_published']}),

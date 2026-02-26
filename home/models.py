@@ -27,13 +27,13 @@ class BlogPost(models.Model):
     @property
     def sorted_tags(self):
         return self.tags.all().order_by('name')
-    
+
     @property
     def url(self):
         if self.slug:
             return reverse('home:blog_post_by_slug', kwargs={'slug': self.slug})
         return reverse('home:blog_post_by_id', kwargs={'id': self.id})
-    
+
     def save(self, *args, **kwargs):
         if not self.preview_text:
             soup = BeautifulSoup(self.post_body, 'html.parser')
@@ -83,15 +83,15 @@ class Skill(models.Model):
         return self.skill_title
 
     def level_text(self):
-        if self.skill_level == 1: 
+        if self.skill_level == 1:
             return "Basic knowledge"
-        elif self.skill_level == 2: 
+        elif self.skill_level == 2:
             return "Novice"
-        elif self.skill_level == 3: 
+        elif self.skill_level == 3:
             return "Intermediate"
-        elif self.skill_level == 4: 
+        elif self.skill_level == 4:
             return "Advanced"
-        elif self.skill_level == 5: 
+        elif self.skill_level == 5:
             return "Expert"
 
 
@@ -113,7 +113,7 @@ class Project(models.Model):
 
     def __str__(self):
         return self.project_title
-    
+
     @property
     def sorted_tags(self):
         return self.tags.all().order_by('name')
@@ -130,7 +130,7 @@ class Experience(models.Model):
 
     def __str__(self):
         return f"{self.position} at {self.employer}"
-    
+
     @property
     def sorted_tags(self):
         return self.tags.all().order_by('name')

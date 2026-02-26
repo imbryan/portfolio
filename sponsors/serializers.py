@@ -31,7 +31,7 @@ class KofiSponsorSerializer(serializers.ModelSerializer):
             'is_public',
             'timestamp',
         ]
-        
+
     def create(self, validated_data):
         start_date = validated_data.get('start_date')
         expiration_date = start_date + timedelta(days=getattr(config, 'SPONSOR_DURATION'))

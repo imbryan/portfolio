@@ -9,10 +9,12 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 ### Dependencies
 - ``pyproject.toml``
 - ``package.json``
+- ``.pre-commit-config.yaml`` (Git hooks)
 
 #### Installation
 - ``uv sync [--group dev]``
 - ``npm install``
+- ``uvx pre-commit install`` (Git hooks)
 
 ### Environment variables
 #### Always required
@@ -46,9 +48,10 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 
 ## File structure
 ### Python imports
-1. Third-party libraries
-2. Python standard library
-3. Custom modules
+1. Python standard library
+2. Third-party libraries
+3. Local modules
+> See: [PEP 8](https://peps.python.org/pep-0008/#imports)
 
 ### Django project apps
 - ``api``: REST API.

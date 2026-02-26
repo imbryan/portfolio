@@ -21,7 +21,7 @@ class Sponsorship(models.Model):
 
     def __str__(self):
         return f"{self.name}, {self.amount}, {self.currency}, {self.start_date} - {self.expiration_date}, {self.platform}"
-    
+
     @property
     def display_eligible(self):
         # TODO determine eligibility for other currencies
