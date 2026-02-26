@@ -17,18 +17,18 @@
                 let over = wordCount - 50;
                 msg = `${msg} (${over} over the limit)`;
             }
-    
+
             let $display = $(selector);
             if (!$display.length) {
                 const $newDisplay = $(`
                     <p style="text-align: right;">
                         <span id="preview-text-word-count"></span>
-                    </p>    
+                    </p>
                 `);
                 $targetContainer.append($newDisplay);
                 $display = $(selector);
             }
-    
+
             $display.text(`${wordCount} ${msg}`);
         }
         // Initialize word count

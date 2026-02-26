@@ -9,7 +9,7 @@ def validate_turnstile(token, secret, remoteip=None):
     }
     if remoteip:
         data['remoteip'] = remoteip
-    
+
     try:
         response = requests.post(url, data=data, timeout=10)
         response.raise_for_status()

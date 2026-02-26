@@ -9,10 +9,12 @@ Personal website that includes a portfolio and a blog. Made with [Django](https:
 ### Dependencies
 - ``pyproject.toml``
 - ``package.json``
+- ``.pre-commit-config.yaml`` (Git hooks)
 
 #### Installation
 - ``uv sync [--group dev]``
 - ``npm install``
+- ``uvx pre-commit install`` (Git hooks)
 
 ### Environment variables
 #### Always required

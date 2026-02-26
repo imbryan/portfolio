@@ -14,7 +14,7 @@ class CustomAdminSite(admin.AdminSite):
     @property
     def site_title(self):
         return f'{getattr(config, 'BRAND')} Admin'
-    
+
     @property
     def site_header(self):
         return self.site_title

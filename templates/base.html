@@ -22,7 +22,7 @@
         <!-- SCRIPT -->
         {% block head_script %}
         {% if ADSENSE_CLIENT %}
-        {% comment %}<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ADSENSE_CLIENT }}" 
+        {% comment %}<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ADSENSE_CLIENT }}"
         crossorigin="anonymous"></script> <!-- AdSense -->{% endcomment %}
         {% endif %}
         {% if TURNSTILE_SITE_KEY %}
@@ -32,7 +32,7 @@
         <!-- TITLE -->
         <title>{% block extra_title %}{% endblock %}{{ config.BRAND }}</title>
     </head>
-    
+
     <body>
         <!-- BASE DIV -->
         <div id="base" class="d-flex flex-column min-vh-100">
@@ -118,7 +118,7 @@
                 {% block content %}
                 {% endblock %}
             </div>
-            
+
             <!-- FOOTER -->
             <footer class="footer py-3 bg-light" data-bs-theme="light" id="bottom-footer">
                 <div class="container container-slick mb-2">
@@ -166,7 +166,7 @@
             </footer>
         </div>
         <!-- END BASE DIV -->
-            
+
         <!-- SCRIPT -->
         {% block body_script %}
         <!-- Webpack -->

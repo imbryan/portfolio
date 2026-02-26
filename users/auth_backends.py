@@ -31,7 +31,7 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
             except User.DoesNotExist:
                 pass
         return User.objects.none()
-    
+
     def create_user(self, claims):
         user = super().create_user(claims)
         preferred_username = claims.get('preferred_username')
@@ -47,7 +47,7 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
             iss=claims.get('iss'),
         )
         return user
-    
+
     def update_user(self, user, claims):
         profile, created = OIDCProfile.objects.get_or_create(user=user)
         if created:
@@ -59,4 +59,3 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
             profile.iss = claims.get('iss')
             profile.save()
         return user
-

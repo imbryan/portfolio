@@ -1,10 +1,10 @@
 services:
   portfolio:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
       target: development
-    command: > 
+    command: >
       sh -c "
       npm run dev &&
       python manage.py migrate &&

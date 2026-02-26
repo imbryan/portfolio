@@ -14,7 +14,7 @@ class BlogPostTestCase(TestCase):
         )
         BlogPost.objects.create(
             date_published=datetime.now(),
-            post_title="Post with 51 words", 
+            post_title="Post with 51 words",
             post_body="<div>" + ("word " * 51).strip() + "</div>",
         )
         BlogPost.objects.create(

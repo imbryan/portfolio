@@ -10,7 +10,7 @@ from core.utils.turnstile_utils import validate_turnstile
 def login(request):
     if request.user.is_authenticated:
         return redirect(reverse('home:index'))
-    
+
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
 
@@ -20,7 +20,7 @@ def login(request):
             remoteip = request.headers.get('CF-Connecting-IP') or \
                 request.headers.get('X-Forwarded-For') or \
                 request.META.get('REMOTE_ADDR')
-            
+
             if not token or not validate_turnstile(token, settings.TURNSTILE_SECRET_KEY, remoteip)['success']:
                 form.add_error(None, "Security challenge failed. Please try again.")
 

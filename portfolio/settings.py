@@ -29,9 +29,9 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='.localhost', cast=Csv())
 
-# FIXING CSRF ISSUE 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  
-# https://stackoverflow.com/a/71482883/1615284 
+# FIXING CSRF ISSUE
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# https://stackoverflow.com/a/71482883/1615284
 # https://docs.djangoproject.com/en/5.1/ref/settings/#secure-proxy-ssl-header
 
 USE_X_FORWARDED_HOST = True
@@ -250,5 +250,5 @@ CONSTANCE_CONFIG_FIELDSETS = {
     'Global': ('BRAND', 'EMAIL', 'DEFAULT_CURRENCY'),
     'Links': ('GITHUB_URL', 'LINKEDIN_URL', 'UPWORK_URL', 'RESUME_URL', 'KOFI_URL', 'PAYPAL_URL'),
     'Hero Section': ('HERO_HEADING', 'HERO_SUBHEADING'),
-    'Sponsors': ('SPONSOR_DURATION', 'SPONSOR_DONATION_URL', 'SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION'), 
+    'Sponsors': ('SPONSOR_DURATION', 'SPONSOR_DONATION_URL', 'SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION'),
 }
