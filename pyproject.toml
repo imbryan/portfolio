@@ -8,7 +8,7 @@ authors = [
 ]
 
 dependencies = [
-    "django>=6.0.4",
+    "django>=6.0.6",
     "python-decouple==3.8",
     "Pillow>=12.2.0",
     "django-tinymce==5.0.0",
