@@ -24,6 +24,8 @@ jobs:
 
       - name: Run Ruff linter
         uses: astral-sh/ruff-action@v3
+        with:
+          version: "0.15.12"
 
       - name: Run Django system check
         run: uv run manage.py check

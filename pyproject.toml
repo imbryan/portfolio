@@ -22,7 +22,7 @@ dependencies = [
 
 [dependency-groups]
 lint = [
-    "ruff",
+    "ruff==0.15.12",
 ]
 dev = [
     {include-group = "lint"},
