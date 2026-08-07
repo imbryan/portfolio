@@ -6,6 +6,7 @@ from .models import OIDCProfile
 
 User = get_user_model()
 
+
 class OIDCProfileInline(admin.StackedInline):
     model = OIDCProfile
     can_delete = False

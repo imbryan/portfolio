@@ -18,10 +18,10 @@ class ProjectTests(APITestCase):
         )
 
     def test_get_project_ok(self):
-        resp = self.client.get('/api/project/1/')
-        self.assertEqual(resp.data['id'], 1)
+        resp = self.client.get("/api/project/1/")
+        self.assertEqual(resp.data["id"], 1)
         self.assertEqual(resp.status_code, 200)
 
     def test_get_project_not_found(self):
-        resp = self.client.get('/api/project/2/')
+        resp = self.client.get("/api/project/2/")
         self.assertEqual(resp.status_code, 404)

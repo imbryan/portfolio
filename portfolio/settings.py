@@ -22,15 +22,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='.localhost', cast=Csv())
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default=".localhost", cast=Csv())
 
 # FIXING CSRF ISSUE
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # https://stackoverflow.com/a/71482883/1615284
 # https://docs.djangoproject.com/en/5.1/ref/settings/#secure-proxy-ssl-header
 
@@ -41,92 +41,92 @@ USE_X_FORWARDED_HOST = True
 
 INSTALLED_APPS = [
     # Django core
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'portfolio.apps.CustomAdminConfig',
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "portfolio.apps.CustomAdminConfig",
     # Third party
-    'mozilla_django_oidc',
-    'tinymce',
-    'rest_framework',
-    'axes',
-    'constance',
+    "mozilla_django_oidc",
+    "tinymce",
+    "rest_framework",
+    "axes",
+    "constance",
     # Project apps
-    'home.apps.HomeConfig',
-    'api.apps.APIConfig',
-    'users.apps.UsersConfig',
-    'sponsors.apps.SponsorsConfig',
+    "home.apps.HomeConfig",
+    "api.apps.APIConfig",
+    "users.apps.UsersConfig",
+    "sponsors.apps.SponsorsConfig",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'core.utils.middleware.HTMXMiddleware',
-    'axes.middleware.AxesMiddleware',  # Wants to be last, see: https://django-axes.readthedocs.io/en/stable/2_installation.html
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "core.utils.middleware.HTMXMiddleware",
+    "axes.middleware.AxesMiddleware",  # Wants to be last, see: https://django-axes.readthedocs.io/en/stable/2_installation.html
 ]
 
-ROOT_URLCONF = 'portfolio.urls'
+ROOT_URLCONF = "portfolio.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'constance.context_processors.config',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "constance.context_processors.config",
                 # Project app context processors
-                'home.context_processors.global_settings',
-                'users.context_processors.global_settings',
+                "home.context_processors.global_settings",
+                "users.context_processors.global_settings",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'portfolio.wsgi.application'
+WSGI_APPLICATION = "portfolio.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': config('DATABASE_PATH'),  # Changed for Docker
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": config("DATABASE_PATH"),  # Changed for Docker
     }
 }
 
 
 # Auth
 AUTHENTICATION_BACKENDS = [
-    'axes.backends.AxesStandaloneBackend',  # https://django-axes.readthedocs.io/en/stable/2_installation.html
-    'users.auth_backends.CustomOIDCAuthenticationBackend',  # https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html#add-settings-to-settings-py
-    'django.contrib.auth.backends.ModelBackend',
+    "axes.backends.AxesStandaloneBackend",  # https://django-axes.readthedocs.io/en/stable/2_installation.html
+    "users.auth_backends.CustomOIDCAuthenticationBackend",  # https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html#add-settings-to-settings-py
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 # https://mozilla-django-oidc.readthedocs.io/en/stable/installation.html#acquire-a-client-id-and-client-secret
 
-OIDC_RP_CLIENT_ID = config('OIDC_RP_CLIENT_ID', default=None)
-OIDC_RP_CLIENT_SECRET = config('OIDC_RP_CLIENT_SECRET', default=None)
-OIDC_RP_SIGN_ALGO = config('OIDC_RP_SIGN_ALGO', default='RS256')
+OIDC_RP_CLIENT_ID = config("OIDC_RP_CLIENT_ID", default=None)
+OIDC_RP_CLIENT_SECRET = config("OIDC_RP_CLIENT_SECRET", default=None)
+OIDC_RP_SIGN_ALGO = config("OIDC_RP_SIGN_ALGO", default="RS256")
 
-OIDC_OP_JWKS_ENDPOINT = config('OIDC_OP_JWKS_ENDPOINT', default=None)
-OIDC_OP_AUTHORIZATION_ENDPOINT = config('OIDC_OP_AUTHORIZATION_ENDPOINT', default=None)
-OIDC_OP_TOKEN_ENDPOINT = config('OIDC_OP_TOKEN_ENDPOINT', default=None)
-OIDC_OP_USER_ENDPOINT = config('OIDC_OP_USER_ENDPOINT', default=None)
+OIDC_OP_JWKS_ENDPOINT = config("OIDC_OP_JWKS_ENDPOINT", default=None)
+OIDC_OP_AUTHORIZATION_ENDPOINT = config("OIDC_OP_AUTHORIZATION_ENDPOINT", default=None)
+OIDC_OP_TOKEN_ENDPOINT = config("OIDC_OP_TOKEN_ENDPOINT", default=None)
+OIDC_OP_USER_ENDPOINT = config("OIDC_OP_USER_ENDPOINT", default=None)
 
-OIDC_OP_DISPLAY_NAME = config('OIDC_OP_DISPLAY_NAME', default=None)
+OIDC_OP_DISPLAY_NAME = config("OIDC_OP_DISPLAY_NAME", default=None)
 OIDC_CONFIGURED = all([OIDC_RP_CLIENT_ID, OIDC_RP_CLIENT_SECRET])
 
 # Password validation
@@ -134,40 +134,40 @@ OIDC_CONFIGURED = all([OIDC_RP_CLIENT_ID, OIDC_RP_CLIENT_SECRET])
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
 # Axes
 # https://django-axes.readthedocs.io/en/stable/4_configuration.html
-AXES_ENABLED = config('AXES_ENABLED', False)
-AXES_IPWARE_PROXY_COUNT = config('AXES_IPWARE_PROXY_COUNT', None)
+AXES_ENABLED = config("AXES_ENABLED", False)
+AXES_IPWARE_PROXY_COUNT = config("AXES_IPWARE_PROXY_COUNT", None)
 AXES_IPWARE_META_PRECEDENCE_ORDER = config(
-    'AXES_IPWARE_META_PRECEDENCE_ORDER',
+    "AXES_IPWARE_META_PRECEDENCE_ORDER",
     cast=Csv(),
-    default='HTTP_X_FORWARDED_FOR,X_FORWARDED_FOR',
+    default="HTTP_X_FORWARDED_FOR,X_FORWARDED_FOR",
 )
-AXES_FAILURE_LIMIT = config('AXES_FAILURE_LIMIT', 5)
+AXES_FAILURE_LIMIT = config("AXES_FAILURE_LIMIT", 5)
 
 # Login redirect
-LOGIN_REDIRECT_URL = 'home:index'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = "home:index"
+LOGOUT_REDIRECT_URL = "/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'America/New_York'
+TIME_ZONE = "America/New_York"
 
 USE_I18N = True
 
@@ -180,75 +180,90 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 # Static URL definition
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
 # Static file collection directory, served on production. NOT TO BE CONFUSED WITH /static/ (the directory)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Additional static file sources
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),  # storing global styles
 ]
-#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # LOGGING https://docs.djangoproject.com/en/5.1/howto/logging/
-LOG_LEVEL = config('LOG_LEVEL', default='INFO')
+LOG_LEVEL = config("LOG_LEVEL", default="INFO")
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'level': LOG_LEVEL,
-            'class': 'logging.StreamHandler',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "level": LOG_LEVEL,
+            "class": "logging.StreamHandler",
         },
     },
-    'loggers': {
+    "loggers": {
         # Root logger
-        '': {
-            'handlers': ['console'],
-            'level': LOG_LEVEL,
+        "": {
+            "handlers": ["console"],
+            "level": LOG_LEVEL,
         },
-        'django': {
-            'handlers': ['console'],
-            'level': LOG_LEVEL,
-            'propagate': False,
-        }
-    }
+        "django": {
+            "handlers": ["console"],
+            "level": LOG_LEVEL,
+            "propagate": False,
+        },
+    },
 }
 
 # ADSENSE CLIENT (publisher ID)
-ADSENSE_CLIENT = config('ADSENSE_CLIENT', default=None)
+ADSENSE_CLIENT = config("ADSENSE_CLIENT", default=None)
 
 # Turnstile
-TURNSTILE_SITE_KEY = config('TURNSTILE_SITE_KEY', default=None)
-TURNSTILE_SECRET_KEY = config('TURNSTILE_SECRET_KEY', default=None)
+TURNSTILE_SITE_KEY = config("TURNSTILE_SITE_KEY", default=None)
+TURNSTILE_SECRET_KEY = config("TURNSTILE_SECRET_KEY", default=None)
 TURNSTILE_CONFIGURED = all([TURNSTILE_SITE_KEY, TURNSTILE_SECRET_KEY])
 
 # Ko-fi
-KOFI_VERIFICATION_TOKEN = config('KOFI_VERIFICATION_TOKEN', default=None)
+KOFI_VERIFICATION_TOKEN = config("KOFI_VERIFICATION_TOKEN", default=None)
 
 # Constance
 # https://django-constance.readthedocs.io/en/stable/
-CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
 CONSTANCE_CONFIG = {
-    'BRAND': ('Portfolio', 'Site name', str),
-    'EMAIL': ('', 'Admin email', str),
-    'GITHUB_URL': ('', 'GitHub link', str),
-    'LINKEDIN_URL': ('', 'LinkedIn link', str),
-    'RESUME_URL': ('', 'Résumé link', str),
-    'KOFI_URL': ('', 'Ko-fi link', str),
-    'PAYPAL_URL': ('', 'PayPal link', str),
-    'UPWORK_URL': ('', 'Upwork link', str),
-    'HERO_HEADING': ('Hello, world!', 'Hero section heading', str),
-    'HERO_SUBHEADING': ('', 'Hero section subheading', str),
-    'SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION': (5.00, 'Minimum contribution to display sponsor message', float),
-    'SPONSOR_DURATION': (30, 'Number of days a sponsorship is valid for', int),
-    'SPONSOR_DONATION_URL': ('', 'Donation link for sponsors', str),
-    'DEFAULT_CURRENCY': ('USD', 'Default currency (as an ISO 4217 code)', str)
+    "BRAND": ("Portfolio", "Site name", str),
+    "EMAIL": ("", "Admin email", str),
+    "GITHUB_URL": ("", "GitHub link", str),
+    "LINKEDIN_URL": ("", "LinkedIn link", str),
+    "RESUME_URL": ("", "Résumé link", str),
+    "KOFI_URL": ("", "Ko-fi link", str),
+    "PAYPAL_URL": ("", "PayPal link", str),
+    "UPWORK_URL": ("", "Upwork link", str),
+    "HERO_HEADING": ("Hello, world!", "Hero section heading", str),
+    "HERO_SUBHEADING": ("", "Hero section subheading", str),
+    "SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION": (
+        5.00,
+        "Minimum contribution to display sponsor message",
+        float,
+    ),
+    "SPONSOR_DURATION": (30, "Number of days a sponsorship is valid for", int),
+    "SPONSOR_DONATION_URL": ("", "Donation link for sponsors", str),
+    "DEFAULT_CURRENCY": ("USD", "Default currency (as an ISO 4217 code)", str),
 }
 CONSTANCE_CONFIG_FIELDSETS = {
-    'Global': ('BRAND', 'EMAIL', 'DEFAULT_CURRENCY'),
-    'Links': ('GITHUB_URL', 'LINKEDIN_URL', 'UPWORK_URL', 'RESUME_URL', 'KOFI_URL', 'PAYPAL_URL'),
-    'Hero Section': ('HERO_HEADING', 'HERO_SUBHEADING'),
-    'Sponsors': ('SPONSOR_DURATION', 'SPONSOR_DONATION_URL', 'SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION'),
+    "Global": ("BRAND", "EMAIL", "DEFAULT_CURRENCY"),
+    "Links": (
+        "GITHUB_URL",
+        "LINKEDIN_URL",
+        "UPWORK_URL",
+        "RESUME_URL",
+        "KOFI_URL",
+        "PAYPAL_URL",
+    ),
+    "Hero Section": ("HERO_HEADING", "HERO_SUBHEADING"),
+    "Sponsors": (
+        "SPONSOR_DURATION",
+        "SPONSOR_DONATION_URL",
+        "SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION",
+    ),
 }

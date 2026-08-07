@@ -21,37 +21,41 @@ def index(request):
 
     # achievements = Achievement.objects.filter(hidden=False).order_by('-achievement_date')
 
-    educations = Education.objects.filter(hidden=False).order_by('-date_issued')
-    certs = Certification.objects.filter(hidden=False).order_by('-date_issued')
-    experiences = Experience.objects.filter(hidden=False).order_by('-start_date')
-    trainings = Training.objects.filter(hidden=False).order_by('-start_date')
+    educations = Education.objects.filter(hidden=False).order_by("-date_issued")
+    certs = Certification.objects.filter(hidden=False).order_by("-date_issued")
+    experiences = Experience.objects.filter(hidden=False).order_by("-start_date")
+    trainings = Training.objects.filter(hidden=False).order_by("-start_date")
 
-    latest_blog_posts = BlogPost.objects.filter(about_content=False, hidden=False).order_by('-date_published').all()[:5]
+    latest_blog_posts = (
+        BlogPost.objects.filter(about_content=False, hidden=False)
+        .order_by("-date_published")
+        .all()[:5]
+    )
 
     context = {
-        'educations': educations,
-        'certs': certs,
-        'experiences': experiences,
-        'trainings': trainings,
-        'latest_blog_posts': latest_blog_posts,
+        "educations": educations,
+        "certs": certs,
+        "experiences": experiences,
+        "trainings": trainings,
+        "latest_blog_posts": latest_blog_posts,
     }
 
-    return render(request, 'home/index.html', context=context)
+    return render(request, "home/index.html", context=context)
 
 
 def projects(request):
-    projects = Project.objects.filter(hidden=False).order_by('-pinned', '-date')
+    projects = Project.objects.filter(hidden=False).order_by("-pinned", "-date")
 
-    tag = request.GET.get('tag', None)
+    tag = request.GET.get("tag", None)
     if tag:
-        projects=projects.filter(tags__slug=tag)
+        projects = projects.filter(tags__slug=tag)
 
     paginator = Paginator(projects, 6)
-    page_num = request.GET.get('page', 1)
+    page_num = request.GET.get("page", 1)
 
     get_params = request.GET.copy()
-    if 'page' in get_params:
-        del get_params['page']
+    if "page" in get_params:
+        del get_params["page"]
 
     try:
         projects = paginator.page(page_num)
@@ -61,32 +65,34 @@ def projects(request):
         projects = paginator.page(paginator.num_pages)
 
     context = {
-        'projects': projects,
-        'params': get_params.urlencode(),
+        "projects": projects,
+        "params": get_params.urlencode(),
     }
 
     if request.htmx:
-        return render(request, 'home/partials/project_list.html', context=context)
+        return render(request, "home/partials/project_list.html", context=context)
 
-    return render(request, 'home/projects.html', context=context)
+    return render(request, "home/projects.html", context=context)
 
 
 def blog(request):
     """
     Blog list view
     """
-    posts = BlogPost.objects.filter(about_content=False, hidden=False).order_by('-pinned', '-date_published')
+    posts = BlogPost.objects.filter(about_content=False, hidden=False).order_by(
+        "-pinned", "-date_published"
+    )
 
-    tag = request.GET.get('tag', None)
+    tag = request.GET.get("tag", None)
     if tag:
         posts = posts.filter(tags__slug=tag)
 
     paginator = Paginator(posts, 6)
-    page_num = request.GET.get('page', 1)
+    page_num = request.GET.get("page", 1)
 
     get_params = request.GET.copy()
-    if 'page' in get_params:
-        del get_params['page']
+    if "page" in get_params:
+        del get_params["page"]
 
     try:
         posts = paginator.page(page_num)
@@ -96,14 +102,14 @@ def blog(request):
         posts = paginator.page(paginator.num_pages)
 
     context = {
-        'posts': posts,
-        'params': get_params.urlencode(),
+        "posts": posts,
+        "params": get_params.urlencode(),
     }
 
     if request.htmx:
-        return render(request, 'home/partials/blog_post_list.html', context=context)
+        return render(request, "home/partials/blog_post_list.html", context=context)
 
-    return render(request, 'home/blog.html', context=context)
+    return render(request, "home/blog.html", context=context)
 
 
 def blog_post(request, id=None, slug=None):
@@ -116,8 +122,6 @@ def blog_post(request, id=None, slug=None):
     if post.hidden:
         raise Http404()
 
-    context = {
-        'post': post
-    }
+    context = {"post": post}
 
-    return render(request, 'home/blog_post.html', context=context)
+    return render(request, "home/blog_post.html", context=context)

@@ -33,3 +33,12 @@ constraint-dependencies = [
     "cryptography>=46.0.5",
     "sqlparse>=0.5.4",
 ]
+
+[tool.ruff]
+extend-exclude = [
+    "*/migrations/*",
+    "manage.py",
+]
+
+[tool.ruff.lint]
+ignore = ["RUF012"]

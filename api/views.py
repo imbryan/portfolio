@@ -5,7 +5,8 @@ from rest_framework.exceptions import NotFound
 from home.models import Project
 from .serializers import ProjectSerializer
 
-@api_view(['GET'])
+
+@api_view(["GET"])
 def get_project(request, id):
     project = Project.objects.filter(id=id, hidden=False).first()
     if not project:

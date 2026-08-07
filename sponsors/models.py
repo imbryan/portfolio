@@ -25,9 +25,14 @@ class Sponsorship(models.Model):
     @property
     def display_eligible(self):
         # TODO determine eligibility for other currencies
-        return self.amount >= getattr(config, 'SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION') and self.currency == getattr(config, 'DEFAULT_CURRENCY')
+        return self.amount >= getattr(
+            config, "SPONSOR_MESSAGE_MINIMUM_CONTRIBUTION"
+        ) and self.currency == getattr(config, "DEFAULT_CURRENCY")
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['platform', 'platform_message_id'], name='unique_platform_platform_message_id'),
+            models.UniqueConstraint(
+                fields=["platform", "platform_message_id"],
+                name="unique_platform_platform_message_id",
+            ),
         ]

@@ -7,12 +7,14 @@ from tinymce.models import HTMLField
 
 class BlogPost(models.Model):
     id = models.AutoField(primary_key=True)
-    date_published = models.DateTimeField('date field')
+    date_published = models.DateTimeField("date field")
     post_title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=100, unique=True, null=True, blank=True, allow_unicode=True)
+    slug = models.SlugField(
+        max_length=100, unique=True, null=True, blank=True, allow_unicode=True
+    )
     post_body = HTMLField()  # Caution, check best practices
     preview_text = models.TextField(null=True, blank=True)
-    tags = models.ManyToManyField('Tag', related_name='posts', blank=True)
+    tags = models.ManyToManyField("Tag", related_name="posts", blank=True)
     about_content = models.BooleanField(default=False)
     hidden = models.BooleanField(default=False)
     pinned = models.BooleanField(default=False)
@@ -26,19 +28,19 @@ class BlogPost(models.Model):
 
     @property
     def sorted_tags(self):
-        return self.tags.all().order_by('name')
+        return self.tags.all().order_by("name")
 
     @property
     def url(self):
         if self.slug:
-            return reverse('home:blog_post_by_slug', kwargs={'slug': self.slug})
-        return reverse('home:blog_post_by_id', kwargs={'id': self.id})
+            return reverse("home:blog_post_by_slug", kwargs={"slug": self.slug})
+        return reverse("home:blog_post_by_id", kwargs={"id": self.id})
 
     def save(self, *args, **kwargs):
         if not self.preview_text:
-            soup = BeautifulSoup(self.post_body, 'html.parser')
+            soup = BeautifulSoup(self.post_body, "html.parser")
             words = soup.get_text().split()
-            self.preview_text = ' '.join(words[:50])
+            self.preview_text = " ".join(words[:50])
             if len(words) > 50:
                 self.preview_text += "…"
         if not self.slug:
@@ -60,11 +62,11 @@ class Tag(models.Model):
         return self.name
 
 
-
 class SkillCategory(models.Model):
     """
     Deprecated class. See Tag instead.
     """
+
     id = models.AutoField(primary_key=True)
     category_name = models.CharField(max_length=200)
 
@@ -75,7 +77,7 @@ class SkillCategory(models.Model):
 class Skill(models.Model):
     id = models.AutoField(primary_key=True)
     skill_title = models.CharField(max_length=200)
-    skill_body = models.TextField(null=False, default='', blank=True)
+    skill_body = models.TextField(null=False, default="", blank=True)
     skill_level = models.IntegerField()
     skill_category = models.ForeignKey(SkillCategory, on_delete=models.CASCADE)
 
@@ -98,7 +100,9 @@ class Skill(models.Model):
 class Project(models.Model):
     id = models.AutoField(primary_key=True)
     project_title = models.CharField(max_length=200)
-    project_role = models.CharField(max_length=200, null=True, blank=True)  # Role in the project
+    project_role = models.CharField(
+        max_length=200, null=True, blank=True
+    )  # Role in the project
     project_body = models.TextField()
     project_repository_url = models.URLField(null=True, blank=True)
     project_demo_url = models.URLField(null=True, blank=True)
@@ -106,7 +110,7 @@ class Project(models.Model):
     project_download_url = models.URLField(null=True, blank=True)
     image_url = models.URLField(null=True, blank=True)
     date = models.DateField(null=True, blank=True)
-    tags = models.ManyToManyField('Tag', related_name='projects', blank=True)
+    tags = models.ManyToManyField("Tag", related_name="projects", blank=True)
     hidden = models.BooleanField(default=False)
     pinned = models.BooleanField(default=False)
     is_activism_tool = models.BooleanField(default=False)
@@ -116,7 +120,7 @@ class Project(models.Model):
 
     @property
     def sorted_tags(self):
-        return self.tags.all().order_by('name')
+        return self.tags.all().order_by("name")
 
 
 class Experience(models.Model):
@@ -125,7 +129,7 @@ class Experience(models.Model):
     position = models.CharField(max_length=200)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
-    tags = models.ManyToManyField('Tag', related_name='experiences', blank=True)
+    tags = models.ManyToManyField("Tag", related_name="experiences", blank=True)
     hidden = models.BooleanField(default=False)
 
     def __str__(self):
@@ -133,7 +137,7 @@ class Experience(models.Model):
 
     @property
     def sorted_tags(self):
-        return self.tags.all().order_by('name')
+        return self.tags.all().order_by("name")
 
 
 class Training(models.Model):
@@ -142,7 +146,7 @@ class Training(models.Model):
     program = models.CharField(max_length=200)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
-    tags = models.ManyToManyField('Tag', related_name='trainings', blank=True)
+    tags = models.ManyToManyField("Tag", related_name="trainings", blank=True)
     hidden = models.BooleanField(default=False)
 
     def __str__(self):
@@ -150,19 +154,22 @@ class Training(models.Model):
 
     @property
     def sorted_tags(self):
-        return self.tags.all().order_by('name')
+        return self.tags.all().order_by("name")
 
 
 class Achievement(models.Model):
     """
     Deprecated class. See Credential instead.
     """
+
     id = models.AutoField(primary_key=True)
     achievement_name = models.CharField(max_length=200)
-    achievement_body = models.TextField(null=False, default='', blank=True)
-    achievement_url = models.URLField(null=False, default='', blank=True)
+    achievement_body = models.TextField(null=False, default="", blank=True)
+    achievement_url = models.URLField(null=False, default="", blank=True)
     achievement_date = models.DateField()
-    achievement_issuer = models.CharField(max_length=200, null=False, default='', blank=True)
+    achievement_issuer = models.CharField(
+        max_length=200, null=False, default="", blank=True
+    )
     hidden = models.BooleanField(default=False)
 
     def __str__(self):
@@ -190,11 +197,11 @@ class Education(Credential):
     name = models.CharField(max_length=200, blank=True)
     degree = models.CharField(max_length=200)
     major = models.CharField(max_length=200)
-    tags = models.ManyToManyField('Tag', related_name='educations', blank=True)
+    tags = models.ManyToManyField("Tag", related_name="educations", blank=True)
 
     @property
     def sorted_tags(self):
-        return self.tags.all().order_by('name')
+        return self.tags.all().order_by("name")
 
     def save(self, *args, **kwargs):
         self.name = f"{self.degree}, {self.major}"
@@ -207,11 +214,11 @@ class Certification(Credential):
     cert_name = models.CharField(max_length=200)
     cert_level = models.CharField(max_length=200, null=True, blank=True)
     expiration_date = models.DateField(null=True, blank=True)
-    tags = models.ManyToManyField('Tag', related_name='certifications', blank=True)
+    tags = models.ManyToManyField("Tag", related_name="certifications", blank=True)
 
     @property
     def sorted_tags(self):
-        return self.tags.all().order_by('name')
+        return self.tags.all().order_by("name")
 
     def save(self, *args, **kwargs):
         if self.cert_level:
@@ -224,10 +231,14 @@ class Certification(Credential):
 class Initiative(models.Model):
     id = models.AutoField(primary_key=True)
     initiative_name = models.CharField(max_length=200)
-    initiative_alt_name = models.CharField(max_length=200, null=False, default='', blank=True)
-    initiative_body = models.TextField(null=False, default='', blank=True)  # Description
-    congress_url = models.URLField(null=False, default='', blank=True)
-    petition_url = models.URLField(null=False, default='', blank=True)
+    initiative_alt_name = models.CharField(
+        max_length=200, null=False, default="", blank=True
+    )
+    initiative_body = models.TextField(
+        null=False, default="", blank=True
+    )  # Description
+    congress_url = models.URLField(null=False, default="", blank=True)
+    petition_url = models.URLField(null=False, default="", blank=True)
     date_introduced = models.DateField()
     hidden = models.BooleanField(default=False)
 
